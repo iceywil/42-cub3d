@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/03 20:48:04 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/03 21:01:04 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,27 +89,13 @@ void	handle_element(t_cub *cub, char *line)
 
 void	check_elements(t_cub *cub)
 {
-	printf("check elements\n");
 	if (!cub->no || !cub->so || !cub->we || !cub->ea || !cub->f || !cub->c)
 		exit_error(cub, "Error: invalid element");
 	handle_colors(cub);
 	handle_map(cub);
-	ft_printf("%s\n", cub->no);
-	ft_printf("%s\n", cub->so);
-	ft_printf("%s\n", cub->we);
-	ft_printf("%s\n", cub->ea);
-	ft_printf("%d\n", cub->f_r);
-	ft_printf("%d\n", cub->f_g);
-	ft_printf("%d\n", cub->f_b);
-	ft_printf("%d\n", cub->c_r);
-	ft_printf("%d\n", cub->c_g);
-	ft_printf("%d\n", cub->c_b);
-	cub->i = 0;
-	while (cub->map[cub->i])
-	{
-		ft_printf("%s\n", cub->map[cub->i]);
-		cub->i++;
-	}
+	//print_cub(cub);
+	//replace the ' ' by 1 in the map (arbitrarly)
+	printf("check elements: SUCCESS\n");
 }
 
 void	handle_colors(t_cub *cub)
@@ -138,31 +124,4 @@ void	handle_colors(t_cub *cub)
 		|| cub->f_b < 0 || cub->f_b > 255 || cub->c_r < 0 || cub->c_r > 255
 		|| cub->c_g < 0 || cub->c_g > 255 || cub->c_b < 0 || cub->c_b > 255)
 		exit_error(cub, "Error: invalid element");
-}
-
-void	handle_map(t_cub *cub)
-{
-	cub->i = 0;
-	cub->x = 0;
-	while (cub->map[cub->i])
-	{
-		while (cub->map[cub->i][cub->x])
-		{
-			if ((cub->i == 0 || cub->i == cub->map_height)
-				&& (cub->map[cub->i][cub->x] != ' '
-					&& cub->map[cub->i][cub->x] != '1'))
-				exit_error(cub, "Error: the map is not closed");
-			if ((cub->x == 0 || cub->x == cub->map_width)
-				&& (cub->map[cub->i][cub->x] != ' '
-					&& cub->map[cub->i][cub->x] != '1'))
-				exit_error(cub, "Error: invalid map");
-			if (cub->i != 0 && cub->i != cub->map_height && cub->x != 0
-				&& cub->x != cub->map_width)
-			{
-
-			}
-			cub->x++;
-		}
-		cub->i++;
-	}
 }

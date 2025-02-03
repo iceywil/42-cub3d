@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/03 22:56:15 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/03 23:55:00 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	parsing(t_cub *cub, char *file)
 			//si cest une ligne vide et que la carte existe: erreur (on naccepte pas les sauts de ligne)
 			if (!line[cub->i]  && cub->map[0])
 				exit_error(cub, "Error: invalid map");
-			//si cest une ligne de la carte : lajouter
 			else if (line[cub->i])
 				add_map_line(cub, line);
 			//ligne vide et carte n'existe pas: ne rien faire
@@ -83,8 +82,6 @@ void	handle_element(t_cub *cub, char *line)
 		if (!cub->c)
 			exit_error(cub, "Error: malloc failed");
 	}
-	else
-		exit_error(cub, "Error: invalid map");
 }
 
 void	check_elements(t_cub *cub)
@@ -92,7 +89,6 @@ void	check_elements(t_cub *cub)
 	if (!cub->no || !cub->so || !cub->we || !cub->ea || !cub->f || !cub->c)
 		exit_error(cub, "Error: invalid element");
 	handle_colors(cub);
-	check_map_space(cub);
 	handle_map(cub);
 	print_cub(cub);
 	printf("check elements: SUCCESS\n");

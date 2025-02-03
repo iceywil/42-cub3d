@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/03 22:46:25 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/03 23:38:08 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void		check_elements(t_cub *cub);
 
 // MAP
 void		handle_map(t_cub *cub);
-void		check_map_space(t_cub *cub);
+void		check_map_space(t_cub *cub, int i, int j);
 
 // FREE
 void		free_cub(t_cub *cub);

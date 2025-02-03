@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:22:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/03 22:29:58 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/03 23:35:18 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void	add_map_line(t_cub *cub, char *line)
 
 	n = ft_strlen(line) - 1;
 	cub->map[cub->map_height] = ft_strdup(line);
+	//printf("map[%i]=%i\n", cub->map_height + 1, n);
 	if (cub->map[cub->map_height][n] == '\n')
 		cub->map[cub->map_height][n] = '\0';
 	if (!cub->map[cub->map_height])
 		exit_error(cub, "Error: strdup failed");
+	//printf("map[%i]=%s;\n", cub->map_height + 1, cub->map[cub->map_height]);
 	cub->map_height++;
 }
 
@@ -37,11 +39,12 @@ void	ft_init_map(t_cub *cub, char *file)
 		exit_error(cub, "Error: can't open file");
 	if (ft_init_max(fd, cub) < 0)
 		exit_error(cub, "Error: map initialization failed");
-	cub->map = malloc(sizeof(char *) * cub->map_height);
+	cub->map = malloc(sizeof(char *) * (cub->map_height + 1));
 	if (cub->map == NULL)
 		exit_error(cub, "Error: map initialization failed");
 	printf("init map: SUCCESS\n");
 	cub->map_height = 0;
+	cub->map[cub->map_height] = NULL;
 }
 
 /*retrieve the dimension of the map (cub->map_width and cub->map_height)

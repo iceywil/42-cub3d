@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:22:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/03 20:45:09 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/03 20:50:19 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 
 void	add_map_line(t_cub *cub, char *line)
 {
-	cub->i = 0;
+	int	n;
+
+	n = ft_strlen(line) - 1;
 	cub->map[cub->map_height] = ft_strdup(line);
-	cub->map[cub->map_height][ft_strlen(line) - 1] = '\0';
+	if (cub->map[cub->map_height][n] == '\n')
+		cub->map[cub->map_height][n] = '\0';
 	if (!cub->map[cub->map_height])
 		exit_error(cub, "Error: strdup failed");
 	cub->map_height++;

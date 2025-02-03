@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/03 20:39:17 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/03 20:48:04 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ void	parsing(t_cub *cub, char *file)
 {
 	int		fd;
 	char	*line;
-	int		i_map;
 
-	i_map = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		exit_error(cub, "Error: can't open file");
@@ -54,11 +52,7 @@ void	parsing(t_cub *cub, char *file)
 				exit_error(cub, "Error: invalid map");
 			//si cest une ligne de la carte : lajouter
 			else if (line[cub->i])
-			{
 				add_map_line(cub, line);
-				printf("cub->map[%i]=%s;\n", i_map, cub->map[i_map]);
-				i_map++;
-			}
 			//ligne vide et carte n'existe pas: ne rien faire
 		}
 		free(line);
@@ -160,7 +154,7 @@ void	handle_map(t_cub *cub)
 				exit_error(cub, "Error: the map is not closed");
 			if ((cub->x == 0 || cub->x == cub->map_width)
 				&& (cub->map[cub->i][cub->x] != ' '
-					|| cub->map[cub->i][cub->x] != '1'))
+					&& cub->map[cub->i][cub->x] != '1'))
 				exit_error(cub, "Error: invalid map");
 			if (cub->i != 0 && cub->i != cub->map_height && cub->x != 0
 				&& cub->x != cub->map_width)

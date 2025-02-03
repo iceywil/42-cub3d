@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/01/30 23:50:52 by a                ###   ########.fr       */
+/*   Updated: 2025/02/03 20:23:30 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ void	parsing(t_cub *cub, char *file)
 {
 	int		fd;
 	char	*line;
+	int		i_map;
 
+	i_map = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		exit_error(cub, "Error: can't open file");
@@ -42,12 +44,22 @@ void	parsing(t_cub *cub, char *file)
 			handle_element(cub, line);
 		else
 		{
+			if (!cub->map)
+				ft_init_map(cub, file);
 			cub->i = 0;
 			while (is_space(line[cub->i]))
 				cub->i++;
-			if (!line[cub->i] && cub->map)
+			//si cest une ligne vide et que la carte existe: erreur (on naccepte pas les sauts de ligne)
+			if (!line[cub->i]  && cub->map[0])
 				exit_error(cub, "Error: invalid map");
-			add_map_line(cub, line);
+			//si cest une ligne de la carte : lajouter
+			else if (line[cub->i])
+			{
+				add_map_line(cub, line);
+				printf("cub->map[%i]=%s;\n", i_map, cub->map[i_map]);
+				i_map++;
+			}
+			//ligne vide et carte n'existe pas: ne rien faire
 		}
 		free(line);
 	}
@@ -56,32 +68,17 @@ void	parsing(t_cub *cub, char *file)
 
 void	add_map_line(t_cub *cub, char *line)
 {
-	char	**tmp;
-
 	cub->i = 0;
-	if (cub->map)
-	{
-		tmp = malloc(sizeof(char *) * (cub->map_height + 2));
-		if (!tmp)
-			exit_error(cub, "Error: malloc failed");
-		while (cub->map[cub->i])
-			tmp[cub->i] = cub->map[cub->i++];
-		free(cub->map);
-		cub->map = tmp;
-	}
-	else
-		cub->map = malloc(sizeof(char *) * 2);
-	if (!cub->map)
-		exit_error(cub, "Error: malloc failed");
-	cub->map[cub->i + 1] = NULL;
-	cub->map[cub->i] = ft_strdup(line);
-	if (!cub->map[cub->i])
-		(ft_free_double_tab(&tmp), exit_error(cub, "Error: malloc failed"));
+	cub->map[cub->map_height] = ft_strdup(line);
+	cub->map[cub->map_height][ft_strlen(line) - 1] = '\0';
+	if (!cub->map[cub->map_height])
+		exit_error(cub, "Error: strdup failed");
 	cub->map_height++;
 }
 
 void	handle_element(t_cub *cub, char *line)
 {
+	cub->n++;
 	if (!ft_strncmp(line, "NO ", 3))
 		cub->no = ft_strdup(line + 3);
 	else if (!ft_strncmp(line, "SO ", 3))
@@ -168,8 +165,8 @@ void	handle_map(t_cub *cub)
 		{
 			if ((cub->i == 0 || cub->i == cub->map_height)
 				&& (cub->map[cub->i][cub->x] != ' '
-					|| cub->map[cub->i][cub->x] != '1'))
-				exit_error(cub, "Error: invalid map");
+					&& cub->map[cub->i][cub->x] != '1'))
+				exit_error(cub, "Error: the map is not closed");
 			if ((cub->x == 0 || cub->x == cub->map_width)
 				&& (cub->map[cub->i][cub->x] != ' '
 					|| cub->map[cub->i][cub->x] != '1'))
@@ -177,7 +174,7 @@ void	handle_map(t_cub *cub)
 			if (cub->i != 0 && cub->i != cub->map_height && cub->x != 0
 				&& cub->x != cub->map_width)
 			{
-				
+
 			}
 			cub->x++;
 		}

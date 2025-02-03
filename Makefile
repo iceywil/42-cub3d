@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: a <a@student.42.fr>                        +#+  +:+       +#+         #
+#    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/01/28 18:45:41 by a                ###   ########.fr        #
+#    Updated: 2025/02/03 19:25:17 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,13 @@ C_FILES     =   main.c \
 				parsing.c \
 				free.c \
 				utils.c \
-				
-	
+				map_parsing.c \
+				init_map.c \
+
+
 all:        $(NAME)
 
-OBJS    =   $(C_FILES:.c=.o)
+OBJS    =   $(C_FILES:%.c=obj/%.o)
 
 $(LIBFT_LIB):
 	make -C $(LIBFT_PATH)
@@ -41,10 +43,17 @@ $(NAME):    $(LIBFT_LIB) $(OBJS)
 clean:
 	make clean -C $(LIBFT_PATH)
 	rm -rf $(OBJS)
+	rm -rf obj
 
 fclean:     clean
 	rm -rf $(NAME)
 	make fclean -C $(LIBFT_PATH)
+
+obj/%.o : %.c | obj
+	@$(CC) -c $< -o $@
+
+obj:
+	@mkdir -p obj
 
 re:         fclean all
 

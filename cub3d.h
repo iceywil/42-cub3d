@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/01 11:25:40 by a                ###   ########.fr       */
+/*   Updated: 2025/02/03 19:48:57 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 typedef struct s_cub
 {
 	int		i;
+	int		n; //lignes dans fichier
+	int		max_x; //nb colonnes
+	int		max_y; //nb lignes
 	int		x;
 	char	**map;
 	char	player_pos;
@@ -58,4 +61,7 @@ void		exit_error(t_cub *cub, char *str);
 // UTILS
 int			is_space(char c);
 
+// INIT MAP
+int			ft_init_max(int fd, t_cub *cub);
+void		ft_init_map(t_cub *cub, char *file);
 #endif

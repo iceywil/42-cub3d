@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/03 21:01:04 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/03 21:23:52 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void	check_elements(t_cub *cub)
 	handle_colors(cub);
 	handle_map(cub);
 	//print_cub(cub);
-	//replace the ' ' by 1 in the map (arbitrarly)
 	printf("check elements: SUCCESS\n");
 }
 

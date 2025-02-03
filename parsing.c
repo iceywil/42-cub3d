@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/03 21:23:52 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/03 22:56:15 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,9 @@ void	check_elements(t_cub *cub)
 	if (!cub->no || !cub->so || !cub->we || !cub->ea || !cub->f || !cub->c)
 		exit_error(cub, "Error: invalid element");
 	handle_colors(cub);
+	check_map_space(cub);
 	handle_map(cub);
-	//print_cub(cub);
+	print_cub(cub);
 	printf("check elements: SUCCESS\n");
 }
 

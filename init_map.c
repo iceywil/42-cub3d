@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:22:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/03 20:50:19 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/03 22:29:58 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ void	ft_init_map(t_cub *cub, char *file)
 
 /*retrieve the dimension of the map (cub->map_width and cub->map_height)
 returns 0 when success
-returns -1 if gnl failed
-returns -2 if the map is not rectangular*/
+returns -1 if gnl failed*/
 int	ft_init_max(int fd, t_cub *cub)
 {
 	char	*gnl;
@@ -67,9 +66,8 @@ int	ft_init_max(int fd, t_cub *cub)
 	{
 		cub->map_height++;
 		line_x = ft_strlen(gnl);
-		if (line_x < cub->map_width)
-			return (close(fd), free(gnl),
-				printf(": a rectangular map is expected!"), -2);
+		if (cub->map_width < line_x)
+			cub->map_width = line_x;
 		free(gnl);
 		gnl = get_next_line(fd);
 	}

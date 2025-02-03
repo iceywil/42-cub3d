@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/03 20:23:30 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/03 20:39:17 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,6 @@ void	parsing(t_cub *cub, char *file)
 	check_elements(cub);
 }
 
-void	add_map_line(t_cub *cub, char *line)
-{
-	cub->i = 0;
-	cub->map[cub->map_height] = ft_strdup(line);
-	cub->map[cub->map_height][ft_strlen(line) - 1] = '\0';
-	if (!cub->map[cub->map_height])
-		exit_error(cub, "Error: strdup failed");
-	cub->map_height++;
-}
-
 void	handle_element(t_cub *cub, char *line)
 {
 	cub->n++;
@@ -105,6 +95,7 @@ void	handle_element(t_cub *cub, char *line)
 
 void	check_elements(t_cub *cub)
 {
+	printf("check elements\n");
 	if (!cub->no || !cub->so || !cub->we || !cub->ea || !cub->f || !cub->c)
 		exit_error(cub, "Error: invalid element");
 	handle_colors(cub);

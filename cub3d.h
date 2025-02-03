@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/03 19:48:57 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/03 20:39:28 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ typedef struct s_cub
 {
 	int		i;
 	int		n; //lignes dans fichier
-	int		max_x; //nb colonnes
-	int		max_y; //nb lignes
 	int		x;
 	char	**map;
 	char	player_pos;
@@ -47,7 +45,6 @@ void		init_all(t_cub *cub);
 // PARSING
 void		parsing(t_cub *cub, char *file);
 void		handle_element(t_cub *cub, char *line);
-void		add_map_line(t_cub *cub, char *line);
 void		handle_colors(t_cub *cub);
 void		check_elements(t_cub *cub);
 
@@ -64,4 +61,5 @@ int			is_space(char c);
 // INIT MAP
 int			ft_init_max(int fd, t_cub *cub);
 void		ft_init_map(t_cub *cub, char *file);
+void		add_map_line(t_cub *cub, char *line);
 #endif

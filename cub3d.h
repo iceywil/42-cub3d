@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/04 17:26:09 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/04 18:17:13 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,13 @@ typedef struct s_cub
 	void	*img;
 	void	*mini_carte;
 	char	*img_data;
-	char	*mini_carte_data;
+	int		img_pixel;
+	int		img_line;
+	int		img_endian;
+	char	*carte_data;
+	int		carte_pixel;
+	int		carte_line;
+	int		carte_endian;
 }			t_cub;
 
 //INIT STRUCT
@@ -79,8 +85,8 @@ void		save_map(t_cub *cub, char *file, char *line);
 //EVENTS HANDLER
 int			mouse_hook(int button, int x, int y, t_cub *cub);
 int			key_hook(int key, t_cub *cub);
-int			ft_rot_handler(int key, t_cub *cub);
 
-
-
+//MINI CARTE
+void		ft_draw_map(t_cub *cub);
+void		pixel_to_map(t_cub *vars, int x, int y, int color);
 #endif

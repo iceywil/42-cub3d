@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/04 17:25:28 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/04 18:17:13 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,13 @@ void	ft_init_mlx(t_cub *cub)
 	cub->img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (!cub->img)
 		exit_error(cub, "Initialisation of image failed\n");
+	cub->img_data = mlx_get_data_addr(cub->img,
+			&cub->img_pixel, &cub->img_line, &cub->img_endian);
 	cub->mini_carte = mlx_new_image(cub->mlx, WIDTH / 5, HEIGHT / 5);
 	if (!cub->mini_carte)
 		exit_error(cub, "Initialisation of image failed\n");
+	cub->carte_data = mlx_get_data_addr(cub->mini_carte,
+			&cub->carte_pixel, &cub->carte_line, &cub->carte_endian);
 }
 
 void	init_all(t_cub *cub)

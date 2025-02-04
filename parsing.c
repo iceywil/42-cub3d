@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   00_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/04 00:15:37 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:43:38 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,32 +36,27 @@ void	parsing(t_cub *cub, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		exit_error(cub, "Error: can't open file");
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		if (!cub->no || !cub->so || !cub->we || !cub->ea || !cub->f || !cub->c)
 			handle_element(cub, line);
 		else
-		{
-			if (!cub->map)
-				ft_init_map(cub, file);
-			cub->i = 0;
-			while (is_space(line[cub->i]))
-				cub->i++;
-			//si cest une ligne vide et que la carte existe: erreur (on naccepte pas les sauts de ligne)
-			if (!line[cub->i]  && cub->map[0])
-				exit_error(cub, "Error: invalid map");
-			else if (line[cub->i])
-				add_map_line(cub, line);
-			//ligne vide et carte n'existe pas: ne rien faire
-		}
+			save_map(cub, file, line);
 		free(line);
+		line = get_next_line(fd);
 	}
+	close(fd);
 	check_elements(cub);
 }
 
+/*si ligne vide et que la carte existe:
+erreur (on naccepte pas les sauts de ligne)*/
+//ligne vide et carte n'existe pas: ne rien faire
+
 void	handle_element(t_cub *cub, char *line)
 {
-	cub->n++;
+	cub->start_map_i++;
 	if (!ft_strncmp(line, "NO ", 3))
 		cub->no = ft_strdup(line + 3);
 	else if (!ft_strncmp(line, "SO ", 3))
@@ -93,7 +88,7 @@ void	check_elements(t_cub *cub)
 	handle_colors(cub);
 	handle_map(cub);
 	print_cub(cub);
-	printf("check elements: SUCCESS\n");
+	ft_printf("check elements: SUCCESS\n");
 }
 
 void	handle_colors(t_cub *cub)

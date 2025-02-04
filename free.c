@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 01:33:34 by a                 #+#    #+#             */
-/*   Updated: 2025/01/28 18:43:47 by a                ###   ########.fr       */
+/*   Updated: 2025/02/04 16:40:58 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_free_map(char **map, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+		free(map[i++]);
+	free(map);
+}
+
+void	free_mlx(t_cub *cub)
+{
+	mlx_destroy_image(cub->mlx, cub->img);
+	mlx_destroy_image(cub->mlx, cub->mini_carte);
+	mlx_destroy_window(cub->mlx, cub->win);
+	mlx_destroy_display(cub->mlx);
+	free(cub->mlx);
+}
 
 void	free_cub(t_cub *cub)
 {
@@ -26,6 +45,16 @@ void	free_cub(t_cub *cub)
 		free(cub->f);
 	if (cub->c)
 		free(cub->c);
+	if (cub->map)
+		ft_free_map(cub->map, cub->map_height);
+}
+
+/*closes the program and free everything*/
+int	ft_close_all(t_cub *cub)
+{
+	free_cub(cub);
+	free_mlx(cub);
+	return (0);
 }
 
 void	exit_error(t_cub *cub, char *str)

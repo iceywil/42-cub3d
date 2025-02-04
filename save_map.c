@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:22:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/04 17:21:46 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:33:00 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	ft_init_map(t_cub *cub, char *file)
 		exit_error(cub, "Error: map initialization failed");
 	ft_printf("init map: SUCCESS\n");
 	cub->map_height = 0;
+	cub->map[0] = NULL;
 }
 
 /*map is a mallocated (char **)*/

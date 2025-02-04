@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/01/30 23:50:52 by a                ###   ########.fr       */
+/*   Updated: 2025/02/03 21:06:18 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,26 @@ The map must be parsed as it looks in the file. Spaces are a valid part of the
 map and are up to you to handle. You must be able to parse any kind of map,
 as long as it respects the rules of the map.
  */
+
 void	parsing(t_cub *cub, char *file)
 {
-	int		fd;
-	char	*line;
+	int	fd;
 
+	ft_printf("'%c'\n", ft_strlen(file) - 4);
+	if (file[ft_strlen(file) - 4] != '.' || file[ft_strlen(file) - 3] != 'c'
+		|| file[ft_strlen(file) - 2] != 'u' || file[ft_strlen(file) - 1] != 'b')
+		exit_error(cub, "Error: wrong file extension");
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		exit_error(cub, "Error: can't open file");
+	parse(cub, fd);
+	check_elements(cub);
+}
+
+void	parse(t_cub *cub, int fd)
+{
+	char	*line;
+
 	while ((line = get_next_line(fd)))
 	{
 		if (!cub->no || !cub->so || !cub->we || !cub->ea || !cub->f || !cub->c)
@@ -45,13 +57,17 @@ void	parsing(t_cub *cub, char *file)
 			cub->i = 0;
 			while (is_space(line[cub->i]))
 				cub->i++;
-			if (!line[cub->i] && cub->map)
-				exit_error(cub, "Error: invalid map");
+			if (line[cub->i])
+				cub->map_height++;
+			else
+			{
+				free(line);
+				break ;
+			}
 			add_map_line(cub, line);
 		}
 		free(line);
 	}
-	check_elements(cub);
 }
 
 void	add_map_line(t_cub *cub, char *line)
@@ -77,7 +93,6 @@ void	add_map_line(t_cub *cub, char *line)
 	cub->map[cub->i] = ft_strdup(line);
 	if (!cub->map[cub->i])
 		(ft_free_double_tab(&tmp), exit_error(cub, "Error: malloc failed"));
-	cub->map_height++;
 }
 
 void	handle_element(t_cub *cub, char *line)
@@ -103,7 +118,7 @@ void	handle_element(t_cub *cub, char *line)
 			exit_error(cub, "Error: malloc failed");
 	}
 	else
-		exit_error(cub, "Error: invalid map");
+		exit_error(cub, "Error: invalid element");
 }
 
 void	check_elements(t_cub *cub)
@@ -161,11 +176,13 @@ void	handle_colors(t_cub *cub)
 void	handle_map(t_cub *cub)
 {
 	cub->i = 0;
-	cub->x = 0;
 	while (cub->map[cub->i])
 	{
+		cub->x = 0;
 		while (cub->map[cub->i][cub->x])
 		{
+			ft_printf("%d\n", cub->map_height);
+			// ft_printf("%s\n", cub->map[cub->i][cub->x]);
 			if ((cub->i == 0 || cub->i == cub->map_height)
 				&& (cub->map[cub->i][cub->x] != ' '
 					|| cub->map[cub->i][cub->x] != '1'))
@@ -177,7 +194,6 @@ void	handle_map(t_cub *cub)
 			if (cub->i != 0 && cub->i != cub->map_height && cub->x != 0
 				&& cub->x != cub->map_width)
 			{
-				
 			}
 			cub->x++;
 		}

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: a <a@student.42.fr>                        +#+  +:+       +#+         #
+#    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 16:02:38 by wscherre          #+#    #+#              #
-#    Updated: 2025/01/30 18:33:35 by a                ###   ########.fr        #
+#    Updated: 2025/02/04 14:53:24 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRCS	=	ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 			ft_stricmp.c ft_gnl.c ft_strcmp.c \
 			ft_strncpy.c ft_strcpy.c ft_is_numeric.c \
 
-OBJS	=	$(SRCS:.c=.o)
+OBJS    =   $(SRCS:%.c=obj/%.o)
 
 CC	=	cc
 
@@ -44,12 +44,19 @@ NAME	=	libft.a
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-	ar rcs $(NAME) $(OBJS)
-
+	@ar rcs $(NAME) $(OBJS)
+	@echo "\033[1;32m""🎉 compilation of $(NAME): ""SUCCESS !🎉""\033[0m"
 clean:
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
+	@rm -rf obj
 
 fclean:		clean
 	$(RM) $(NAME)
 
 re:		fclean all
+
+obj/%.o : %.c | obj
+	@$(CC) -c $< -o $@
+
+obj:
+	@mkdir -p obj

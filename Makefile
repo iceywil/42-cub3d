@@ -6,7 +6,7 @@
 #    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/03 19:25:17 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/04 14:54:42 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,12 +38,12 @@ $(LIBFT_LIB):
 	make -C $(LIBFT_PATH)
 
 $(NAME):    $(LIBFT_LIB) $(OBJS)
-	$(CC) $(OBJS) $(FLAG) $(LIBFT_LIB) -o $(NAME)
-
+	@$(CC) $(OBJS) $(FLAG) $(LIBFT_LIB) -o $(NAME)
+	@echo "\033[1;32m""🎉 compilation of $(NAME): ""SUCCESS !🎉""\033[0m"
 clean:
 	make clean -C $(LIBFT_PATH)
-	rm -rf $(OBJS)
-	rm -rf obj
+	@rm -rf $(OBJS)
+	@rm -rf obj
 
 fclean:     clean
 	rm -rf $(NAME)

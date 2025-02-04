@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 01:33:34 by a                 #+#    #+#             */
-/*   Updated: 2025/02/04 16:40:58 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:09:54 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	ft_close_all(t_cub *cub)
 {
 	free_cub(cub);
 	free_mlx(cub);
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 

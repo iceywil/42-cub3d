@@ -6,7 +6,7 @@
 #    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/04 16:46:59 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/04 17:24:33 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ LIBFT_LIB   =   $(LIBFT_PATH)/$(LIBFT_FILE)
 C_FILES     =   main.c \
 				parsing.c save_map.c check_map.c\
 				free.c \
-				utils.c \
+				utils.c init.c\
 				mini_carte.c \
 				events_handler.c \
 

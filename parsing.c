@@ -1,16 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   00_parsing.c                                       :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/04 16:43:38 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:22:22 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*si ligne vide et que la carte existe:
+erreur (on naccepte pas les sauts de ligne)
+si ligne vide et carte n'existe pas: ne rien faire*/
+
 
 /* A valid map / config file obeys the following rules:
 
@@ -46,13 +51,10 @@ void	parsing(t_cub *cub, char *file)
 		free(line);
 		line = get_next_line(fd);
 	}
+	cub->map[cub->map_height] = NULL;
 	close(fd);
 	check_elements(cub);
 }
-
-/*si ligne vide et que la carte existe:
-erreur (on naccepte pas les sauts de ligne)*/
-//ligne vide et carte n'existe pas: ne rien faire
 
 void	handle_element(t_cub *cub, char *line)
 {

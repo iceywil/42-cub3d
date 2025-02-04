@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/04 16:07:11 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:26:09 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ typedef struct s_cub
 	char	*mini_carte_data;
 }			t_cub;
 
-// MAIN
+//INIT STRUCT
+void		ft_init_mlx(t_cub *cub);
 void		init_all(t_cub *cub);
 
 // PARSING
@@ -79,5 +80,7 @@ void		save_map(t_cub *cub, char *file, char *line);
 int			mouse_hook(int button, int x, int y, t_cub *cub);
 int			key_hook(int key, t_cub *cub);
 int			ft_rot_handler(int key, t_cub *cub);
+
+
 
 #endif

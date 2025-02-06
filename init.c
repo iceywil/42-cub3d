@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/04 18:17:13 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:18:01 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ void	ft_init_mlx(t_cub *cub)
 	cub->win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "42 - CUB3D");
 	if (!cub->win)
 		exit_error(cub, "Initialisation of window failed\n");
-	cub->img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
-	if (!cub->img)
+	cub->img.mlx = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
+	if (!cub->img.mlx)
 		exit_error(cub, "Initialisation of image failed\n");
-	cub->img_data = mlx_get_data_addr(cub->img,
-			&cub->img_pixel, &cub->img_line, &cub->img_endian);
-	cub->mini_carte = mlx_new_image(cub->mlx, WIDTH / 5, HEIGHT / 5);
-	if (!cub->mini_carte)
+	cub->img.addr = mlx_get_data_addr(cub->img.mlx,
+			&cub->img.bpp, &cub->img.line, &cub->img.endian);
+	cub->mini_carte.mlx = mlx_new_image(cub->mlx, WIDTH / 5, HEIGHT / 5);
+	if (!cub->mini_carte.mlx)
 		exit_error(cub, "Initialisation of image failed\n");
-	cub->carte_data = mlx_get_data_addr(cub->mini_carte,
-			&cub->carte_pixel, &cub->carte_line, &cub->carte_endian);
+	cub->mini_carte.addr = mlx_get_data_addr(cub->mini_carte.mlx,
+			&cub->mini_carte.bpp, &cub->mini_carte.line, &cub->mini_carte.endian);
 }
 
 void	init_all(t_cub *cub)

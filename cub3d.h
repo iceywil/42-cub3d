@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/04 18:17:13 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:13:43 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,15 @@
 # include "mlx.h"
 # include "cub3d_def.h"
 # include <fcntl.h>
+
+typedef struct s_img
+{
+	void	*mlx;
+	char	*addr;
+	int		bpp;
+	int		line;
+	int		endian;
+}	t_img;
 
 typedef struct s_cub
 {
@@ -41,16 +50,8 @@ typedef struct s_cub
 	int		map_width;
 	void	*mlx;
 	void	*win;
-	void	*img;
-	void	*mini_carte;
-	char	*img_data;
-	int		img_pixel;
-	int		img_line;
-	int		img_endian;
-	char	*carte_data;
-	int		carte_pixel;
-	int		carte_line;
-	int		carte_endian;
+	t_img	img;
+	t_img	mini_carte;
 }			t_cub;
 
 //INIT STRUCT

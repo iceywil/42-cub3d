@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:44:35 by a                 #+#    #+#             */
-/*   Updated: 2025/02/07 15:28:20 by a                ###   ########.fr       */
+/*   Updated: 2025/02/07 15:35:59 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	print_cub(t_cub *cub)
 int	line_is_empty(t_cub *cub, char *line)
 {
 	cub->i = 0;
-	while (is_space(cub->line[cub->i]))
+	while (is_space(line[cub->i]))
 		cub->i++;
-	if (!cub->line[cub->i])
+	if (!line[cub->i])
 		return (1);
 	return (0);
 }

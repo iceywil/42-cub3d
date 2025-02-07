@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/07 15:23:20 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:28:35 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "cub3d_def.h"
 # include "libft/libft.h"
 # include "mlx.h"
-# include "cub3d_def.h"
 # include <fcntl.h>
 
 typedef struct s_img
@@ -25,7 +25,7 @@ typedef struct s_img
 	int		bpp;
 	int		line;
 	int		endian;
-}	t_img;
+}			t_img;
 
 typedef struct s_cub
 {
@@ -55,7 +55,7 @@ typedef struct s_cub
 	t_img	mini_carte;
 }			t_cub;
 
-//INIT STRUCT
+// INIT STRUCT
 void		ft_init_mlx(t_cub *cub);
 void		init_all(t_cub *cub);
 
@@ -78,6 +78,7 @@ int			ft_close_all(t_cub *cub);
 int			is_space(char c);
 void		print_cub(t_cub *cub);
 int			isin(char c, char *str);
+int			line_is_empty(t_cub *cub, char *line);
 
 // INIT MAP
 int			ft_init_max(int fd, t_cub *cub);
@@ -85,11 +86,11 @@ void		ft_init_map(t_cub *cub, char *file);
 void		add_map_line(t_cub *cub, char *line);
 void		save_map(t_cub *cub, char *file, char *line);
 
-//EVENTS HANDLER
+// EVENTS HANDLER
 int			mouse_hook(int button, int x, int y, t_cub *cub);
 int			key_hook(int key, t_cub *cub);
 
-//MINI CARTE
+// MINI CARTE
 void		ft_draw_map(t_cub *cub);
 void		pixel_to_map(t_cub *vars, int x, int y, int color);
 #endif

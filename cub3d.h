@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/06 16:13:43 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:29:40 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int			ft_close_all(t_cub *cub);
 // UTILS
 int			is_space(char c);
 void		print_cub(t_cub *cub);
+int			isin(char c, char *str);
 
 // INIT MAP
 int			ft_init_max(int fd, t_cub *cub);

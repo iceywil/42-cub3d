@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parsing.c                                      :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/04 15:24:14 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:32:46 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	check_map_element(t_cub *cub, char elem)
 }
 
 /*check if the first and last line only contains 1
-check if the first and last element of each line is a 1*/
+check if the first and last element of each line is a 1
+check that there is exactly one player*/
 void	handle_map(t_cub *cub)
 {
 	cub->i = 0;
@@ -77,4 +78,6 @@ void	handle_map(t_cub *cub)
 		}
 		cub->i++;
 	}
+	if (!cub->player_pos)
+		exit_error(cub, "Error: there is no player\n");
 }

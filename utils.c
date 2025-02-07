@@ -6,11 +6,22 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:44:35 by a                 #+#    #+#             */
-/*   Updated: 2025/02/04 18:13:11 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:29:28 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	isin(char c, char *str)
+{
+	while (*str)
+	{
+		if (c == *str)
+			return (1);
+		str++;
+	}
+	return (0);
+}
 
 int	is_space(char c)
 {

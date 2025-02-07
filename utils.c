@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:44:35 by a                 #+#    #+#             */
-/*   Updated: 2025/02/07 13:58:57 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:28:20 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,14 @@ void	print_cub(t_cub *cub)
 		ft_printf("%s\n", cub->map[cub->i]);
 		cub->i++;
 	}
+}
+
+int	line_is_empty(t_cub *cub, char *line)
+{
+	cub->i = 0;
+	while (is_space(cub->line[cub->i]))
+		cub->i++;
+	if (!cub->line[cub->i])
+		return (1);
+	return (0);
 }

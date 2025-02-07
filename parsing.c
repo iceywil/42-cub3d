@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/07 15:29:47 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:31:08 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,27 +57,31 @@ void	parsing(t_cub *cub, char *file)
 
 void	handle_element(t_cub *cub, char *line)
 {
-	cub->start_map_i++;
+	char	*tmp;
+
+	if (line_is_empty(cub, line))
+		return ;
+	if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)
+		|| !ft_strncmp(line, "EA ", 3) || !ft_strncmp(line, "WE ", 3))
+		tmp = ft_strdup(line + 3);
+	else if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
+		tmp = ft_strdup(line + 2);
+	else
+		exit_error(cub, "Error: invalid element");
+	if (!tmp)
+		exit_error(cub, "Error : malloc failed");
 	if (!ft_strncmp(line, "NO ", 3))
-		cub->no = ft_strdup(line + 3);
+		cub->no = tmp;
 	else if (!ft_strncmp(line, "SO ", 3))
-		cub->so = ft_strdup(line + 3);
+		cub->so = tmp;
 	else if (!ft_strncmp(line, "EA ", 3))
-		cub->ea = ft_strdup(line + 3);
+		cub->ea = tmp;
 	else if (!ft_strncmp(line, "WE ", 3))
-		cub->we = ft_strdup(line + 3);
+		cub->we = tmp;
 	else if (!ft_strncmp(line, "F ", 2))
-	{
-		cub->f = ft_strdup(line + 2);
-		if (!cub->f)
-			exit_error(cub, "Error: malloc failed");
-	}
+		cub->f = tmp;
 	else if (!ft_strncmp(line, "C ", 2))
-	{
-		cub->c = ft_strdup(line + 2);
-		if (!cub->c)
-			exit_error(cub, "Error: malloc failed");
-	}
+		cub->c = tmp;
 }
 
 void	check_elements(t_cub *cub)

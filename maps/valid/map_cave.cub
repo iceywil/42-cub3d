@@ -1,7 +1,7 @@
-NO ./textures/oak.xpm
-SO ./textures/oak.xpm
-WE ./textures/oak.xpm
-EA ./textures/oak.xpm
+NO ./textures/wall_1.xpm
+SO ./textures/wall_2.xpm
+WE ./textures/wall_3.xpm
+EA ./textures/wall_4.xpm
 
 F 160,82,45
 C 135,206,235

@@ -17,12 +17,12 @@ int	main(int argc, char **argv)
 	t_cub	cub;
 	int		n;
 
+	init_all(&cub);
 	if (argc != 2)
 		exit_error(&cub, "Error: incorrect number of arguments\n");
 	n = ft_strlen(argv[1]);
 	if (ft_strncmp(".cub", &argv[1][n - 4], 4))
 		return (ft_printf("Wrong file format: a .cub is expected!\n"), 1);
-	init_all(&cub);
 	parsing(&cub, argv[1]);
 	ft_init_mlx(&cub);
 	ft_draw_map(&cub);

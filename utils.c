@@ -52,9 +52,9 @@ void	print_cub(t_cub *cub)
 int	line_is_empty(t_cub *cub, char *line)
 {
 	cub->i = 0;
-	while (is_space(cub->line[cub->i]))
+	while (is_space(line[cub->i]))
 		cub->i++;
-	if (!cub->line[cub->i])
+	if (!line[cub->i])
 		return (1);
 	return (0);
 }

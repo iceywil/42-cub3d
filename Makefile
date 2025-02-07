@@ -16,7 +16,7 @@ CC          =   cc
 
 FLAG        =   -g3 -Wall -Wextra -Werror -lm
  
-FLAG_MLX	=   -L"/home/kimnguye/sgoinfre/minilibx-linux" -lmlx -lXext -lX11 -O3
+FLAG_MLX	=   -Lminilibx-linux -lmlx -lXext -lX11 -O3
 
 LIBFT_PATH  =   libft
 

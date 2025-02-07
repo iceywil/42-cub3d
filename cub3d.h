@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/03 20:56:13 by a                ###   ########.fr       */
+/*   Updated: 2025/02/05 15:40:17 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_cub
 {
 	int		i;
 	int		x;
+	char	*line;
 	char	**map;
 	char	player_pos;
 	char	*no;
@@ -52,6 +53,8 @@ void		check_elements(t_cub *cub);
 
 // MAP
 void		handle_map(t_cub *cub);
+int			check_tokens(t_cub *cub);
+void		check_closed(t_cub *cub);
 
 // FREE
 void		free_cub(t_cub *cub);

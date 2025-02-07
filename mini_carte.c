@@ -6,11 +6,17 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:01:19 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/07 13:58:26 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 16:34:00 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*
+Pouvoir faire bouger mon personnage avec les flèches dans la minimap (voir les keys à l'étape 4)
+Checker si le case sur laquelle je vais me déplacer est un mur ou pas (si == ‘0’) : si oui je peux me déplacer dessus, sinon non
+*/
+
 
 /*put pixel to img*/
 void	pixel_to_img(t_img *img, int x, int y, int color)
@@ -31,14 +37,16 @@ void	big_pixel(t_cub *cub, int i, int j, int color)
 	x = j;
 	while (x < j + ZOOM_INIT)
 	{
-		y = i;
-		while (y < i + ZOOM_INIT)
-			pixel_to_img(&cub->mini_carte, x, y++, color);
+		y = i - 1;
+		while (++y < i + ZOOM_INIT)
+			if (x < MAP_WIDTH && y < MAP_HEIGHT && x >= 0 && y >= 0)		
+				pixel_to_img(&cub->mini_carte, x, y, color);
 		x++;
 	}
 }
 
-/*dessiner la mini-carte*/
+/*dessiner la mini-carte
+verifier que la carte ne depasse pas la taille max*/
 void	ft_draw_map(t_cub *cub)
 {
 	int	i;
@@ -60,4 +68,6 @@ void	ft_draw_map(t_cub *cub)
 		}
 		i++;
 	}
+	mlx_put_image_to_window(cub->mlx, cub->win,
+		cub->mini_carte.mlx, 0, HEIGHT / 5 * 4);
 }

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/07 15:36:25 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:53:47 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ typedef struct s_cub
 	int		start_map_i;
 	int		x;
 	char	**map;
-	char	player_pos;
+	char	player_dir;
+	int		player_x;
+	int		player_y;
 	char	*no;
 	char	*so;
 	char	*we;

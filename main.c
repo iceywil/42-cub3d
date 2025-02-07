@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:52 by a                 #+#    #+#             */
-/*   Updated: 2025/02/04 18:11:59 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:20:47 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char **argv)
 	parsing(&cub, argv[1]);
 	ft_init_mlx(&cub);
 	ft_draw_map(&cub);
+	mlx_put_image_to_window((&cub)->mlx, (&cub)->win, (&cub)->mini_carte.mlx, 0, HEIGHT / 5 * 4);
 	mlx_hook((&cub)->win, KEYPRESS_EVENT, 1L << 0, key_hook, (&cub));
 	mlx_hook((&cub)->win, BUTTONPRESS_EVENT, 1L << 2, mouse_hook, (&cub));
 	mlx_hook((&cub)->win, 17, 1L << 17, ft_close_all, (&cub));

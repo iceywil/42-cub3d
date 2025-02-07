@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/04 16:12:26 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:21:53 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 //WINDOW
 # define WIDTH 1920
 # define HEIGHT 1080
+# define MARGIN 10
 
 //CAMERA
 # define ANGLE_INIT 30

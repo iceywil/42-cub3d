@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:01:19 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/06 16:16:30 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:24:32 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@ void	ft_draw_map(t_cub *cub)
 		j = 0;
 		while (cub->map[i][j])
 		{
-			if (cub->map[i][j] == 1)
-				pixel_to_img(&cub->mini_carte,j * ZOOM_INIT, i * ZOOM_INIT, YELLOW);
-			if (cub->map[i][j] == 0)
-				pixel_to_img(&cub->mini_carte,j * ZOOM_INIT, i * ZOOM_INIT, GREEN);
+			if (cub->map[i][j] == '1')
+				pixel_to_img(&cub->mini_carte,MARGIN + j * ZOOM_INIT, i * ZOOM_INIT, RED);
+			if (cub->map[i][j] == '0')
+				pixel_to_img(&cub->mini_carte,MARGIN + j * ZOOM_INIT, i * ZOOM_INIT, WHITE);
 			j++;
 		}
 		i++;
 	}
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_carte.mlx, 0, 0);
 }

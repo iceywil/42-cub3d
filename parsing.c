@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/07 13:58:41 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:19:29 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ si ligne vide et carte n'existe pas: ne rien faire*/
 
 /* A valid map / config file obeys the following rules:
 The map must be composed of only 6 possible characters: 0 for an empty space,
-1 for a wall, and N,S,E or W for the player’s start position and spawning
+1 for a wall, and N,S,E or W for the player's start position and spawning
 orientation.
 The map must be closed/surrounded by walls
 Except for the map content,
@@ -31,11 +31,15 @@ The map must be parsed as it looks in the file. Spaces are a valid part of the
 map and are up to you to handle. You must be able to parse any kind of map,
 as long as it respects the rules of the map.
  */
+
 void	parsing(t_cub *cub, char *file)
 {
 	int		fd;
 	char	*line;
 
+	if (file[ft_strlen(file) - 4] != '.' || file[ft_strlen(file) - 3] != 'c'
+		|| file[ft_strlen(file) - 2] != 'u' || file[ft_strlen(file) - 1] != 'b')
+		exit_error(cub, "Error: wrong file extension");
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		exit_error(cub, "Error: can't open file");
@@ -43,7 +47,7 @@ void	parsing(t_cub *cub, char *file)
 	while (line)
 	{
 		if (!cub->no || !cub->so || !cub->we || !cub->ea || !cub->f || !cub->c)
-			handle_element(cub, line);
+			handle_element(cub, cub->line);
 		else
 			save_map(cub, file, line);
 		free(line);

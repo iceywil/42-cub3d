@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/04 17:22:22 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:58:41 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 erreur (on naccepte pas les sauts de ligne)
 si ligne vide et carte n'existe pas: ne rien faire*/
 
-
 /* A valid map / config file obeys the following rules:
-
 The map must be composed of only 6 possible characters: 0 for an empty space,
 1 for a wall, and N,S,E or W for the player’s start position and spawning
 orientation.

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:01:19 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/07 13:51:42 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:58:26 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,8 @@ void	ft_draw_map(t_cub *cub)
 		{
 			if (cub->map[i][j] == '1')
 				big_pixel(cub, i * ZOOM_INIT, MARGIN + j * ZOOM_INIT, RED);
-				//pixel_to_img(&cub->mini_carte,MARGIN + j * ZOOM_INIT, i * ZOOM_INIT, RED);
 			if (cub->map[i][j] == '0')
 				big_pixel(cub, i * ZOOM_INIT, MARGIN + j * ZOOM_INIT, WHITE);
-				//pixel_to_img(&cub->mini_carte,MARGIN + j * ZOOM_INIT, i * ZOOM_INIT, WHITE);
 			if (isin(cub->map[i][j], "NSEW"))
 				big_pixel(cub, i * ZOOM_INIT, MARGIN + j * ZOOM_INIT, BLUE);
 			j++;

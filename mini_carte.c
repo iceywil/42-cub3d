@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:01:19 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/07 13:30:08 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:51:42 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,19 @@ void	pixel_to_img(t_img *img, int x, int y, int color)
 	img->addr[pixel + 2] = (color >> 16) & 0xFF;
 }
 
-/*handle the player position*/
-void	ft_player(t_cub *cub)
+void	big_pixel(t_cub *cub, int i, int j, int color)
 {
-	
+	int	x;
+	int	y;
+
+	x = j;
+	while (x < j + ZOOM_INIT)
+	{
+		y = i;
+		while (y < i + ZOOM_INIT)
+			pixel_to_img(&cub->mini_carte, x, y++, color);
+		x++;
+	}
 }
 
 /*dessiner la mini-carte*/
@@ -42,10 +51,13 @@ void	ft_draw_map(t_cub *cub)
 		while (cub->map[i][j])
 		{
 			if (cub->map[i][j] == '1')
-				pixel_to_img(&cub->mini_carte,MARGIN + j * ZOOM_INIT, i * ZOOM_INIT, RED);
+				big_pixel(cub, i * ZOOM_INIT, MARGIN + j * ZOOM_INIT, RED);
+				//pixel_to_img(&cub->mini_carte,MARGIN + j * ZOOM_INIT, i * ZOOM_INIT, RED);
 			if (cub->map[i][j] == '0')
-				pixel_to_img(&cub->mini_carte,MARGIN + j * ZOOM_INIT, i * ZOOM_INIT, WHITE);
+				big_pixel(cub, i * ZOOM_INIT, MARGIN + j * ZOOM_INIT, WHITE);
+				//pixel_to_img(&cub->mini_carte,MARGIN + j * ZOOM_INIT, i * ZOOM_INIT, WHITE);
 			if (isin(cub->map[i][j], "NSEW"))
+				big_pixel(cub, i * ZOOM_INIT, MARGIN + j * ZOOM_INIT, BLUE);
 			j++;
 		}
 		i++;

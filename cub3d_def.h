@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/07 13:21:53 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:52:55 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 //WINDOW
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MARGIN 10
+# define MARGIN 5
 
 //CAMERA
 # define ANGLE_INIT 30
 # define ANGLE_ROT 5
-# define ZOOM_INIT 5.00
+# define ZOOM_INIT 10
 # define ZOOM_PLUS 1.10
 # define ZOOM_MINUS 0.95
 # define TRANS 8

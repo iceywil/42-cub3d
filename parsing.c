@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/07 15:28:21 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:29:47 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ void	parsing(t_cub *cub, char *file)
 	int		fd;
 	char	*line;
 
-	if (file[ft_strlen(file) - 4] != '.' || file[ft_strlen(file) - 3] != 'c'
-		|| file[ft_strlen(file) - 2] != 'u' || file[ft_strlen(file) - 1] != 'b')
-		exit_error(cub, "Error: wrong file extension");
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		exit_error(cub, "Error: can't open file");

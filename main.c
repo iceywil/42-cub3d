@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:52 by a                 #+#    #+#             */
-/*   Updated: 2025/02/05 16:19:42 by a                ###   ########.fr       */
+/*   Updated: 2025/02/07 15:10:19 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,5 @@ void	init_all(t_cub *cub)
 	cub->line = NULL;
 	cub->map = NULL;
 	cub->map_height = 0;
-	cub->map_width = 0;
 	cub->player_pos = 0;
 }

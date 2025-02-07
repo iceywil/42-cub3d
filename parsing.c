@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/05 16:43:05 by a                ###   ########.fr       */
+/*   Updated: 2025/02/07 15:13:52 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,17 @@ void	handle_element(t_cub *cub, char *line)
 {
 	char	*tmp;
 
-	cub->i = 0;
-	while (is_space(cub->line[cub->i]))
-		cub->i++;
-	if (!cub->line[cub->i])
+	if (line_is_empty(cub, line))
 		return ;
 	if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)
 		|| !ft_strncmp(line, "EA ", 3) || !ft_strncmp(line, "WE ", 3))
 		tmp = ft_strdup(line + 3);
 	else if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
 		tmp = ft_strdup(line + 2);
+	else
+		exit_error(cub, "Error: invalid element");
+	if (!tmp)
+		exit_error(cub, "Error : malloc failed");
 	if (!ft_strncmp(line, "NO ", 3))
 		cub->no = tmp;
 	else if (!ft_strncmp(line, "SO ", 3))
@@ -125,8 +126,6 @@ void	handle_element(t_cub *cub, char *line)
 		cub->f = tmp;
 	else if (!ft_strncmp(line, "C ", 2))
 		cub->c = tmp;
-	else
-		exit_error(cub, "Error: invalid element");
 }
 
 void	check_elements(t_cub *cub)
@@ -138,12 +137,6 @@ void	check_elements(t_cub *cub)
 		handle_map(cub);
 	else
 		exit_error(cub, "Error: invalid map");
-	/* 	cub->i = 0;
-		while (cub->map[cub->i])
-		{
-			ft_printf("%s\n", cub->map[cub->i]);
-			cub->i++;
-		} */
 }
 
 void	handle_colors(t_cub *cub)
@@ -230,4 +223,14 @@ void	check_closed(t_cub *cub)
 		else if (cub->map[cub->i + 1][cub->x] == ' ')
 			exit_error(cub, "Error : map not closed");
 	}
+}
+
+int	line_is_empty(t_cub *cub, char *line)
+{
+	cub->i = 0;
+	while (is_space(cub->line[cub->i]))
+		cub->i++;
+	if (!cub->line[cub->i])
+		return (1);
+	return (0);
 }

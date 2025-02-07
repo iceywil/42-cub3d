@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/05 15:40:17 by a                ###   ########.fr       */
+/*   Updated: 2025/02/07 15:10:22 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_cub
 	int		c_g;
 	int		c_b;
 	int		map_height;
-	int		map_width;
 }			t_cub;
 
 // MAIN
@@ -62,5 +61,6 @@ void		exit_error(t_cub *cub, char *str);
 
 // UTILS
 int			is_space(char c);
+int	line_is_empty(t_cub *cub, char *line);
 
 #endif

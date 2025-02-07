@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/07 15:19:29 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:28:21 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	parsing(t_cub *cub, char *file)
 	while (line)
 	{
 		if (!cub->no || !cub->so || !cub->we || !cub->ea || !cub->f || !cub->c)
-			handle_element(cub, cub->line);
+			handle_element(cub, line);
 		else
 			save_map(cub, file, line);
 		free(line);

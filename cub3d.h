@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/07 15:28:35 by a                ###   ########.fr       */
+/*   Updated: 2025/02/07 17:18:38 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ typedef struct s_cub
 	int		c_r;
 	int		c_g;
 	int		c_b;
+	void	*text_n;
+	void	*text_s;
+	void	*text_w;
+	void	*text_e;
 	int		map_height;
 	int		map_width;
 	void	*mlx;
@@ -85,6 +89,7 @@ int			ft_init_max(int fd, t_cub *cub);
 void		ft_init_map(t_cub *cub, char *file);
 void		add_map_line(t_cub *cub, char *line);
 void		save_map(t_cub *cub, char *file, char *line);
+void		get_textures(t_cub *cub);
 
 // EVENTS HANDLER
 int			mouse_hook(int button, int x, int y, t_cub *cub);
@@ -93,4 +98,5 @@ int			key_hook(int key, t_cub *cub);
 // MINI CARTE
 void		ft_draw_map(t_cub *cub);
 void		pixel_to_map(t_cub *vars, int x, int y, int color);
+
 #endif

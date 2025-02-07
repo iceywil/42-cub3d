@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
+#    By: a <a@student.42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/04 17:24:33 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/07 16:24:33 by a                ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC          =   cc
 
 FLAG        =   -g3 -Wall -Wextra -Werror -lm
  
-FLAG_MLX	=   -Lminilibx-linux -lmlx -lXext -lX11 -O3
+FLAG_MLX	=   -I/opt/X11/include -Lminilibx-linux -lmlx -L/opt/X11/lib -lX11 -lXext -O3
 
 LIBFT_PATH  =   libft
 
@@ -30,7 +30,6 @@ C_FILES     =   main.c \
 				utils.c init.c\
 				mini_carte.c \
 				events_handler.c \
-
 
 all:        $(NAME)
 

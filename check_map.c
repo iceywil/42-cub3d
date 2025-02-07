@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/07 13:32:46 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 16:13:00 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,16 @@ void	check_map_space(t_cub *cub, int i, int j)
 
 /*the map should only contain one N, S, E or W
 the map should only contain 0 and 1 except for the player position*/
-void	check_map_element(t_cub *cub, char elem)
+void	check_map_element(t_cub *cub, char elem, int i, int j)
 {
 	if (elem == 'N' || elem == 'S' || elem == 'E' || elem == 'W')
 	{
-		if (!cub->player_pos)
-			cub->player_pos = elem;
+		if (!cub->player_dir)
+		{
+			cub->player_x = j;
+			cub->player_y = i;
+			cub->player_dir = elem;
+		}
 		else
 			exit_error(cub, "Error: there should be only one player");
 	}
@@ -73,11 +77,11 @@ void	handle_map(t_cub *cub)
 				&& cub->map[cub->i][cub->x] != ' ')
 				exit_error(cub, "Error: the map is not closed");
 			if (cub->i > 0 && cub->i < cub->map_height - 1 && cub->x > 0)
-				check_map_element(cub, cub->map[cub->i][cub->x]);
+				check_map_element(cub, cub->map[cub->i][cub->x], cub->i, cub->x);
 			cub->x++;
 		}
 		cub->i++;
 	}
-	if (!cub->player_pos)
+	if (!cub->player_dir)
 		exit_error(cub, "Error: there is no player\n");
 }

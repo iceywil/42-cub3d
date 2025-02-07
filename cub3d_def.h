@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/07 13:52:55 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 16:25:12 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define MARGIN 5
+
+//MINI MAP
+# define MAP_WIDTH WIDTH / 5
+# define MAP_HEIGHT HEIGHT / 5 
 
 //CAMERA
 # define ANGLE_INIT 30

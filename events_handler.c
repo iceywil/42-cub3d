@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:56:55 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/07 13:57:08 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 16:22:36 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,50 @@ int	mouse_hook(int button, int x, int y, t_cub *cub)
 	return (0);
 }
 
+/*ne pas sortir de lecran et ne pas cogner un mur*/
 void	ft_deplacement(int key, t_cub *cub)
 {
 	if (key == KEY_W || key == TOP)
-		ft_printf("player is moving forward\n");
+	{
+		if (cub->player_y > 0 && cub->map[cub->player_y - 1][cub->player_x] == '0')
+		{
+			cub->map[cub->player_y][cub->player_x] = '0';
+			cub->player_y--;
+			cub->map[cub->player_y][cub->player_x] = cub->player_dir;
+			ft_printf("player is moving forward\n");
+		}
+	}
 	else if (key == KEY_A || key == LEFT)
-		ft_printf("player is moving on the left\n");
+	{
+		if (cub->player_x > 0 && cub->map[cub->player_y][cub->player_x - 1] == '0')
+		{
+			cub->map[cub->player_y][cub->player_x] = '0';
+			cub->player_x--;
+			cub->map[cub->player_y][cub->player_x] = cub->player_dir;
+			ft_printf("player is moving on the left\n");
+		}
+	}
 	else if (key == KEY_S || key == BOTTOM)
-		ft_printf("player is moving backward\n");
+	{
+		if (cub->map[cub->player_y + 1][cub->player_x] == '0')
+		{
+			cub->map[cub->player_y][cub->player_x] = '0';
+			cub->player_y++;
+			cub->map[cub->player_y][cub->player_x] = cub->player_dir;
+			ft_printf("player is moving backward\n");
+		}
+	}
 	else if (key == KEY_D || key == RIGHT)
-		ft_printf("player is moving on the right\n");
+	{
+		if (cub->map[cub->player_y][cub->player_x + 1] == '0')
+		{
+			cub->map[cub->player_y][cub->player_x] = '0';
+			cub->player_x++;
+			cub->map[cub->player_y][cub->player_x] = cub->player_dir;
+			ft_printf("player is moving on the right\n");
+		}
+	}
+	ft_draw_map(cub);
 }
 
 void	ft_shoot(t_cub *cub)

@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/07 17:18:38 by a                ###   ########.fr       */
+/*   Updated: 2025/02/07 17:26:00 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ typedef struct s_cub
 	int		i;
 	int		start_map_i;
 	int		x;
-	char	*line;
 	char	**map;
-	char	player_pos;
+	char	player_dir;
+	int		player_x;
+	int		player_y;
 	char	*no;
 	char	*so;
 	char	*we;

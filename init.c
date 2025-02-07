@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/07 13:57:54 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/07 16:26:32 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_init_mlx(t_cub *cub)
 		exit_error(cub, "Initialisation of image failed\n");
 	cub->img.addr = mlx_get_data_addr(cub->img.mlx,
 			&cub->img.bpp, &cub->img.line, &cub->img.endian);
-	cub->mini_carte.mlx = mlx_new_image(cub->mlx, WIDTH / 5, HEIGHT / 5);
+	cub->mini_carte.mlx = mlx_new_image(cub->mlx, MAP_WIDTH, MAP_HEIGHT);
 	if (!cub->mini_carte.mlx)
 		exit_error(cub, "Initialisation of image failed\n");
 	cub->mini_carte.addr = mlx_get_data_addr(cub->mini_carte.mlx,
@@ -52,5 +52,7 @@ void	init_all(t_cub *cub)
 	cub->map = NULL;
 	cub->map_height = 0;
 	cub->map_width = 0;
-	cub->player_pos = 0;
+	cub->player_dir = 0;
+	cub->player_x = -1;
+	cub->player_y = -1;
 }

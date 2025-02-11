@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:56:55 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/07 16:22:36 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:13:51 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,46 +28,59 @@ int	mouse_hook(int button, int x, int y, t_cub *cub)
 	return (0);
 }
 
+/*change direction*/
+void	ft_update_dir(int key, t_cub *cub)
+{
+	if (key == LEFT)
+	{
+		cub->dir_x -= ANGLE_ROT;
+		cub->dir_y -= ANGLE_ROT;	
+		ft_printf("player is turning on his left\n");
+	}
+	else if (key == RIGHT)
+	{
+		cub->dir_x += ANGLE_ROT;
+		cub->dir_y += ANGLE_ROT;
+		ft_printf("player is turning on his right\n");	
+	}
+}
+
 /*ne pas sortir de lecran et ne pas cogner un mur*/
 void	ft_deplacement(int key, t_cub *cub)
 {
-	if (key == KEY_W || key == TOP)
+	if (key == KEY_W)
 	{
-		if (cub->player_y > 0 && cub->map[cub->player_y - 1][cub->player_x] == '0')
+		if (cub->pos_y > 0 && cub->map[cub->pos_y - 1][cub->pos_x] == '0')
 		{
-			cub->map[cub->player_y][cub->player_x] = '0';
-			cub->player_y--;
-			cub->map[cub->player_y][cub->player_x] = cub->player_dir;
+			cub->map[cub->pos_y][cub->pos_x] = '0';
+			cub->pos_y--;
 			ft_printf("player is moving forward\n");
 		}
 	}
-	else if (key == KEY_A || key == LEFT)
+	else if (key == KEY_A)
 	{
-		if (cub->player_x > 0 && cub->map[cub->player_y][cub->player_x - 1] == '0')
+		if (cub->pos_x > 0 && cub->map[cub->pos_y][cub->pos_x - 1] == '0')
 		{
-			cub->map[cub->player_y][cub->player_x] = '0';
-			cub->player_x--;
-			cub->map[cub->player_y][cub->player_x] = cub->player_dir;
+			cub->map[cub->pos_y][cub->pos_x] = '0';
+			cub->pos_x--;
 			ft_printf("player is moving on the left\n");
 		}
 	}
-	else if (key == KEY_S || key == BOTTOM)
+	else if (key == KEY_S)
 	{
-		if (cub->map[cub->player_y + 1][cub->player_x] == '0')
+		if (cub->map[cub->pos_y + 1][cub->pos_x] == '0')
 		{
-			cub->map[cub->player_y][cub->player_x] = '0';
-			cub->player_y++;
-			cub->map[cub->player_y][cub->player_x] = cub->player_dir;
+			cub->map[cub->pos_y][cub->pos_x] = '0';
+			cub->pos_y++;
 			ft_printf("player is moving backward\n");
 		}
 	}
-	else if (key == KEY_D || key == RIGHT)
+	else if (key == KEY_D)
 	{
-		if (cub->map[cub->player_y][cub->player_x + 1] == '0')
+		if (cub->map[cub->pos_y][cub->pos_x + 1] == '0')
 		{
-			cub->map[cub->player_y][cub->player_x] = '0';
-			cub->player_x++;
-			cub->map[cub->player_y][cub->player_x] = cub->player_dir;
+			cub->map[cub->pos_y][cub->pos_x] = '0';
+			cub->pos_x++;
 			ft_printf("player is moving on the right\n");
 		}
 	}
@@ -83,9 +96,10 @@ int	key_hook(int key, t_cub *cub)
 {
 	if (key == ESC || key == KEY_Q || key == KEY_Q_MAC)
 		ft_close_all(cub);
-	else if (key == KEY_W || key == KEY_A || key == KEY_S || key == KEY_D
-		|| key == LEFT || key == TOP || key == RIGHT || key == BOTTOM)
+	else if (key == KEY_W || key == KEY_A || key == KEY_S || key == KEY_D)
 		ft_deplacement(key, cub);
+	else if (key == RIGHT || key == LEFT)
+		ft_update_dir(key, cub);
 	else if (key == SPACE)
 		ft_shoot(cub);
 	else

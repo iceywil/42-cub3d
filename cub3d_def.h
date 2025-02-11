@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/07 16:25:12 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:12:17 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define CUB3D_DEF_H
 
 # define _USE_MATH_DEFINES
+
+//default values
+# define UNSET_DOUBLE 9999
 
 //WINDOW
 # define WIDTH 1920
@@ -26,8 +29,8 @@
 
 //CAMERA
 # define ANGLE_INIT 30
-# define ANGLE_ROT 5
-# define ZOOM_INIT 10
+# define ANGLE_ROT 0.1
+# define ZOOM_INIT 20
 # define ZOOM_PLUS 1.10
 # define ZOOM_MINUS 0.95
 # define TRANS 8

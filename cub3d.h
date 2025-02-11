@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/11 11:43:25 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:24:52 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
 # include <fcntl.h>
+# include <math.h>
 
 typedef struct s_img
 {
@@ -33,9 +34,11 @@ typedef struct s_cub
 	int		start_map_i;
 	int		x;
 	char	**map;
-	char	player_dir;
-	int		player_x;
-	int		player_y;
+	double	dir_x; //player direction
+	double	dir_y; //player direction
+	double	dir_angle; 
+	int		pos_x;
+	int		pos_y;
 	char	*no;
 	char	*so;
 	char	*we;

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/07 16:26:32 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:17:21 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ void	init_all(t_cub *cub)
 	cub->map = NULL;
 	cub->map_height = 0;
 	cub->map_width = 0;
-	cub->player_dir = 0;
-	cub->player_x = -1;
-	cub->player_y = -1;
+	cub->dir_x = UNSET_DOUBLE;
+	cub->dir_y = UNSET_DOUBLE;
+	cub->dir_angle = UNSET_DOUBLE; 
+	cub->pos_x = -1; 
+	cub->pos_y = -1;
 }

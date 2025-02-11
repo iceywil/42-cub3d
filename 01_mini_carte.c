@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_carte.c                                       :+:      :+:    :+:   */
+/*   01_mini_carte.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:01:19 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/11 13:05:57 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:23:15 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ Pouvoir faire bouger mon personnage avec les flèches dans la minimap (voir les 
 Checker si le case sur laquelle je vais me déplacer est un mur ou pas (si == ‘0’) : si oui je peux me déplacer dessus, sinon non
 */
 
+int	isin_img(int x, int y, int width, int height)
+{
+	if (x < width && y < height && x >= 0 && y >= 0)
+		return (1);
+	return (0);
+}
 
 /*put pixel to img*/
 void	pixel_to_img(t_img *img, int x, int y, int color)
@@ -42,7 +48,7 @@ void	big_pixel(t_cub *cub, int i, int j, int color)
 	{
 		y = i - 1;
 		while (++y < i + ZOOM_INIT)
-			if (x < MAP_WIDTH && y < MAP_HEIGHT && x >= 0 && y >= 0)		
+			if (isin_img(x, y, MAP_WIDTH, MAP_HEIGHT))		
 				pixel_to_img(&cub->mini_carte, x, y, color);
 		x++;
 	}
@@ -58,17 +64,21 @@ void	player_pixel(t_cub *cub, int i, int j, int color)
 	big_pixel(cub, i, j, WHITE);
 	//on centre + on decale
 	trans = (ZOOM_INIT / 2) - (PLAYER_SIZ / 2);
-	j = j + trans; 
-	i = i + trans;
+	j += trans; 
+	i += trans;
 	x = j;
 	while (x < j + PLAYER_SIZ)
 	{
 		y = i - 1;
 		while (++y < i + PLAYER_SIZ)
-			if (x < MAP_WIDTH && y < MAP_HEIGHT && x >= 0 && y >= 0)		
+			if (isin_img(x, y, MAP_WIDTH, MAP_HEIGHT))		
 				pixel_to_img(&cub->mini_carte, x, y, color);
 		x++;
 	}
+	//on centre
+	j += (PLAYER_SIZ / 2);
+	i += (PLAYER_SIZ / 2);
+	ft_segment(cub, j, i, j + cub->dir_x * 99999, i + cub->dir_y * 99999);
 }
 
 /*dessiner la mini-carte

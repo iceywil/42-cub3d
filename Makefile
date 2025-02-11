@@ -6,7 +6,7 @@
 #    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/11 11:34:26 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/11 15:56:12 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,11 @@ LIBFT_LIB   =   $(LIBFT_PATH)/$(LIBFT_FILE)
 H_FILES		=	cub3d.h cub3d_def.h
 
 C_FILES     =   main.c \
-				parsing.c save_map.c check_map.c\
+				00_parsing.c 00_save_map.c 00_check_map.c \
+				01_mini_carte.c 01_display.c raycasting.c\
+				fdf_segment.c fdf_bresenham.c\
 				free.c \
 				utils.c init.c\
-				mini_carte.c display.c\
 				events_handler.c \
 
 all:        $(NAME)
@@ -42,7 +43,7 @@ all:        $(NAME)
 update:
 	@git submodule update --init --recursive
 
-OBJS    =   $(C_FILES:%.c=obj/%.o)
+OBJS    =   $(C_FILES:%.c=obj/%.o) $(PARSING:%.c=obj/%.o)
 
 $(LIBFT_LIB):
 	make -C $(LIBFT_PATH)

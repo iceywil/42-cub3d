@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   00_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/11 11:18:29 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:51:45 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	check_elements(t_cub *cub)
 	handle_map(cub);
 	print_cub(cub);
 	ft_printf("check elements: SUCCESS\n");
+	printf("player_direction(%f, %f); player_position(%i, %i);\n", cub->dir_x, cub->dir_y, cub->pos_x, cub->pos_y);
 }
 
 void	handle_colors(t_cub *cub)

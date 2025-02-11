@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:22:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/07 13:58:47 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 14:50:12 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ void	add_map_line(t_cub *cub, char *line)
 		exit_error(cub, "Error: strdup failed");
 	cub->map_height++;
 }
-	//printf("map[%i]=%i\n", cub->map_height + 1, n);
-	//printf("map[%i]=%s;\n", cub->map_height + 1, cub->map[cub->map_height]);
 
 /*read the file and save the map line by line into cub->map*/
 void	save_map(t_cub *cub, char *file, char *line)

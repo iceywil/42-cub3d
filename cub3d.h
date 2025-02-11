@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/11 13:24:52 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:19:47 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@
 # include "minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <math.h>
+
+typedef struct s_slope {
+	int	x_a;
+	int	x_b;
+	int	y_a;
+	int	y_b;
+	int	dx;
+	int	dy;
+	int	p;
+	int	i;
+	int	j;
+}	t_slope;
 
 typedef struct s_img
 {
@@ -36,9 +48,11 @@ typedef struct s_cub
 	char	**map;
 	double	dir_x; //player direction
 	double	dir_y; //player direction
-	double	dir_angle; 
-	int		pos_x;
-	int		pos_y;
+	double	dir_angle; //direction angle
+	int		pos_x; //player position
+	int		pos_y; //player position
+	double	plane_x; //camera plane
+	double	plane_y; //camera plane
 	char	*no;
 	char	*so;
 	char	*we;
@@ -68,7 +82,6 @@ typedef struct s_cub
 // INIT STRUCT
 void		ft_init_mlx(t_cub *cub);
 void		init_all(t_cub *cub);
-void		ft_init_img(t_cub *cub);
 
 // PARSING
 void		parsing(t_cub *cub, char *file);
@@ -103,7 +116,16 @@ int			mouse_hook(int button, int x, int y, t_cub *cub);
 int			key_hook(int key, t_cub *cub);
 
 // MINI CARTE
+void		pixel_to_img(t_img *img, int x, int y, int color);
 void		ft_draw_map(t_cub *cub);
-void		pixel_to_map(t_cub *vars, int x, int y, int color);
+int			isin_img(int x, int y, int width, int height);
+
+//bresenham
+void	ft_segment(t_cub *cub, int x_a, int y_a, int x_b, int y_b);
+void	ft_segment_vertical(t_cub *cub, t_slope *ab);
+void	ft_segment_q1(t_cub *cub, t_slope *ab);
+void	ft_segment_q2(t_cub *cub, t_slope *ab);
+void	ft_segment_q3(t_cub *cub, t_slope *ab);
+void	ft_segment_q4(t_cub *cub, t_slope *ab);
 
 #endif

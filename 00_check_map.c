@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   00_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/11 13:29:08 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:47:59 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	check_map_space(t_cub *cub, int i, int j)
 
 void	set_direction(t_cub *cub, char elem)
 {
+	double	plane_angle;
+	
 	if (elem == 'N')
 		cub->dir_angle = - M_PI / 2;
 	else if (elem == 'S')
@@ -48,6 +50,9 @@ void	set_direction(t_cub *cub, char elem)
 		cub->dir_angle = M_PI;
 	cub->dir_x = cos(cub->dir_angle);
 	cub->dir_y = sin(cub->dir_angle);
+	plane_angle = cub->dir_angle + M_PI / 2;
+	cub->plane_x = cos(plane_angle); 
+	cub->plane_y = sin(plane_angle);
 }
 
 /*the map should only contain one N, S, E or W

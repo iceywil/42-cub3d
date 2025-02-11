@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/11 13:31:00 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:20:35 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define MAP_HEIGHT HEIGHT / 5 
 
 //CAMERA
-# define ANGLE_INIT 30
+# define ANGLE_VIEW (M_PI / 2)
 # define ANGLE_ROT (M_PI / 16)
 # define ZOOM_INIT 20
 # define ZOOM_PLUS 1.10

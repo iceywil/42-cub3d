@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 01:33:34 by a                 #+#    #+#             */
-/*   Updated: 2025/02/06 16:08:54 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:42:56 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ void	free_mlx(t_cub *cub)
 {
 	mlx_destroy_image(cub->mlx, cub->img.mlx);
 	mlx_destroy_image(cub->mlx, cub->mini_carte.mlx);
+	mlx_destroy_image(cub->mlx, cub->no);
+	mlx_destroy_image(cub->mlx, cub->so);
+	mlx_destroy_image(cub->mlx, cub->we);
+	mlx_destroy_image(cub->mlx, cub->ea);
 	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);
 	free(cub->mlx);

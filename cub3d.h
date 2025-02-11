@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/11 11:18:17 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:43:25 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_cub
 	char	*so;
 	char	*we;
 	char	*ea;
+	int		text_x;
+	int		text_y;
 	char	*f;
 	char	*c;
 	int		f_r;
@@ -63,6 +65,7 @@ typedef struct s_cub
 // INIT STRUCT
 void		ft_init_mlx(t_cub *cub);
 void		init_all(t_cub *cub);
+void		ft_init_img(t_cub *cub);
 
 // PARSING
 void		parsing(t_cub *cub, char *file);

@@ -6,7 +6,7 @@
 #    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/11 11:12:08 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/11 11:34:26 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ C_FILES     =   main.c \
 				parsing.c save_map.c check_map.c\
 				free.c \
 				utils.c init.c\
-				mini_carte.c \
+				mini_carte.c display.c\
 				events_handler.c \
 
 all:        $(NAME)

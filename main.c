@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:52 by a                 #+#    #+#             */
-/*   Updated: 2025/02/11 11:21:22 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:44:23 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,4 @@ int	main(int argc, char **argv)
 	mlx_hook((&cub)->win, 17, 1L << 17, ft_close_all, (&cub));
 	mlx_loop(cub.mlx);
 	return (0);
-}
-
-void	get_textures(t_cub *cub)
-{
-	int	x;
-	int	y;
-
-	cub->text_n = mlx_xpm_file_to_image(cub->mlx, cub->no, &x, &y);
-	cub->text_s = mlx_xpm_file_to_image(cub->mlx, cub->so, &x, &y);
-	cub->text_w = mlx_xpm_file_to_image(cub->mlx, cub->we, &x, &y);
-	cub->text_e = mlx_xpm_file_to_image(cub->mlx, cub->ea, &x, &y);
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->text_n, 0, 0);
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->text_s, 0, y);
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->text_e, x, 0);
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->text_w, x, y);
-	if (!cub->text_n || !cub->text_s || !cub->text_w || !cub->text_e)
-		exit_error(cub, "Error : Can't open texture");
 }

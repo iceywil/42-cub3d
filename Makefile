@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: a <a@student.42.fr>                        +#+  +:+       +#+         #
+#    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/07 16:24:33 by a                ###   ########.fr        #
+#    Updated: 2025/02/11 11:03:39 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,19 @@ CC          =   cc
 
 FLAG        =   -g3 -Wall -Wextra -Werror -lm
  
-FLAG_MLX	=   -I/opt/X11/include -Lminilibx-linux -lmlx -L/opt/X11/lib -lX11 -lXext -O3
+MLX_PATH	=	minilibx-linux
+
+MLX_MAKE	=	make -C $(MLX_PATH)
+
+FLAG_MLX	=   -L$(MLX_PATH) -lmlx -lX11 -lXext -O3
 
 LIBFT_PATH  =   libft
 
 LIBFT_FILE  =   libft.a
 
 LIBFT_LIB   =   $(LIBFT_PATH)/$(LIBFT_FILE)
+
+H_FILES		=	cub3d.h cub3d_def.h
 
 C_FILES     =   main.c \
 				parsing.c save_map.c check_map.c\
@@ -33,15 +39,20 @@ C_FILES     =   main.c \
 
 all:        $(NAME)
 
+update:
+	@git submodule update --init --recursive
+
 OBJS    =   $(C_FILES:%.c=obj/%.o)
 
 $(LIBFT_LIB):
 	make -C $(LIBFT_PATH)
 
-$(NAME):    $(LIBFT_LIB) $(OBJS)
+$(NAME):    $(LIBFT_LIB) $(H_FILES) $(OBJS)
+	$(MLX_MAKE)
 	@$(CC) $(OBJS) $(FLAG) $(FLAG_MLX) $(LIBFT_LIB) -o $(NAME)
 	@echo "\033[1;32m""🎉 compilation of $(NAME): ""SUCCESS !🎉""\033[0m"
 clean:
+	$(MLX_MAKE) clean
 	make clean -C $(LIBFT_PATH)
 	@rm -rf $(OBJS)
 	@rm -rf obj

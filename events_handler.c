@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:56:55 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/11 14:17:06 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:52:17 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,12 @@ void	ft_update_dir(int key, t_cub *cub)
 	else if (key == RIGHT)
 	{
 		printf("player is turning on his left:\nold angle=%f; ", cub->dir_angle);
-		cub->dir_angle += ANGLE_ROT;	
+		cub->dir_angle += ANGLE_ROT;
+		cub->dir_x = cos(cub->dir_angle);
+		cub->dir_y = sin(cub->dir_angle);
 		printf("new angle=%f;\n", cub->dir_angle);
 	}
+	ft_draw_map(cub);
 }
 
 /*ne pas sortir de lecran et ne pas cogner un mur*/

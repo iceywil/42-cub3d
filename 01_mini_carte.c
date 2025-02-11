@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:01:19 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/11 16:23:15 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:54:37 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,6 @@ void	player_pixel(t_cub *cub, int i, int j, int color)
 				pixel_to_img(&cub->mini_carte, x, y, color);
 		x++;
 	}
-	//on centre
-	j += (PLAYER_SIZ / 2);
-	i += (PLAYER_SIZ / 2);
-	ft_segment(cub, j, i, j + cub->dir_x * 99999, i + cub->dir_y * 99999);
 }
 
 /*dessiner la mini-carte
@@ -104,6 +100,13 @@ void	ft_draw_map(t_cub *cub)
 		}
 		i++;
 	}
+	//rayon
+	//on centre
+	j = MARGIN + cub->pos_x * ZOOM_INIT + (ZOOM_INIT / 2);
+	i = cub->pos_y * ZOOM_INIT + (ZOOM_INIT / 2);
+	//on trace le rayon
+	ft_segment(cub, j, i, j + (int)(cub->dir_x * ZOOM_INIT * 1.2),
+		i + (int)(cub->dir_y * ZOOM_INIT * 1.2));
 	mlx_put_image_to_window(cub->mlx, cub->win,
 		cub->mini_carte.mlx, 0, HEIGHT / 5 * 4);
 }

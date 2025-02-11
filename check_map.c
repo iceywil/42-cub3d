@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/11 13:23:19 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:29:08 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	check_map_space(t_cub *cub, int i, int j)
 void	set_direction(t_cub *cub, char elem)
 {
 	if (elem == 'N')
-		cub->dir_angle = M_PI / 2;
-	else if (elem == 'S')
 		cub->dir_angle = - M_PI / 2;
+	else if (elem == 'S')
+		cub->dir_angle = M_PI / 2;
 	else if (elem == 'E')
 		cub->dir_angle = 0;
 	else if (elem == 'W')

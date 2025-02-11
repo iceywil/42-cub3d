@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:56:55 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/11 13:13:51 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:36:25 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ void	ft_update_dir(int key, t_cub *cub)
 {
 	if (key == LEFT)
 	{
-		cub->dir_x -= ANGLE_ROT;
-		cub->dir_y -= ANGLE_ROT;	
-		ft_printf("player is turning on his left\n");
+		printf("player is turning on his left:\nold angle=%f; ", cub->dir_angle);
+		cub->dir_angle -= ANGLE_ROT;	
+		printf("new angle=%f;\n", cub->dir_angle);
 	}
 	else if (key == RIGHT)
 	{
-		cub->dir_x += ANGLE_ROT;
-		cub->dir_y += ANGLE_ROT;
-		ft_printf("player is turning on his right\n");	
+		printf("player is turning on his left:\nold angle=%f; ", cub->dir_angle);
+		cub->dir_angle += ANGLE_ROT;	
+		printf("new angle=%f;\n", cub->dir_angle);
 	}
 }
 

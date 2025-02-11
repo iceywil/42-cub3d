@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/07 17:26:14 by a                ###   ########.fr       */
+/*   Updated: 2025/02/11 11:18:29 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	parsing(t_cub *cub, char *file)
 	while (line)
 	{
 		if (!cub->no || !cub->so || !cub->we || !cub->ea || !cub->f || !cub->c)
-			handle_element(cub, line);
+			parse_element(cub, line);
 		else
 			save_map(cub, file, line);
 		free(line);
@@ -54,8 +54,23 @@ void	parsing(t_cub *cub, char *file)
 	close(fd);
 	check_elements(cub);
 }
+void	set_element(t_cub *cub, char *line, char *tmp)
+{
+	if (!ft_strncmp(line, "NO ", 3))
+		cub->no = tmp;
+	else if (!ft_strncmp(line, "SO ", 3))
+		cub->so = tmp;
+	else if (!ft_strncmp(line, "EA ", 3))
+		cub->ea = tmp;
+	else if (!ft_strncmp(line, "WE ", 3))
+		cub->we = tmp;
+	else if (!ft_strncmp(line, "F ", 2))
+		cub->f = tmp;
+	else if (!ft_strncmp(line, "C ", 2))
+		cub->c = tmp;
+}
 
-void	handle_element(t_cub *cub, char *line)
+void	parse_element(t_cub *cub, char *line)
 {
 	char	*tmp;
 
@@ -70,18 +85,8 @@ void	handle_element(t_cub *cub, char *line)
 		exit_error(cub, "Error: invalid element");
 	if (!tmp)
 		exit_error(cub, "Error : malloc failed");
-	if (!ft_strncmp(line, "NO ", 3))
-		cub->no = tmp;
-	else if (!ft_strncmp(line, "SO ", 3))
-		cub->so = tmp;
-	else if (!ft_strncmp(line, "EA ", 3))
-		cub->ea = tmp;
-	else if (!ft_strncmp(line, "WE ", 3))
-		cub->we = tmp;
-	else if (!ft_strncmp(line, "F ", 2))
-		cub->f = tmp;
-	else if (!ft_strncmp(line, "C ", 2))
-		cub->c = tmp;
+	tmp[ft_strlen(tmp) - 1] = 0;
+	set_element(cub, line, tmp);
 }
 
 void	check_elements(t_cub *cub)

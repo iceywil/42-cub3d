@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/07 17:26:00 by a                ###   ########.fr       */
+/*   Updated: 2025/02/11 11:18:17 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "cub3d_def.h"
 # include "libft/libft.h"
-# include "mlx.h"
+# include "minilibx-linux/mlx.h"
 # include <fcntl.h>
 
 typedef struct s_img
@@ -66,7 +66,7 @@ void		init_all(t_cub *cub);
 
 // PARSING
 void		parsing(t_cub *cub, char *file);
-void		handle_element(t_cub *cub, char *line);
+void		parse_element(t_cub *cub, char *line);
 void		handle_colors(t_cub *cub);
 void		check_elements(t_cub *cub);
 

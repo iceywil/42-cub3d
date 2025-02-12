@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:01:19 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 13:57:24 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:45:28 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,27 @@ void	ft_map_grid(t_cub *cub, int i, int j, int j0)
 	// ft_segment(cub, j, i, j + (int)(cub->dir_x * BIG_PIXEL * 1.2),
 	// 	i + (int)(cub->dir_y * BIG_PIXEL * 1.2));
 
+void	ft_center_map(t_cub *cub);
+#define MAX_PIXEL 14
+
+/*puts the res map in black*/
+void	ft_erase_map(t_cub *cub)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < MAP_HEIGHT)
+	{
+		while (j < MAP_WIDTH)
+			pixel_to_img(&cub->mini_carte, j++, i, BLACK);
+		i++;
+	}
+	mlx_put_image_to_window(cub->mlx, cub->win,
+		cub->mini_carte.mlx, 0, HEIGHT / 5 * 4);
+}
+
 /*dessiner la mini-carte
 verifier que la carte ne depasse pas la taille max*/
 void	ft_mini_map(t_cub *cub)
@@ -112,6 +133,7 @@ void	ft_mini_map(t_cub *cub)
 	int	j;
 	int	j0;
 
+	ft_erase_map(cub);
 	i = 0;
 	j0 = ft_max(ft_col(cub) - 1, 0);
 	while (i < cub->map_height)
@@ -124,39 +146,34 @@ void	ft_mini_map(t_cub *cub)
 	ft_miniray(cub, j0);
 	mlx_put_image_to_window(cub->mlx, cub->win,
 		cub->mini_carte.mlx, 0, HEIGHT / 5 * 4);
+	ft_center_map(cub);
 }
 
 /*dessiner la mini-carte
 verifier que la carte ne depasse pas la taille max
 centrer la minimap sur le personnage*/
-// void	ft_center_map(t_cub *cub)
-// {
-// 	int	i;
-// 	int	j;
+void	ft_center_map(t_cub *cub)
+{
+	int	i;
+	int	j;
+	int	i0;
+	int	j0;
 
-// 	/*player position
-// 	cub->pos_x;
-// 	cub->pos_y;*/
-
-// 	/*first row*/
-// 	i = cub->pos_y - (cub->map_height / 2);
-// 	while (i < cub->pos_y + (cub->map_height / 2))
-// 	{
-// 		/*first column*/
-// 		j = cub->pos_x - (cub->map_width / 2);
-// 		while (cub->map[i][j])
-// 		{
-// 			if (cub->map[i][j] == '1')
-// 				big_pixel(cub, i * PIXEL, j * PIXEL, RED);
-// 			else if (cub->map[i][j] == '0')
-// 				big_pixel(cub, i * PIXEL, j * PIXEL, WHITE);
-// 			if (cub->pos_x == j && cub->pos_y == i)
-// 				player_pixel(cub, i * PIXEL, j * PIXEL, BLUE);
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	ft_miniray(cub, 0);
-// 	mlx_put_image_to_window(cub->mlx, cub->win,
-// 		cub->mini_carte.mlx, 0, HEIGHT / 5 * 4);
-// }
+	/*first row*/
+	i0 = ft_max(0, (int)cub->pos_y - MAX_PIXEL / 2);
+	/*first col*/
+	j0 = ft_max(0, (int)cub->pos_x - MAX_PIXEL / 2);
+	i = i0;
+	while ( i < (int)cub->pos_y + MAX_PIXEL / 2 && i < cub->map_height)
+	{
+		/*first column*/
+		j = j0;
+		ft_printf("i=%i; j=%i\n", i, j);
+		while (cub->map[i][j])
+			ft_map_grid(cub, i, j++, j0);
+		i++;
+	}
+	//ft_miniray(cub, 0);
+	mlx_put_image_to_window(cub->mlx, cub->win,
+		cub->mini_carte.mlx, 0, HEIGHT / 5 * 4);
+}

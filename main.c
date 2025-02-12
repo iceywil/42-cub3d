@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:52 by a                 #+#    #+#             */
-/*   Updated: 2025/02/12 10:21:52 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:33:03 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	ft_init_mlx(&cub);
 	ft_background(&cub);
 	get_textures(&cub);
-	ft_draw_map(&cub);
+	ft_mini_map(&cub);
 	mlx_hook((&cub)->win, KEYPRESS_EVENT, 1L << 0, key_hook, (&cub));
 	mlx_hook((&cub)->win, BUTTONPRESS_EVENT, 1L << 2, mouse_hook, (&cub));
 	mlx_hook((&cub)->win, 17, 1L << 17, ft_close_all, (&cub));

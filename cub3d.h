@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/12 10:25:34 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:33:03 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int			key_hook(int key, t_cub *cub);
 
 // MINI CARTE
 void		pixel_to_img(t_img *img, int x, int y, int color);
-void		ft_draw_map(t_cub *cub);
+void		ft_mini_map(t_cub *cub);
 int			isin_img(int x, int y, int width, int height);
 
 //bresenham

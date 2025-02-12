@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/11 16:20:35 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:15:15 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,29 @@
 # define UNSET_DOUBLE 9999
 
 //WINDOW
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 800 //1920  
+# define HEIGHT 600 //1080
 # define MARGIN 5
 
 //MINI MAP
 # define MAP_WIDTH WIDTH / 5
 # define MAP_HEIGHT HEIGHT / 5 
 
+//PIXEL
+# define BIG_PIXEL (20 * WIDTH / 1920)
+
 //CAMERA
 # define ANGLE_VIEW (M_PI / 2)
 # define ANGLE_ROT (M_PI / 16)
-# define ZOOM_INIT 20
 # define ZOOM_PLUS 1.10
 # define ZOOM_MINUS 0.95
-# define TRANS 8
+# define TRANS (BIG_PIXEL / 2)
 # define DEFAULT_COLOR YELLOW
 
 //CODE CALCULATION
 # define ROT_CODE 3
 # define BASE_HEXA "0123456789ABCDEF"
+
 //masks and events
 # define KEYPRESS_EVENT 2
 # define BUTTONPRESS_EVENT 4

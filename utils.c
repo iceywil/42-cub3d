@@ -6,11 +6,18 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:44:35 by a                 #+#    #+#             */
-/*   Updated: 2025/02/12 12:29:12 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:50:42 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	ft_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
 
 int	isin(char c, char *str)
 {
@@ -45,7 +52,7 @@ void	print_cub(t_cub *cub)
 	while (cub->map[cub->i])
 		ft_printf("%s\n", cub->map[cub->i++]);
 	ft_printf("max_y=%i; max_x=%i;\n", cub->map_height, cub->map_width);
-	ft_printf("%i pixels = 1 big pixel\n", BIG_PIXEL);
+	ft_printf("%i pixels = 1 big pixel\n", PIXEL);
 	printf("player_direction(%f, %f); player_position(%f, %f);\n",
 		cub->dir_x, cub->dir_y, cub->pos_x, cub->pos_y);
 	ft_printf("map width = %i; map height = %i;\n",

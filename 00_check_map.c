@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 12:12:14 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:09:23 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	check_map_elem(t_cub *cub, char elem, int i, int j)
 			set_direction(cub, elem);
 		}
 		else
-			exit_error(cub, "Error: there should be only one player");
+			exit_error(cub, "Error: there should be only one player\n");
 	}
 	else if (elem != '0' && elem != '1' && !is_space(elem))
 		exit_error(cub, "Error: unknown element in map");

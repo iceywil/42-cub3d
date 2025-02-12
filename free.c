@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 01:33:34 by a                 #+#    #+#             */
-/*   Updated: 2025/02/12 12:17:08 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:13:49 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,18 @@ void	ft_free_map(char **map, int n)
 
 void	free_mlx(t_cub *cub)
 {
-	mlx_destroy_image(cub->mlx, cub->img.mlx);
+	if (cub->img.mlx)
+		mlx_destroy_image(cub->mlx, cub->img.mlx);
+	if (cub->mini_carte.mlx)
 	mlx_destroy_image(cub->mlx, cub->mini_carte.mlx);
-	mlx_destroy_image(cub->mlx, cub->text_n);
-	mlx_destroy_image(cub->mlx, cub->text_s);
-	mlx_destroy_image(cub->mlx, cub->text_w);
-	mlx_destroy_image(cub->mlx, cub->text_e);
+	if (cub->text_n)
+		mlx_destroy_image(cub->mlx, cub->text_n);
+	if (cub->text_s)
+		mlx_destroy_image(cub->mlx, cub->text_s);
+	if (cub->text_w)
+		mlx_destroy_image(cub->mlx, cub->text_w);
+	if (cub->text_e)
+		mlx_destroy_image(cub->mlx, cub->text_e);
 	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);
 	free(cub->mlx);
@@ -66,5 +72,7 @@ void	exit_error(t_cub *cub, char *str)
 {
 	ft_putstr_fd(str, 2);
 	free_cub(cub);
+	if (cub->mlx)
+		free_mlx(cub);
 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:34:00 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 12:20:30 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:14:21 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	get_textures(t_cub *cub)
 	cub->text_e = mlx_xpm_file_to_image
 		(cub->mlx, cub->ea, &cub->text_x, &cub->text_y);
 	if (!cub->text_n || !cub->text_s || !cub->text_w || !cub->text_e)
-		exit_error(cub, "Error : Can't open texture");
+		exit_error(cub, "Error : Can't open texture\n");
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->text_n, 0, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->text_s, 0, cub->text_y);
 	mlx_put_image_to_window

@@ -1,7 +1,7 @@
-NO ./textures/cherry.xpm
-SO ./textures/cherry.xpm
-WE ./textures/cherry.xpm
-EA ./textures/cherry.xpm
+NO ./textures/wall_1.xpm
+SO ./textures/wall_2.xpm
+WE ./textures/wall_3.xpm
+EA ./textures/wall_4.xpm
 
 F 112,128,144
 C 211,211,211

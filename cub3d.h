@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/12 12:15:42 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:06:32 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void		ft_init_mlx(t_cub *cub);
 void		init_all(t_cub *cub);
 
 // PARSING
+void		check_arg(int argc, char **argv);
 void		parsing(t_cub *cub, char *file);
 void		parse_element(t_cub *cub, char *line);
 void		handle_colors(t_cub *cub);
@@ -105,6 +106,7 @@ int			is_space(char c);
 void		print_cub(t_cub *cub);
 int			isin(char c, char *str);
 int			line_is_empty(t_cub *cub, char *line);
+int			ft_max(int a, int b);
 
 // INIT MAP
 int			ft_init_max(int fd, t_cub *cub, int n);
@@ -121,6 +123,7 @@ int			key_hook(int key, t_cub *cub);
 void		pixel_to_img(t_img *img, int x, int y, int color);
 void		ft_mini_map(t_cub *cub);
 int			isin_img(int x, int y, int width, int height);
+int			big_pixel(t_cub *cub, int i, int j, int color);
 
 //bresenham
 void	ft_segment(t_cub *cub, int x_a, int y_a, int x_b, int y_b);

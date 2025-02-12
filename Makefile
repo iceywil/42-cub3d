@@ -6,7 +6,7 @@
 #    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/12 12:29:04 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/12 14:06:38 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ LIBFT_LIB   =   $(LIBFT_PATH)/$(LIBFT_FILE)
 H_FILES		=	cub3d.h cub3d_def.h
 
 C_FILES     =   main.c \
-				00_parsing.c 00_save_map.c 00_check_map.c \
+				00_check_arg.c 00_parsing.c 00_save_map.c 00_check_map.c \
 				01_pixel_utils.c 01_mini_map.c 01_display.c 01_background.c \
 				raycasting.c\
 				fdf_segment.c fdf_bresenham.c\

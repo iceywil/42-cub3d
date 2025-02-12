@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 11:20:37 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:50:57 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,18 @@
 //MINI MAP
 # define MAP_WIDTH WIDTH / 5
 # define MAP_HEIGHT HEIGHT / 5 
+# define MAP_M 1 //margin
 
 //PIXEL
-# define BIG_PIXEL (20 * WIDTH / 1920)
-#define  PLAYER_SIZ (BIG_PIXEL * 2 / 3)
+# define PIXEL (20 * WIDTH / 1920)
+#define  PLAYER_SIZ (PIXEL * 2 / 3)
 
 //CAMERA
 # define ANGLE_VIEW (M_PI / 2)
 # define ANGLE_ROT (M_PI / 16)
 # define ZOOM_PLUS 1.10
 # define ZOOM_MINUS 0.95
-# define TRANS (BIG_PIXEL / 2)
+# define TRANS (PIXEL / 2)
 # define DEFAULT_COLOR YELLOW
 
 //CODE CALCULATION

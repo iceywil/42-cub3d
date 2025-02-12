@@ -6,11 +6,34 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:28:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 12:29:28 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:57:28 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*convert one pixel into a big pixel
+return 0 if a pixel is out of the image*/
+int	big_pixel(t_cub *cub, int i, int j, int color)
+{
+	int	x;
+	int	y;
+
+	x = j;
+	while (x < j + PIXEL)
+	{
+		y = i - 1;
+		while (++y < i + PIXEL)
+		{
+			if (isin_img(x, y, MAP_WIDTH, MAP_HEIGHT))
+				pixel_to_img(&cub->mini_carte, x, y, color);
+			else
+				return (0);
+		}
+		x++;
+	}
+	return (1);
+}
 
 int	isin_img(int x, int y, int width, int height)
 {

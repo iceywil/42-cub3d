@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/12 10:27:24 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:18:08 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,30 @@ void	parsing(t_cub *cub, char *file)
 {
 	int		fd;
 	char	*line;
+	int		n;
 
+	n = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		exit_error(cub, "Error: can't open file");
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!cub->no || !cub->so || !cub->we || !cub->ea || !cub->f || !cub->c)
+		n++;
+		if (!cub->no || !cub->so || !cub->we || !cub->ea
+			|| !cub->floor || !cub->ceiling)
 			parse_element(cub, line);
 		else
-			save_map(cub, file, line);
+			save_map(cub, file, line, n);
 		free(line);
 		line = get_next_line(fd);
 	}
 	cub->map[cub->map_height] = NULL;
 	close(fd);
+	ft_printf("save map: SUCCESS\n");
 	check_elements(cub);
 }
+
 void	set_element(t_cub *cub, char *line, char *tmp)
 {
 	if (!ft_strncmp(line, "NO ", 3))
@@ -65,9 +71,9 @@ void	set_element(t_cub *cub, char *line, char *tmp)
 	else if (!ft_strncmp(line, "WE ", 3))
 		cub->we = tmp;
 	else if (!ft_strncmp(line, "F ", 2))
-		cub->f = tmp;
+		cub->floor = tmp;
 	else if (!ft_strncmp(line, "C ", 2))
-		cub->c = tmp;
+		cub->ceiling = tmp;
 }
 
 void	parse_element(t_cub *cub, char *line)
@@ -91,7 +97,8 @@ void	parse_element(t_cub *cub, char *line)
 
 void	check_elements(t_cub *cub)
 {
-	if (!cub->no || !cub->so || !cub->we || !cub->ea || !cub->f || !cub->c)
+	if (!cub->no || !cub->so || !cub->we || !cub->ea
+		|| !cub->floor || !cub->ceiling)
 		exit_error(cub, "Error: invalid element");
 	if (!cub->map)
 		exit_error(cub, "Error: No map in the file");
@@ -99,33 +106,32 @@ void	check_elements(t_cub *cub)
 	handle_map(cub);
 	print_cub(cub);
 	ft_printf("check elements: SUCCESS\n");
-	printf("player_direction(%f, %f); player_position(%i, %i);\n", cub->dir_x, cub->dir_y, cub->pos_x, cub->pos_y);
 }
 
 void	handle_colors(t_cub *cub)
 {
 	char	**tmp;
 
-	tmp = ft_split(cub->f, ',');
+	tmp = ft_split(cub->floor, ',');
 	if (!tmp)
 		exit_error(cub, "Error: malloc failed");
 	if (!(tmp[0] && tmp[1] && tmp[2]) || tmp[3])
 		exit_error(cub, "Error: invalid element");
-	cub->floor.r = ft_atoi(tmp[0]);
-	cub->floor.g = ft_atoi(tmp[1]);
-	cub->floor.b = ft_atoi(tmp[2]);
+	cub->f.r = ft_atoi(tmp[0]);
+	cub->f.g = ft_atoi(tmp[1]);
+	cub->f.b = ft_atoi(tmp[2]);
 	ft_free_double_tab(&tmp);
-	tmp = ft_split(cub->c, ',');
+	tmp = ft_split(cub->ceiling, ',');
 	if (!tmp)
 		exit_error(cub, "Error: malloc failed");
 	if (!(tmp[0] && tmp[1] && tmp[2]) || tmp[3])
 		exit_error(cub, "Error: invalid element");
-	cub->ceiling.r = ft_atoi(tmp[0]);
-	cub->ceiling.g = ft_atoi(tmp[1]);
-	cub->ceiling.b = ft_atoi(tmp[2]);
+	cub->c.r = ft_atoi(tmp[0]);
+	cub->c.g = ft_atoi(tmp[1]);
+	cub->c.b = ft_atoi(tmp[2]);
 	ft_free_double_tab(&tmp);
-	if (cub->floor.r < 0 || cub->floor.r > 255 || cub->floor.g < 0 || cub->floor.g > 255
-		|| cub->floor.b < 0 || cub->floor.b > 255 || cub->ceiling.r < 0 || cub->ceiling.r > 255
-		|| cub->ceiling.g < 0 || cub->ceiling.g > 255 || cub->ceiling.b < 0 || cub->ceiling.b > 255)
+	if (cub->f.r < 0 || cub->f.r > 255 || cub->f.g < 0 || cub->f.g > 255
+		|| cub->f.b < 0 || cub->f.b > 255 || cub->c.r < 0 || cub->c.r > 255
+		|| cub->c.g < 0 || cub->c.g > 255 || cub->c.b < 0 || cub->c.b > 255)
 		exit_error(cub, "Error: invalid element");
 }

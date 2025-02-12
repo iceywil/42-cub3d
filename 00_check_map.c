@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/11 15:47:59 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:12:14 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	check_map_space(t_cub *cub, int i, int j)
 void	set_direction(t_cub *cub, char elem)
 {
 	double	plane_angle;
-	
+
 	if (elem == 'N')
-		cub->dir_angle = - M_PI / 2;
+		cub->dir_angle = -M_PI / 2;
 	else if (elem == 'S')
 		cub->dir_angle = M_PI / 2;
 	else if (elem == 'E')
@@ -51,13 +51,13 @@ void	set_direction(t_cub *cub, char elem)
 	cub->dir_x = cos(cub->dir_angle);
 	cub->dir_y = sin(cub->dir_angle);
 	plane_angle = cub->dir_angle + M_PI / 2;
-	cub->plane_x = cos(plane_angle); 
+	cub->plane_x = cos(plane_angle);
 	cub->plane_y = sin(plane_angle);
 }
 
 /*the map should only contain one N, S, E or W
 the map should only contain 0 and 1 except for the player position*/
-void	check_map_element(t_cub *cub, char elem, int i, int j)
+void	check_map_elem(t_cub *cub, char elem, int i, int j)
 {
 	if (isin(elem, "NSEW"))
 	{
@@ -96,7 +96,7 @@ void	handle_map(t_cub *cub)
 				&& cub->map[cub->i][cub->x] != ' ')
 				exit_error(cub, "Error: the map is not closed");
 			if (cub->i > 0 && cub->i < cub->map_height - 1 && cub->x > 0)
-				check_map_element(cub, cub->map[cub->i][cub->x], cub->i, cub->x);
+				check_map_elem(cub, cub->map[cub->i][cub->x], cub->i, cub->x);
 			cub->x++;
 		}
 		cub->i++;

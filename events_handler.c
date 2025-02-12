@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:56:55 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 10:33:03 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:44:22 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,36 +55,36 @@ void	ft_deplacement(int key, t_cub *cub)
 {
 	if (key == KEY_W)
 	{
-		if (cub->pos_y > 0 && cub->map[cub->pos_y - 1][cub->pos_x] == '0')
+		if (cub->pos_y > 0 && cub->map[(int)cub->pos_y - 1][(int)cub->pos_x] == '0')
 		{
-			cub->map[cub->pos_y][cub->pos_x] = '0';
+			cub->map[(int)cub->pos_y][(int)cub->pos_x] = '0';
 			cub->pos_y--;
 			ft_printf("player is moving forward\n");
 		}
 	}
 	else if (key == KEY_A)
 	{
-		if (cub->pos_x > 0 && cub->map[cub->pos_y][cub->pos_x - 1] == '0')
+		if (cub->pos_x > 0 && cub->map[(int)cub->pos_y][(int)cub->pos_x - 1] == '0')
 		{
-			cub->map[cub->pos_y][cub->pos_x] = '0';
+			cub->map[(int)cub->pos_y][(int)cub->pos_x] = '0';
 			cub->pos_x--;
 			ft_printf("player is moving on the left\n");
 		}
 	}
 	else if (key == KEY_S)
 	{
-		if (cub->map[cub->pos_y + 1][cub->pos_x] == '0')
+		if (cub->map[(int)cub->pos_y + 1][(int)cub->pos_x] == '0')
 		{
-			cub->map[cub->pos_y][cub->pos_x] = '0';
+			cub->map[(int)cub->pos_y][(int)cub->pos_x] = '0';
 			cub->pos_y++;
 			ft_printf("player is moving backward\n");
 		}
 	}
 	else if (key == KEY_D)
 	{
-		if (cub->map[cub->pos_y][cub->pos_x + 1] == '0')
+		if (cub->map[(int)cub->pos_y][(int)cub->pos_x + 1] == '0')
 		{
-			cub->map[cub->pos_y][cub->pos_x] = '0';
+			cub->map[(int)cub->pos_y][(int)cub->pos_x] = '0';
 			cub->pos_x++;
 			ft_printf("player is moving on the right\n");
 		}

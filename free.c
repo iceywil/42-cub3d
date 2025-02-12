@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 01:33:34 by a                 #+#    #+#             */
-/*   Updated: 2025/02/11 11:51:56 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:17:08 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	free_cub(t_cub *cub)
 		free(cub->we);
 	if (cub->ea)
 		free(cub->ea);
-	if (cub->f)
-		free(cub->f);
-	if (cub->c)
-		free(cub->c);
+	if (cub->floor)
+		free(cub->floor);
+	if (cub->ceiling)
+		free(cub->ceiling);
 	if (cub->map)
 		ft_free_map(cub->map, cub->map_height);
 }

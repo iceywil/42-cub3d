@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:06:32 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 10:28:58 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:19:00 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_ceiling(t_cub *cub, int height)
 	{
 		j = 0;
 		while (j < WIDTH)
-			rgb_pixel(&cub->img, j++, i, cub->ceiling);
+			rgb_pixel(&cub->img, j++, i, cub->c);
 		i++;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->win,
@@ -51,7 +51,7 @@ void	ft_floor(t_cub *cub)
 	{
 		j = 0;
 		while (j < WIDTH)
-			rgb_pixel(&cub->img, j++, i, cub->floor);
+			rgb_pixel(&cub->img, j++, i, cub->f);
 		i++;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->win,

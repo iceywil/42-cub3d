@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 10:26:26 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:16:21 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,18 @@ void	ft_init_mlx(t_cub *cub)
 void	init_all(t_cub *cub)
 {
 	cub->i = 0;
-	cub->start_map_i = 0;
 	cub->no = NULL;
 	cub->so = NULL;
 	cub->we = NULL;
 	cub->ea = NULL;
-	cub->f = NULL;
-	cub->c = NULL;
-	cub->floor.r = -1;
-	cub->floor.g = -1;
-	cub->floor.b = -1;
-	cub->ceiling.r = -1;
-	cub->ceiling.g = -1;
-	cub->ceiling.b = -1;
+	cub->floor = NULL;
+	cub->ceiling = NULL;
+	cub->f.r = -1;
+	cub->f.g = -1;
+	cub->f.b = -1;
+	cub->c.r = -1;
+	cub->c.g = -1;
+	cub->c.b = -1;
 	cub->map = NULL;
 	cub->map_height = 0;
 	cub->map_width = 0;

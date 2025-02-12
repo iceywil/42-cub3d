@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/12 10:33:03 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:15:42 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
 # include <math.h>
 
 typedef struct s_slope {
-	int	x_a;
-	int	x_b;
-	int	y_a;
-	int	y_b;
-	int	dx;
-	int	dy;
-	int	p;
+	double	x_a;
+	double	x_b;
+	double	y_a;
+	double	y_b;
+	double	dx;
+	double	dy;
+	double	p;
 	int	i;
 	int	j;
 }	t_slope;
@@ -50,14 +50,13 @@ typedef struct s_rgb
 typedef struct s_cub
 {
 	int		i;
-	int		start_map_i;
 	int		x;
 	char	**map;
 	double	dir_x; //player direction
 	double	dir_y; //player direction
 	double	dir_angle; //direction angle
-	int		pos_x; //player position
-	int		pos_y; //player position
+	double	pos_x; //player position
+	double	pos_y; //player position
 	double	plane_x; //camera plane
 	double	plane_y; //camera plane
 	char	*no;
@@ -66,10 +65,10 @@ typedef struct s_cub
 	char	*ea;
 	int		text_x;
 	int		text_y;
-	char	*f;
-	char	*c;
-	t_rgb	floor;
-	t_rgb	ceiling;
+	char	*floor;
+	char	*ceiling;
+	t_rgb	f;
+	t_rgb	c;
 	void	*text_n;
 	void	*text_s;
 	void	*text_w;
@@ -108,10 +107,10 @@ int			isin(char c, char *str);
 int			line_is_empty(t_cub *cub, char *line);
 
 // INIT MAP
-int			ft_init_max(int fd, t_cub *cub);
-void		ft_init_map(t_cub *cub, char *file);
+int			ft_init_max(int fd, t_cub *cub, int n);
+void		ft_init_map(t_cub *cub, char *file, int n);
 void		add_map_line(t_cub *cub, char *line);
-void		save_map(t_cub *cub, char *file, char *line);
+void		save_map(t_cub *cub, char *file, char *line, int n);
 void		get_textures(t_cub *cub);
 
 // EVENTS HANDLER

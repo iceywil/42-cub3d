@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:53:47 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/11 16:54:02 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:42:42 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_segment_q1(t_cub *cub, t_slope *ab)
 void	ft_segment_q2(t_cub *cub, t_slope *ab)
 {
 	ab->p = 2 * ab->dx - ab->dy;
-	while (ab->i >= ab->x_b && abs(ab->dy) <= abs(ab->dx))
+	while (ab->i >= ab->x_b && fabs(ab->dy) <= fabs(ab->dx))
 	{
 		if (isin_img(ab->i, ab->j, MAP_WIDTH, MAP_HEIGHT))
 			pixel_to_img(&cub->mini_carte, ab->i, ab->j, GREEN);
@@ -79,7 +79,7 @@ void	ft_segment_q2(t_cub *cub, t_slope *ab)
 		}
 		ab->i--;
 	}
-	while (ab->j <= ab->y_b && abs(ab->dy) > abs(ab->dx))
+	while (ab->j <= ab->y_b && fabs(ab->dy) > fabs(ab->dx))
 	{
 		if (isin_img(ab->i, ab->j, MAP_WIDTH, MAP_HEIGHT))
 			pixel_to_img(&cub->mini_carte, ab->i, ab->j, GREEN);
@@ -96,7 +96,7 @@ void	ft_segment_q2(t_cub *cub, t_slope *ab)
 void	ft_segment_q3(t_cub *cub, t_slope *ab)
 {
 	ab->p = 2 * ab->dx - ab->dy;
-	while (ab->i >= ab->x_b && abs(ab->dy) <= abs(ab->dx))
+	while (ab->i >= ab->x_b && fabs(ab->dy) <= fabs(ab->dx))
 	{
 		if (isin_img(ab->i, ab->j, MAP_WIDTH, MAP_HEIGHT))
 			pixel_to_img(&cub->mini_carte, ab->i, ab->j, GREEN);
@@ -108,7 +108,7 @@ void	ft_segment_q3(t_cub *cub, t_slope *ab)
 		}
 		ab->i--;
 	}
-	while (ab->j >= ab->y_b && abs(ab->dy) > abs(ab->dx))
+	while (ab->j >= ab->y_b && fabs(ab->dy) > fabs(ab->dx))
 	{
 		if (isin_img(ab->i, ab->j, MAP_WIDTH, MAP_HEIGHT))
 			pixel_to_img(&cub->mini_carte, ab->i, ab->j, GREEN);
@@ -125,7 +125,7 @@ void	ft_segment_q3(t_cub *cub, t_slope *ab)
 void	ft_segment_q4(t_cub *cub, t_slope *ab)
 {
 	ab->p = 2 * ab->dy - ab->dx;
-	while (ab->i <= ab->x_b && abs(ab->dy) <= abs(ab->dx))
+	while (ab->i <= ab->x_b && fabs(ab->dy) <= fabs(ab->dx))
 	{
 		if (isin_img(ab->i, ab->j, MAP_WIDTH, MAP_HEIGHT))
 			pixel_to_img(&cub->mini_carte, ab->i, ab->j, GREEN);
@@ -137,7 +137,7 @@ void	ft_segment_q4(t_cub *cub, t_slope *ab)
 		}
 		ab->i++;
 	}
-	while (ab->j >= ab->y_b && abs(ab->dy) > abs(ab->dx))
+	while (ab->j >= ab->y_b && fabs(ab->dy) > fabs(ab->dx))
 	{
 		if (isin_img(ab->i, ab->j, MAP_WIDTH, MAP_HEIGHT))
 			pixel_to_img(&cub->mini_carte, ab->i, ab->j, GREEN);

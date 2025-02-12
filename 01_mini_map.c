@@ -6,16 +6,11 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:01:19 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 11:19:03 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:21:03 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-/*
-Pouvoir faire bouger mon personnage avec les flèches dans la minimap (voir les keys à l'étape 4)
-Checker si le case sur laquelle je vais me déplacer est un mur ou pas (si == ‘0’) : si oui je peux me déplacer dessus, sinon non
-*/
 
 int	isin_img(int x, int y, int width, int height)
 {
@@ -48,7 +43,7 @@ int	big_pixel(t_cub *cub, int i, int j, int color)
 		y = i - 1;
 		while (++y < i + BIG_PIXEL)
 		{
-			if (isin_img(x, y, MAP_WIDTH, MAP_HEIGHT))		
+			if (isin_img(x, y, MAP_WIDTH, MAP_HEIGHT))
 				pixel_to_img(&cub->mini_carte, x, y, color);
 			else
 				return (0);
@@ -65,7 +60,7 @@ int	player_pixel(t_cub *cub, int i, int j, int color)
 	int	x;
 	int	y;
 	int	trans;
-	
+
 	big_pixel(cub, i, j, WHITE);
 	//on centre + on decale
 	trans = (BIG_PIXEL / 2) - (PLAYER_SIZ / 2);
@@ -95,8 +90,6 @@ void	ft_mini_map(t_cub *cub)
 	
 	ctr = 0;
 	i = 0;
-	ft_printf("map width = %i; map height = %i;\n", cub->map_width, cub->map_height);
-	ft_printf("%i pixels = 1 big pixel\n", BIG_PIXEL);
 	while (i < cub->map_height)
 	{
 		j = 0;

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:44:35 by a                 #+#    #+#             */
-/*   Updated: 2025/02/12 10:27:09 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:21:44 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,20 @@ void	print_cub(t_cub *cub)
 	ft_printf("%s\n", cub->so);
 	ft_printf("%s\n", cub->we);
 	ft_printf("%s\n", cub->ea);
-	ft_printf("floor: %d, ", cub->floor.r);
-	ft_printf("%d, ", cub->floor.g);
-	ft_printf("%d\n", cub->floor.b);
-	ft_printf("ceiling: %d, ", cub->ceiling.r);
-	ft_printf("%d, ", cub->ceiling.g);
-	ft_printf("%d\n", cub->ceiling.b);
+	ft_printf("floor: %d, ", cub->f.r);
+	ft_printf("%d, ", cub->f.g);
+	ft_printf("%d\n", cub->f.b);
+	ft_printf("ceiling: %d, ", cub->c.r);
+	ft_printf("%d, ", cub->c.g);
+	ft_printf("%d\n", cub->c.b);
 	cub->i = 0;
 	while (cub->map[cub->i])
-	{
-		ft_printf("%s\n", cub->map[cub->i]);
-		cub->i++;
-	}
+		ft_printf("%s\n", cub->map[cub->i++]);
+	ft_printf("%i pixels = 1 big pixel\n", BIG_PIXEL);
+	printf("player_direction(%f, %f); player_position(%f, %f);\n",
+		cub->dir_x, cub->dir_y, cub->pos_x, cub->pos_y);
+	ft_printf("map width = %i; map height = %i;\n",
+		cub->map_width, cub->map_height);
 }
 
 int	line_is_empty(t_cub *cub, char *line)

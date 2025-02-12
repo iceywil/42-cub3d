@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/11 15:51:45 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:27:24 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,21 +111,21 @@ void	handle_colors(t_cub *cub)
 		exit_error(cub, "Error: malloc failed");
 	if (!(tmp[0] && tmp[1] && tmp[2]) || tmp[3])
 		exit_error(cub, "Error: invalid element");
-	cub->f_r = ft_atoi(tmp[0]);
-	cub->f_g = ft_atoi(tmp[1]);
-	cub->f_b = ft_atoi(tmp[2]);
+	cub->floor.r = ft_atoi(tmp[0]);
+	cub->floor.g = ft_atoi(tmp[1]);
+	cub->floor.b = ft_atoi(tmp[2]);
 	ft_free_double_tab(&tmp);
 	tmp = ft_split(cub->c, ',');
 	if (!tmp)
 		exit_error(cub, "Error: malloc failed");
 	if (!(tmp[0] && tmp[1] && tmp[2]) || tmp[3])
 		exit_error(cub, "Error: invalid element");
-	cub->c_r = ft_atoi(tmp[0]);
-	cub->c_g = ft_atoi(tmp[1]);
-	cub->c_b = ft_atoi(tmp[2]);
+	cub->ceiling.r = ft_atoi(tmp[0]);
+	cub->ceiling.g = ft_atoi(tmp[1]);
+	cub->ceiling.b = ft_atoi(tmp[2]);
 	ft_free_double_tab(&tmp);
-	if (cub->f_r < 0 || cub->f_r > 255 || cub->f_g < 0 || cub->f_g > 255
-		|| cub->f_b < 0 || cub->f_b > 255 || cub->c_r < 0 || cub->c_r > 255
-		|| cub->c_g < 0 || cub->c_g > 255 || cub->c_b < 0 || cub->c_b > 255)
+	if (cub->floor.r < 0 || cub->floor.r > 255 || cub->floor.g < 0 || cub->floor.g > 255
+		|| cub->floor.b < 0 || cub->floor.b > 255 || cub->ceiling.r < 0 || cub->ceiling.r > 255
+		|| cub->ceiling.g < 0 || cub->ceiling.g > 255 || cub->ceiling.b < 0 || cub->ceiling.b > 255)
 		exit_error(cub, "Error: invalid element");
 }

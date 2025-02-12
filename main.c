@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:52 by a                 #+#    #+#             */
-/*   Updated: 2025/02/11 11:47:46 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:21:52 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 		return (ft_printf("Wrong file format: a .cub is expected!\n"), 1);
 	parsing(&cub, argv[1]);
 	ft_init_mlx(&cub);
+	ft_background(&cub);
 	get_textures(&cub);
 	ft_draw_map(&cub);
 	mlx_hook((&cub)->win, KEYPRESS_EVENT, 1L << 0, key_hook, (&cub));

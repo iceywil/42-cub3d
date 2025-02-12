@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/11 13:17:21 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:26:26 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ void	init_all(t_cub *cub)
 	cub->ea = NULL;
 	cub->f = NULL;
 	cub->c = NULL;
-	cub->f_r = -1;
-	cub->f_g = -1;
-	cub->f_b = -1;
-	cub->c_r = -1;
-	cub->c_g = -1;
-	cub->c_b = -1;
+	cub->floor.r = -1;
+	cub->floor.g = -1;
+	cub->floor.b = -1;
+	cub->ceiling.r = -1;
+	cub->ceiling.g = -1;
+	cub->ceiling.b = -1;
 	cub->map = NULL;
 	cub->map_height = 0;
 	cub->map_width = 0;

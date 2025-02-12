@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/11 16:19:47 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:25:34 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
+	
 typedef struct s_cub
 {
 	int		i;
@@ -61,12 +68,8 @@ typedef struct s_cub
 	int		text_y;
 	char	*f;
 	char	*c;
-	int		f_r;
-	int		f_g;
-	int		f_b;
-	int		c_r;
-	int		c_g;
-	int		c_b;
+	t_rgb	floor;
+	t_rgb	ceiling;
 	void	*text_n;
 	void	*text_s;
 	void	*text_w;
@@ -127,5 +130,8 @@ void	ft_segment_q1(t_cub *cub, t_slope *ab);
 void	ft_segment_q2(t_cub *cub, t_slope *ab);
 void	ft_segment_q3(t_cub *cub, t_slope *ab);
 void	ft_segment_q4(t_cub *cub, t_slope *ab);
+
+//background
+void	ft_background(t_cub *cub);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 11:15:15 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:20:37 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 //PIXEL
 # define BIG_PIXEL (20 * WIDTH / 1920)
+#define  PLAYER_SIZ (BIG_PIXEL * 2 / 3)
 
 //CAMERA
 # define ANGLE_VIEW (M_PI / 2)

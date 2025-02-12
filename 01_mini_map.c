@@ -6,13 +6,11 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:01:19 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 11:13:35 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:19:03 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-#define PLAYER_SIZ 6
 
 /*
 Pouvoir faire bouger mon personnage avec les flèches dans la minimap (voir les keys à l'étape 4)
@@ -109,11 +107,15 @@ void	ft_mini_map(t_cub *cub)
 			else if (cub->map[i][j] == '0')
 				big_pixel(cub, i * BIG_PIXEL, MARGIN + j * BIG_PIXEL, WHITE);
 			if (cub->pos_x == j && cub->pos_y == i)
+			{
 				if (!player_pixel(cub, i * BIG_PIXEL, MARGIN + j * BIG_PIXEL, BLUE))
+				{	
 					//refaire la map en centrant sur le player;
 					ft_printf("le player nest pas visible sur la map\n");
+				}
 				else
 					ft_printf("le player est visible sur la map\n");
+			}
 			j++;
 		}
 		i++;
@@ -141,9 +143,9 @@ void	ft_center_map(t_cub *cub)
 	int	i;
 	int	j;
 
-	/*player position*/
+	/*player position
 	cub->pos_x;
-	cub->pos_y;
+	cub->pos_y;*/
 
 	/*first row*/
 	i = cub->pos_y - (cub->map_height / 2);

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:22:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 12:18:55 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:26:30 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	ft_init_max(int fd, t_cub *cub, int n)
 		free(gnl);
 		gnl = get_next_line(fd);
 	}
-	ft_printf("max_y=%i; max_x=%i;\n", cub->map_height, cub->map_width);
 	free(gnl);
 	close(fd);
 	return (ft_printf("init max: SUCCESS\n"), 0);

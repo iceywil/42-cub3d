@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:01:19 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 14:45:28 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:46:25 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ void	ft_mini_map(t_cub *cub)
 	ft_miniray(cub, j0);
 	mlx_put_image_to_window(cub->mlx, cub->win,
 		cub->mini_carte.mlx, 0, HEIGHT / 5 * 4);
-	ft_center_map(cub);
+	//ft_center_map(cub);
 }
 
 /*dessiner la mini-carte

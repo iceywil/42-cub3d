@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:22:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 12:26:30 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:44:50 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_init_max(int fd, t_cub *cub, int n)
 	gnl = get_next_line(fd);
 	if (gnl == NULL)
 		return (ft_printf(": GNL failed\n"), -1);
-	while (n-- > 0)
+	while (--n > 0)
 	{
 		free(gnl);
 		gnl = get_next_line(fd);

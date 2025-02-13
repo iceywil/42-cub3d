@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   save_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:22:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/07 13:58:47 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/11 03:27:28 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 /*retrieve the dimension of the map (cub->map_width and cub->map_height)
 returns 0 when success
 returns -1 if gnl failed*/
-int	ft_init_max(int fd, t_cub *cub)
+int	init_max(t_cub *cub, int fd)
 {
 	char	*gnl;
 	int		line_x;
@@ -46,14 +46,14 @@ int	ft_init_max(int fd, t_cub *cub)
 
 /*returns a mallocated map
 close the program on errors*/
-void	ft_init_map(t_cub *cub, char *file)
+void	init_map(t_cub *cub, char *file)
 {
 	int	fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		exit_error(cub, "Error: can't open file");
-	if (ft_init_max(fd, cub) < 0)
+	if (init_max(cub, fd) < 0)
 		exit_error(cub, "Error: map initialization failed");
 	cub->map = malloc(sizeof(char *) * (cub->map_height + 1));
 	if (!cub->map)
@@ -83,7 +83,7 @@ void	add_map_line(t_cub *cub, char *line)
 void	save_map(t_cub *cub, char *file, char *line)
 {
 	if (!cub->map)
-		ft_init_map(cub, file);
+		init_map(cub, file);
 	cub->i = 0;
 	while (is_space(line[cub->i]))
 		cub->i++;

@@ -3,54 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 01:33:34 by a                 #+#    #+#             */
-/*   Updated: 2025/02/06 16:08:54 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/12 20:25:22 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-void	ft_free_map(char **map, int n)
-{
-	int	i;
-
-	i = 0;
-	while (i < n)
-		free(map[i++]);
-	free(map);
-}
+#include "../cub3d.h"
 
 void	free_mlx(t_cub *cub)
 {
-	mlx_destroy_image(cub->mlx, cub->img.mlx);
-	mlx_destroy_image(cub->mlx, cub->mini_carte.mlx);
-	mlx_destroy_window(cub->mlx, cub->win);
-	mlx_destroy_display(cub->mlx);
-	free(cub->mlx);
+	if (cub->img->data)
+		mlx_destroy_image(cub->mlx, cub->img->data);
+	if (cub->mini_map->data)
+		mlx_destroy_image(cub->mlx, cub->mini_map->data);
+	if (cub->win)
+		mlx_destroy_window(cub->mlx, cub->win);
+	if (cub->mlx)
+		mlx_destroy_display(cub->mlx);
+	if (cub->mlx)
+		free(cub->mlx);
 }
 
 void	free_cub(t_cub *cub)
 {
-	if (cub->no)
-		free(cub->no);
-	if (cub->so)
-		free(cub->so);
-	if (cub->we)
-		free(cub->we);
-	if (cub->ea)
-		free(cub->ea);
-	if (cub->f)
-		free(cub->f);
-	if (cub->c)
-		free(cub->c);
 	if (cub->map)
-		ft_free_map(cub->map, cub->map_height);
+		ft_free_double_tab(&cub->map);
 }
 
-/*closes the program and free everything*/
-int	ft_close_all(t_cub *cub)
+int	close_all(t_cub *cub)
 {
 	free_cub(cub);
 	free_mlx(cub);
@@ -60,7 +42,9 @@ int	ft_close_all(t_cub *cub)
 
 void	exit_error(t_cub *cub, char *str)
 {
-	ft_putstr_fd(str, 2);
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd(str, 2);
 	free_cub(cub);
+	free_mlx(cub);
 	exit(1);
 }

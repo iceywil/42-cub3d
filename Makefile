@@ -6,15 +6,15 @@
 #    By: a <a@student.42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/07 16:24:33 by a                ###   ########.fr        #
+#    Updated: 2025/02/11 03:11:36 by a                ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        =   cub3d
 
-CC          =   cc
+CC          =   gcc
 
-FLAG        =   -g3 -Wall -Wextra -Werror -lm
+FLAG        =   -fsanitize=address -g -g3 -Wall -Wextra -Werror -lm
  
 FLAG_MLX	=   -I/opt/X11/include -Lminilibx-linux -lmlx -L/opt/X11/lib -lX11 -lXext -O3
 
@@ -24,16 +24,20 @@ LIBFT_FILE  =   libft.a
 
 LIBFT_LIB   =   $(LIBFT_PATH)/$(LIBFT_FILE)
 
-C_FILES     =   main.c \
-				parsing.c save_map.c check_map.c\
-				free.c \
-				utils.c init.c\
-				mini_carte.c \
-				events_handler.c \
+C_FILES     =   srcs/main.c \
+				srcs/parsing.c \
+				srcs/save_map.c \
+				srcs/check_map.c \
+				srcs/free.c \
+				srcs/utils.c \
+				srcs/init.c \
+				srcs/mini_map.c \
+				srcs/events_handler.c \
+				srcs/ray.c \
 
 all:        $(NAME)
 
-OBJS    =   $(C_FILES:%.c=obj/%.o)
+OBJS    =   $(C_FILES:srcs/%.c=obj/%.o)
 
 $(LIBFT_LIB):
 	make -C $(LIBFT_PATH)
@@ -50,7 +54,8 @@ fclean:     clean
 	rm -rf $(NAME)
 	make fclean -C $(LIBFT_PATH)
 
-obj/%.o : %.c | obj
+obj/%.o : srcs/%.c | obj
+	@mkdir -p $(dir $@)
 	@$(CC) -c $< -o $@
 
 obj:

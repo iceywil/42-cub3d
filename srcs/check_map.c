@@ -3,35 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/07 16:13:00 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:47:43 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 /*les espaces doivent etre entoures de 1 ou d'autres espaces*/
 void	check_map_space(t_cub *cub, int i, int j)
 {
 	if (cub->map[i][j] == ' ')
 	{
-		if (i < cub->map_height - 1 && cub->map[i + 1][j]
-			&& cub->map[i + 1][j] != ' '
-			&& cub->map[i + 1][j] != '1')
+		if (i < cub->map_height - 1 && cub->map[i + 1][j] && cub->map[i
+			+ 1][j] != ' ' && cub->map[i + 1][j] != '1')
 			exit_error(cub, "Error: the map is not closed");
-		if (i > 0 && cub->map[i - 1][j]
-			&& cub->map[i - 1][j] != ' '
+		if (i > 0 && cub->map[i - 1][j] && cub->map[i - 1][j] != ' '
 			&& cub->map[i - 1][j] != '1')
 			exit_error(cub, "Error: the map is not closed");
-		if (j > 0 && cub->map[i][j - 1]
-			&& cub->map[i][j - 1] != ' '
+		if (j > 0 && cub->map[i][j - 1] && cub->map[i][j - 1] != ' '
 			&& cub->map[i][j - 1] != '1')
 			exit_error(cub, "Error: the map is not closed");
-		if (cub->map[i][j + 1]
-			&& cub->map[i][j + 1] != ' '
-			&& cub->map[i][j + 1] != '1')
+		if (cub->map[i][j + 1] && cub->map[i][j + 1] != ' ' && cub->map[i][j
+			+ 1] != '1')
 			exit_error(cub, "Error: the map is not closed");
 	}
 }
@@ -77,7 +73,8 @@ void	handle_map(t_cub *cub)
 				&& cub->map[cub->i][cub->x] != ' ')
 				exit_error(cub, "Error: the map is not closed");
 			if (cub->i > 0 && cub->i < cub->map_height - 1 && cub->x > 0)
-				check_map_element(cub, cub->map[cub->i][cub->x], cub->i, cub->x);
+				check_map_element(cub, cub->map[cub->i][cub->x], cub->i,
+					cub->x);
 			cub->x++;
 		}
 		cub->i++;

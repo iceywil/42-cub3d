@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
+#    By: a <a@student.42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 16:02:38 by wscherre          #+#    #+#              #
-#    Updated: 2025/02/04 14:53:24 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/07 17:51:12 by a                ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS	=	ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 			ft_lstmap.c ft_lstnew.c ft_lstsize.c \
 			ft_stricmp.c ft_gnl.c ft_strcmp.c \
 			ft_strncpy.c ft_strcpy.c ft_is_numeric.c \
+			ft_strndup.c \
 
 OBJS    =   $(SRCS:%.c=obj/%.o)
 

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/12 14:06:32 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:49:35 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void		pixel_to_img(t_img *img, int x, int y, int color);
 void		ft_mini_map(t_cub *cub);
 int			isin_img(int x, int y, int width, int height);
 int			big_pixel(t_cub *cub, int i, int j, int color);
+void		ft_center_map(t_cub *cub);
 
 //bresenham
 void	ft_segment(t_cub *cub, int x_a, int y_a, int x_b, int y_b);

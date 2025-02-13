@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 13:50:57 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:49:24 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define MAP_WIDTH WIDTH / 5
 # define MAP_HEIGHT HEIGHT / 5 
 # define MAP_M 1 //margin
+# define MAX_PIXEL 14 //number of PIXEL to fill one line of minimap
 
 //PIXEL
 # define PIXEL (20 * WIDTH / 1920)

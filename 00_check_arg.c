@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:02:57 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 14:08:28 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:29:18 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	check_arg(int argc, char **argv)
 {
 	int		n;
-	
+
 	if (argc != 2)
 	{
 		ft_putstr_fd("Error: incorrect number of arguments\n", 2);

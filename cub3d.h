@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/13 14:49:35 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:27:08 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ int			mouse_hook(int button, int x, int y, t_cub *cub);
 int			key_hook(int key, t_cub *cub);
 
 // MINI CARTE
+void		ft_miniray(t_cub *cub, int i0, int j0);
 void		pixel_to_img(t_img *img, int x, int y, int color);
 void		ft_mini_map(t_cub *cub);
 int			isin_img(int x, int y, int width, int height);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   02_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:17:36 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/11 15:37:52 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:19:26 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	ray_direction(t_cub *cub)
 		ray_dir_x = cub->dir_x + cub->plane_x * camera_x;
 		ray_dir_y = cub->dir_y + cub->plane_y * camera_x;
 	}
-}
+// }
 
-/*delta distance*/
-void	delta_distance(t_cub *cub, double ray_dir_x, double ray_dir_y)
-{
+// /*delta distance*/
+// void	delta_distance(t_cub *cub, double ray_dir_x, double ray_dir_y)
+// {
 	double delta_dist_x; 
 	double delta_dist_y;
 	
@@ -45,6 +45,10 @@ void	delta_distance(t_cub *cub, double ray_dir_x, double ray_dir_y)
 	double side_dist_y;
 	double map_x;
 	double map_y;
+
+	//the current square of the map the ray is in
+	map_x = cub->pos_x; 
+	map_y = cub->pos_y;
 	//next_grid_distance
 	if (ray_dir_x < 0)
 	{
@@ -66,4 +70,49 @@ void	delta_distance(t_cub *cub, double ray_dir_x, double ray_dir_y)
 		step_y = 1;
 		side_dist_y = (map_y + 1.0 - cub->pos_y) * delta_dist_y;
 	}
+
+	/*DDA*/
+	int side;
+
+	while (42)
+	{
+		if (side_dist_x < side_dist_y)
+		{
+			side_dist_x += delta_dist_x;
+			map_x += step_x;
+			side = 0;
+		}
+		else
+		{
+			side_dist_y += delta_dist_y;
+			map_y += step_y;
+			side = 1;
+		}
+		if (cub->map[(int)map_x][(int)map_y] == '1')
+			break;
+	}
+
+	/*wall height*/
+	double wall_dist;
+
+	if (side == 0)
+		wall_dist = (map_x - cub->pos_x + (1 - step_x) / 2) / ray_dir_x;
+	else
+		wall_dist = (map_y - cub->pos_y + (1 - step_y) / 2) / ray_dir_y;
+
+	int line_height = (int)(HEIGHT / wall_dist);
+
+	int draw_start = -line_height / 2 + HEIGHT / 2;
+	if (draw_start < 0)
+		draw_start = 0;
+
+	int draw_end = line_height / 2 + HEIGHT / 2;
+	if (draw_end >= HEIGHT)
+		draw_end = HEIGHT - 1;
+
+	// if (side == 0)
+	// 	wall_x = cub->pos_y + wall_dist * ray->dy;
+	// else
+	// 	wall_x = cub->pos_x + wall_dist * ray->dx;
+	// wall_x -= floor(wall_x);
 }

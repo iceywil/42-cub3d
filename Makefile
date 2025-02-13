@@ -6,7 +6,7 @@
 #    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/13 15:29:03 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/13 17:09:44 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ H_FILES		=	cub3d.h cub3d_def.h
 C_FILES     =   main.c \
 				00_check_arg.c 00_parsing.c 00_save_map.c 00_check_map.c \
 				01_player.c 01_pixel_utils.c 01_mini_map.c 01_display.c 01_background.c \
-				raycasting.c\
+				02_raycasting.c\
 				fdf_segment.c fdf_bresenham.c\
 				free.c \
 				utils.c init.c\

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   01_miniray.c                                       :+:      :+:    :+:   */
+/*   01_player.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:25:32 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/13 15:28:49 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:01:48 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@ int	ft_col(t_cub *cub)
 	return (j);
 }
 
-	/*on trace le rayon principal*/
-	// ft_segment(cub, j, i, j + (int)(cub->dir_x * BIG_PIXEL * 1.2),
-	// 	i + (int)(cub->dir_y * BIG_PIXEL * 1.2));
-
 /*on centre i et j sur le player;
 on affiche les differents rayons avec un pas de 0.1*/
 void	ft_miniray(t_cub *cub, int i0, int j0)
@@ -44,21 +40,44 @@ void	ft_miniray(t_cub *cub, int i0, int j0)
 	int		i;
 	int		j;
 	double	angle;
-	double	dir_x;
-	double	dir_y;
+	double	k;
 
 	j = (cub->pos_x - j0) * PIXEL + (PIXEL / 2);
 	i = (cub->pos_y - i0) * PIXEL + (PIXEL / 2);
+	k = MARGIN * PIXEL * 1.2;
 	angle = cub->dir_angle - M_PI / 4;
 	while (angle <= cub->dir_angle + M_PI / 4)
 	{
-		dir_x = cos(angle) * MARGIN;
-		dir_y = sin(angle) * MARGIN;
-		ft_segment(cub, j, i, j + (int)(dir_x * PIXEL * 1.2),
-			i + (int)(dir_y * PIXEL * 1.2));
+		ft_segment(cub, j, i,
+			j + (int)(cos(angle) * k), i + (int)(sin(angle) * k));
 		angle += 0.1;
 	}
 }
+
+/*on centre i et j sur le player;
+on affiche les differents rayons avec un pas de 0.1*/
+// void	ft_miniray(t_cub *cub, int i0, int j0)
+// {
+// 	int		i;
+// 	int		j;
+// 	double	angle;
+// 	double	dir_x;
+// 	double	dir_y;
+// 	double 	k;
+
+// 	j = (cub->pos_x - j0) * PIXEL + (PIXEL / 2);
+// 	i = (cub->pos_y - i0) * PIXEL + (PIXEL / 2);
+// 	k = MARGIN * PIXEL * 1.2;
+// 	angle = cub->dir_angle - M_PI / 4;
+// 	while (angle <= cub->dir_angle + M_PI / 4)
+// 	{
+// 		//dir_x = cos(angle) * k;
+// 		//dir_y = sin(angle) * k;
+// 		ft_segment(cub, j, i,
+//			j + (int)(cos(angle) * k), i + (int)(sin(angle) * k));
+// 		angle += 0.1;
+// 	}
+// }
 
 //translation: on centre + on decale
 /* draw the player_big_pixel (floor + player)

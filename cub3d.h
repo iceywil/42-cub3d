@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/13 15:27:08 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:53:40 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void		ft_init_map(t_cub *cub, char *file, int n);
 void		add_map_line(t_cub *cub, char *line);
 void		save_map(t_cub *cub, char *file, char *line, int n);
 void		get_textures(t_cub *cub);
+int			player_pixel(t_cub *cub, int i, int j, int color);
 
 // EVENTS HANDLER
 int			mouse_hook(int button, int x, int y, t_cub *cub);

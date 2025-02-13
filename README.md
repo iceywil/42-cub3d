@@ -1,2 +1,7 @@
-phase de parsing a l'air OK
-debut de mlx
+phase de parsing : done
+
+minimap : done
+
+rayacasting : ...
+
+phase de test: ...

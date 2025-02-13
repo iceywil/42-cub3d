@@ -6,11 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-<<<<<<< HEAD:srcs/init.c
-/*   Updated: 2025/02/12 20:55:18 by a                ###   ########.fr       */
-=======
-/*   Updated: 2025/02/12 13:18:27 by kimnguye         ###   ########.fr       */
->>>>>>> kim:init.c
+/*   Updated: 2025/02/13 22:28:02 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +37,27 @@ void	init_all(t_cub *cub)
 {
 	t_img	img;
 	t_img	mini_map;
+	t_color	floor;
+	t_color	ceiling;
 
+	cub->win = NULL;
+	cub->mlx = NULL;
 	cub->img = &img;
 	cub->img->data = NULL;
 	cub->mini_map = &mini_map;
 	cub->mini_map->data = NULL;
+	cub->floor = &floor;
+	cub->ceiling = &ceiling;
 	cub->i = 0;
-<<<<<<< HEAD:srcs/init.c
-	cub->start_map_i = 0;
-	cub->f = NULL;
-	cub->c = NULL;
-	cub->f_rgb = 0;
-	cub->c_rgb = 0;
+	cub->floor->r = -1;
+	cub->floor->g = -1;
+	cub->floor->b = -1;
+	cub->ceiling->r = -1;
+	cub->ceiling->g = -1;
+	cub->ceiling->b = -1;
 	cub->map = NULL;
 	cub->map_height = 0;
 	cub->map_width = 0;
-	cub->player_dir = 0;
-	cub->player_x = -1;
-	cub->player_y = -1;
 	init_two(cub);
 }
 
@@ -73,26 +72,13 @@ void	init_two(t_cub *cub)
 	cub->texture_s = &texture_s;
 	cub->texture_w = &texture_w;
 	cub->texture_e = &texture_e;
-=======
-	cub->no = NULL;
-	cub->so = NULL;
-	cub->we = NULL;
-	cub->ea = NULL;
-	cub->floor = NULL;
-	cub->ceiling = NULL;
-	cub->f.r = -1;
-	cub->f.g = -1;
-	cub->f.b = -1;
-	cub->c.r = -1;
-	cub->c.g = -1;
-	cub->c.b = -1;
-	cub->map = NULL;
-	cub->map_height = 0;
-	cub->map_width = 0;
+	cub->texture_n->data = NULL;
+	cub->texture_s->data = NULL;
+	cub->texture_w->data = NULL;
+	cub->texture_e->data = NULL;
 	cub->dir_x = UNSET_DOUBLE;
 	cub->dir_y = UNSET_DOUBLE;
-	cub->dir_angle = UNSET_DOUBLE; 
-	cub->pos_x = -1; 
+	cub->dir_angle = UNSET_DOUBLE;
+	cub->pos_x = -1;
 	cub->pos_y = -1;
->>>>>>> kim:init.c
 }

@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   01_background.c                                    :+:      :+:    :+:   */
+/*   background.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:06:32 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 12:19:00 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/13 19:54:27 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 /*put rgb pixel to img*/
-void	rgb_pixel(t_img *img, int x, int y, t_rgb rgb)
+void	rgb_pixel(t_img *img, int x, int y, t_color *rgb)
 {
 	int	pixel;
 
-	pixel = (y * img->line) + (x * (img->bpp / 8));
-	img->addr[pixel] = rgb.b;
-	img->addr[pixel + 1] = rgb.g;
-	img->addr[pixel + 2] = rgb.r;
+	pixel = (y * img->size_line) + (x * (img->bpp / 8));
+	img->addr[pixel] = rgb->b;
+	img->addr[pixel + 1] = rgb->g;
+	img->addr[pixel + 2] = rgb->r;
 }
 
-void	ft_ceiling(t_cub *cub, int height)
+void	ceiling_fill(t_cub *cub, int height)
 {
 	int	i;
 	int	j;
@@ -33,15 +33,15 @@ void	ft_ceiling(t_cub *cub, int height)
 	{
 		j = 0;
 		while (j < WIDTH)
-			rgb_pixel(&cub->img, j++, i, cub->c);
+			rgb_pixel(cub->img, j++, i, cub->ceiling);
 		i++;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->win,
-		cub->img.mlx, 0, 0);
+		cub->img->data, 0, 0);
 }
 
 /*fill the whole background with the floor color*/
-void	ft_floor(t_cub *cub)
+void	floor_fill(t_cub *cub)
 {
 	int	i;
 	int	j;
@@ -51,15 +51,15 @@ void	ft_floor(t_cub *cub)
 	{
 		j = 0;
 		while (j < WIDTH)
-			rgb_pixel(&cub->img, j++, i, cub->f);
+			rgb_pixel(cub->img, j++, i, cub->floor);
 		i++;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->win,
-		cub->img.mlx, 0, 0);
+		cub->img->data, 0, 0);
 }
 
-void	ft_background(t_cub *cub)
+void	background(t_cub *cub)
 {
-	ft_floor(cub);
-	ft_ceiling(cub, HEIGHT / 2);
+	floor_fill(cub);
+	ceiling_fill(cub, HEIGHT / 2);
 }

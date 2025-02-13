@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile_Wil                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: a <a@student.42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/13 19:55:54 by a                 #+#    #+#              #
-#    Updated: 2025/02/13 20:03:54 by a                ###   ########.fr        #
+#    Updated: 2025/02/13 19:57:03 by a                ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,14 +38,12 @@ C_FILES     =   srcs/main.c \
 				srcs/utils.c \
 				srcs/init.c \
 				srcs/mini_map.c \
-				srcs/background.c \
 				srcs/events_handler.c \
-				srcs/pixel_utils.c \
-				srcs/player.c \
 				srcs/ray.c \
-				srcs/raycasting.c \
-				srcs/fdf_segment.c \
-				srcs/fdf_bresenham.c \
+				00_check_arg.c 00_parsing.c 00_save_map.c 00_check_map.c \
+				01_player.c 01_pixel_utils.c 01_mini_map.c 01_display.c 01_background.c \
+				02_raycasting.c\
+				fdf_segment.c fdf_bresenham.c\
 
 OBJS    =   $(C_FILES:srcs/%.c=obj/%.o)				
 

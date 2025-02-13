@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   00_check_map.c                                     :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-<<<<<<<< HEAD:srcs/check_map.c
-/*   Updated: 2025/02/08 16:47:43 by a                ###   ########.fr       */
-========
-/*   Updated: 2025/02/12 14:09:23 by kimnguye         ###   ########.fr       */
->>>>>>>> kim:00_check_map.c
+/*   Updated: 2025/02/13 19:15:34 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
 /*les espaces doivent etre entoures de 1 ou d'autres espaces*/
+
 void	check_map_space(t_cub *cub, int i, int j)
 {
 	if (cub->map[i][j] == ' ')
@@ -59,7 +56,7 @@ void	set_direction(t_cub *cub, char elem)
 the map should only contain 0 and 1 except for the player position*/
 void	check_map_elem(t_cub *cub, char elem, int i, int j)
 {
-	if (isin(elem, "NSEW"))
+	if (is_in(elem, "NSEW"))
 	{
 		if (cub->dir_x == UNSET_DOUBLE || cub->dir_y == UNSET_DOUBLE)
 		{
@@ -96,12 +93,7 @@ void	handle_map(t_cub *cub)
 				&& cub->map[cub->i][cub->x] != ' ')
 				exit_error(cub, "Error: the map is not closed");
 			if (cub->i > 0 && cub->i < cub->map_height - 1 && cub->x > 0)
-<<<<<<<< HEAD:srcs/check_map.c
-				check_map_element(cub, cub->map[cub->i][cub->x], cub->i,
-					cub->x);
-========
 				check_map_elem(cub, cub->map[cub->i][cub->x], cub->i, cub->x);
->>>>>>>> kim:00_check_map.c
 			cub->x++;
 		}
 		cub->i++;

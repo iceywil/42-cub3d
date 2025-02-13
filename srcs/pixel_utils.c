@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   01_pixel_utils.c                                   :+:      :+:    :+:   */
+/*   pixel_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:28:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 13:57:28 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/13 19:54:42 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 /*convert one pixel into a big pixel
 return 0 if a pixel is out of the image*/
@@ -25,8 +25,8 @@ int	big_pixel(t_cub *cub, int i, int j, int color)
 		y = i - 1;
 		while (++y < i + PIXEL)
 		{
-			if (isin_img(x, y, MAP_WIDTH, MAP_HEIGHT))
-				pixel_to_img(&cub->mini_carte, x, y, color);
+			if (is_in_img(x, y, MAP_WIDTH, MAP_HEIGHT))
+				pixel_to_img(cub->mini_map, x, y, color);
 			else
 				return (0);
 		}
@@ -35,7 +35,7 @@ int	big_pixel(t_cub *cub, int i, int j, int color)
 	return (1);
 }
 
-int	isin_img(int x, int y, int width, int height)
+int	is_in_img(int x, int y, int width, int height)
 {
 	if (x < width && y < height && x >= 0 && y >= 0)
 		return (1);
@@ -47,7 +47,7 @@ void	pixel_to_img(t_img *img, int x, int y, int color)
 {
 	int	pixel;
 
-	pixel = (y * img->line) + (x * (img->bpp / 8));
+	pixel = (y * img->size_line) + (x * (img->bpp / 8));
 	img->addr[pixel] = color & 0xFF;
 	img->addr[pixel + 1] = (color >> 8) & 0xFF;
 	img->addr[pixel + 2] = (color >> 16) & 0xFF;

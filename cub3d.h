@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/13 19:07:21 by a                ###   ########.fr       */
+/*   Updated: 2025/02/13 20:30:34 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,18 @@ typedef struct s_cub
 	int		i;
 	int		x;
 	char	**map;
+	int		map_height;
+	int		map_width;
+	void	*mlx;
+	void	*win;
+	t_img	*img;
+	t_img	*mini_map;
+	t_color	*floor;
+	t_color	*ceiling;
+	t_img	*texture_n;
+	t_img	*texture_s;
+	t_img	*texture_w;
+	t_img	*texture_e;
 	double dir_x;     // player direction
 	double dir_y;     // player direction
 	double dir_angle; // direction angle
@@ -67,28 +79,8 @@ typedef struct s_cub
 	double pos_y;     // player position
 	double plane_x;   // camera plane
 	double plane_y;   // camera plane
-	t_color	*floor;
-	t_color	*celling;
-	t_img	*texture_n;
-	t_img	*texture_s;
-	t_img	*texture_w;
-	t_img	*texture_e;
 	int		text_x;
 	int		text_y;
-	char	*floor;
-	char	*ceiling;
-	int		map_height;
-	int		map_width;
-	void	*mlx;
-	void	*win;
-	t_img	*img;
-	t_img	*mini_map;
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
 	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
@@ -123,17 +115,17 @@ void		check_arg(int argc, char **argv);
 void		parsing(t_cub *cub, char *file);
 void		handle_element(t_cub *cub, char *line);
 void		handle_texture(t_cub *cub, t_img *img, char *line);
-void		handle_colors(t_cub *cub);
+void		handle_colors(t_cub *cub, t_color *rgb, char *line);
 void		check_elements(t_cub *cub);
 
 // MAP
 void		handle_map(t_cub *cub);
 void		check_map_space(t_cub *cub, int i, int j);
+void		check_map_elem(t_cub *cub, char elem, int i, int j);
 
 // RAY
 void		test_ray(t_cub *cub);
 void		pixel_on_img(t_img *img, int rgb, int x, int y);
-int			rgb_to_int(int red, int green, int blue);
 void		paint_line(t_cub *cub, int rgb);
 
 // FREE
@@ -149,11 +141,10 @@ int			line_is_empty(t_cub *cub, char *line);
 int			max(int a, int b);
 
 // INIT MAP
-int			init_max(t_cub *cub, int fd);
-void		init_map(t_cub *cub, char *file);
+int			init_max(t_cub *cub, int fd, int n);
+void		init_map(t_cub *cub, char *file, int n);
 void		add_map_line(t_cub *cub, char *line);
 void		save_map(t_cub *cub, char *file, char *line, int n);
-void		get_textures(t_cub *cub);
 int			player_pixel(t_cub *cub, int i, int j, int color);
 
 // EVENTS HANDLER
@@ -168,6 +159,11 @@ void		pixel_to_img(t_img *img, int x, int y, int color);
 void		mini_map(t_cub *cub);
 int			is_in_img(int x, int y, int width, int height);
 int			big_pixel(t_cub *cub, int i, int j, int color);
+void		center_map(t_cub *cub);
+void		erase_map(t_cub *cub);
+void		mini_map(t_cub *cub);
+int			first_row(t_cub *cub);
+void		map_grid(t_cub *cub, int i0, int j0);
 void		center_map(t_cub *cub);
 
 // bresenham

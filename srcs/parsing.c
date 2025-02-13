@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/13 19:06:27 by a                ###   ########.fr       */
+/*   Updated: 2025/02/13 23:15:13 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ void	parsing(t_cub *cub, char *file)
 	char	*line;
 	int		n;
 
+	ft_printf("parsing texture_n %p\n", cub->texture_n);
+	ft_printf("parsing texture_n->data %p\n", cub->texture_n->data);
+	ft_printf("parsing texture_n %p\n", cub->texture_n);
 	n = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -46,9 +49,10 @@ void	parsing(t_cub *cub, char *file)
 	while (line)
 	{
 		n++;
-		if (!cub->texture_n || !cub->texture_s || !cub->texture_w
-			|| !cub->texture_e || !cub->floor || !cub->ceiling)
-			parse_element(cub, line);
+		if (!cub->texture_n->data || !cub->texture_s->data
+			|| !cub->texture_w->data || !cub->texture_e->data
+			|| cub->floor->r == -1 || !cub->ceiling->r == -1)
+			handle_element(cub, line);
 		else
 			save_map(cub, file, line, n);
 		free(line);
@@ -56,11 +60,10 @@ void	parsing(t_cub *cub, char *file)
 	}
 	cub->map[cub->map_height] = NULL;
 	close(fd);
-	ft_printf("save map: SUCCESS\n");
 	check_elements(cub);
 }
 
-void	parse_element(t_cub *cub, char *line)
+void	handle_element(t_cub *cub, char *line)
 {
 	char	*tmp;
 
@@ -81,9 +84,9 @@ void	parse_element(t_cub *cub, char *line)
 	else
 		exit_error(cub, "Duplicate texture");
 	if (!ft_strncmp(line, "F ", 2) && !cub->floor)
-		handle_colors(cub, &cub->floor, line);
+		handle_colors(cub, cub->floor, line);
 	else if (!ft_strncmp(line, "C ", 2) && !cub->ceiling)
-		handle_colors(cub, &cub->ceiling, line);
+		handle_colors(cub, cub->ceiling, line);
 	else
 		exit_error(cub, "Duplicate color");
 }

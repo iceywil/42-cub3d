@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:44:35 by a                 #+#    #+#             */
-/*   Updated: 2025/02/13 18:54:13 by a                ###   ########.fr       */
+/*   Updated: 2025/02/13 19:25:31 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ int	is_space(char c)
 
 void	print_cub(t_cub *cub)
 {
-	ft_printf("%d\n", (cub->f_rgb >> 16) & 0xFF);
-	ft_printf("%d\n", (cub->f_rgb >> 8) & 0xFF);
-	ft_printf("%d\n", cub->f_rgb & 0xFF);
-	ft_printf("%d\n", (cub->c_rgb >> 16) & 0xFF);
-	ft_printf("%d\n", (cub->c_rgb >> 8) & 0xFF);
-	ft_printf("%d\n", cub->c_rgb & 0xFF);
+	ft_printf("%d\n", (cub->floor->r));
+	ft_printf("%d\n", (cub->floor->g));
+	ft_printf("%d\n", (cub->floor->b));
+	ft_printf("%d\n", (cub->ceiling->r));
+	ft_printf("%d\n", (cub->ceiling->g));
+	ft_printf("%d\n", (cub->ceiling->b));
 	cub->i = 0;
 	while (cub->map[cub->i])
 		ft_printf("%s\n", cub->map[cub->i++]);
@@ -78,12 +78,4 @@ void	print_rgb_components(int rgb)
 	printf("Red: %d\n", red);
 	printf("Green: %d\n", green);
 	printf("Blue: %d\n", blue);
-}
-
-int	rgb_to_int(int red, int green, int blue)
-{
-	if (red < 0 || red > 255 || green < 0 || green > 255 || blue < 0
-		|| blue > 255)
-		return (-1);
-	return ((red << 16) | (green << 8) | blue);
 }

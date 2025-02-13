@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:52 by a                 #+#    #+#             */
-/*   Updated: 2025/02/11 19:28:14 by a                ###   ########.fr       */
+/*   Updated: 2025/02/13 23:15:04 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,42 @@
 int	main(int argc, char **argv)
 {
 	t_cub	cub;
-	int		n;
 
-	if (argc != 2)
-		return (ft_putendl_fd("Error\nIncorrect number of arguments", 2), 1);
-	if (ft_strncmp(".cub", &argv[1][ft_strlen(argv[1]) - 4], 4))
-		return (ft_printf("Wrong file format: a .cub is expected!\n"), 1);
+	check_arg(argc, argv);
 	init_all(&cub);
 	init_mlx(&cub);
-//	test_ray(&cub);
-	draw_map(&cub);
+	ft_printf("main texture_n %p\n", cub.texture_n);
+	ft_printf("main texture_n->data %p\n", cub.texture_n->data);
+	ft_printf("main texture_n %p\n", cub.texture_n);
+	parsing(&cub, argv[1]);
+	//test_ray(&cub);
+	background(&cub);
+	mini_map(&cub);
 	mlx_hook((&cub)->win, KEYPRESS_EVENT, 1L << 0, key_hook, (&cub));
 	mlx_hook((&cub)->win, BUTTONPRESS_EVENT, 1L << 2, mouse_hook, (&cub));
 	mlx_hook((&cub)->win, 17, 1L << 17, close_all, (&cub));
 	mlx_loop(cub.mlx);
+
 	return (0);
 }
+
+void	check_arg(int argc, char **argv)
+{
+	int		n;
+
+	if (argc != 2)
+	{
+		ft_putstr_fd("Error: incorrect number of arguments\n", 2);
+		exit (1);
+	}
+	n = ft_strlen(argv[1]);
+	if (ft_strncmp(".cub", &argv[1][n - 4], 4))
+	{
+		ft_putstr_fd("Wrong file format: a .cub is expected!\n", 2);
+		exit (1);
+	}
+}
+
 
 /* void	test_ray(t_cub *cub)
 {

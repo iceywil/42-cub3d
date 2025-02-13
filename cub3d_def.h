@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/07 16:25:12 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:49:24 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,36 @@
 
 # define _USE_MATH_DEFINES
 
+//default values
+# define UNSET_DOUBLE 9999
+
 //WINDOW
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 800 //1920  
+# define HEIGHT 600 //1080
 # define MARGIN 5
 
 //MINI MAP
 # define MAP_WIDTH WIDTH / 5
 # define MAP_HEIGHT HEIGHT / 5 
+# define MAP_M 1 //margin
+# define MAX_PIXEL 14 //number of PIXEL to fill one line of minimap
+
+//PIXEL
+# define PIXEL (20 * WIDTH / 1920)
+#define  PLAYER_SIZ (PIXEL * 2 / 3)
 
 //CAMERA
-# define ANGLE_INIT 30
-# define ANGLE_ROT 5
-# define ZOOM_INIT 10
+# define ANGLE_VIEW (M_PI / 2)
+# define ANGLE_ROT (M_PI / 16)
 # define ZOOM_PLUS 1.10
 # define ZOOM_MINUS 0.95
-# define TRANS 8
+# define TRANS (PIXEL / 2)
 # define DEFAULT_COLOR YELLOW
 
 //CODE CALCULATION
 # define ROT_CODE 3
 # define BASE_HEXA "0123456789ABCDEF"
+
 //masks and events
 # define KEYPRESS_EVENT 2
 # define BUTTONPRESS_EVENT 4

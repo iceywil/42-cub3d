@@ -1,12 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   save_map.c                                         :+:      :+:    :+:   */
+/*   00_save_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:22:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/13 18:54:04 by a                ###   ########.fr       */
+<<<<<<<< HEAD:srcs/save_map.c
+/*   Updated: 2025/02/11 03:27:28 by a                ###   ########.fr       */
+========
+/*   Updated: 2025/02/13 15:44:50 by kimnguye         ###   ########.fr       */
+>>>>>>>> kim:00_save_map.c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +19,11 @@
 /*retrieve the dimension of the map (cub->map_width and cub->map_height)
 returns 0 when success
 returns -1 if gnl failed*/
-
-int	init_max(int fd, t_cub *cub, int n)
+<<<<<<<< HEAD:srcs/save_map.c
+int	init_max(t_cub *cub, int fd)
+========
+int	ft_init_max(int fd, t_cub *cub, int n)
+>>>>>>>> kim:00_save_map.c
 {
 	char	*gnl;
 	int		line_x;
@@ -47,15 +54,22 @@ int	init_max(int fd, t_cub *cub, int n)
 
 /*returns a mallocated map
 close the program on errors*/
-
-void	init_map(t_cub *cub, char *file, int n)
+<<<<<<<< HEAD:srcs/save_map.c
+void	init_map(t_cub *cub, char *file)
+========
+void	ft_init_map(t_cub *cub, char *file, int n)
+>>>>>>>> kim:00_save_map.c
 {
 	int	fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		exit_error(cub, "Error: can't open file");
-	if (init_max(fd, cub, n) < 0)
+<<<<<<<< HEAD:srcs/save_map.c
+	if (init_max(cub, fd) < 0)
+========
+	if (ft_init_max(fd, cub, n) < 0)
+>>>>>>>> kim:00_save_map.c
 		exit_error(cub, "Error: map initialization failed");
 	cub->map = malloc(sizeof(char *) * (cub->map_height + 1));
 	if (!cub->map)
@@ -85,12 +99,20 @@ void	save_map(t_cub *cub, char *file, char *line, int n)
 	int	i;
 
 	if (!cub->map)
-		init_map(cub, file, n);
+<<<<<<<< HEAD:srcs/save_map.c
+		init_map(cub, file);
+	cub->i = 0;
+	while (is_space(line[cub->i]))
+		cub->i++;
+	if (!line[cub->i] && cub->map[0])
+========
+		ft_init_map(cub, file, n);
 	i = 0;
 	while (is_space(line[i]))
 		i++;
 	if (!line[i] && cub->map[0])
-		exit_error(cub, "Invalid map");
+>>>>>>>> kim:00_save_map.c
+		exit_error(cub, "Error: invalid map");
 	else if (line[i])
 		add_map_line(cub, line);
 }

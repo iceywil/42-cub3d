@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/11 19:27:21 by a                ###   ########.fr       */
+/*   Updated: 2025/02/13 19:07:21 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,22 @@
 
 # include "cub3d_def.h"
 # include "libft/libft.h"
-# include "mlx.h"
+# include "minilibx-linux/mlx.h"
 # include <fcntl.h>
+# include <math.h>
+
+typedef struct s_slope
+{
+	double	x_a;
+	double	x_b;
+	double	y_a;
+	double	y_b;
+	double	dx;
+	double	dy;
+	double	p;
+	int		i;
+	int		j;
+}			t_slope;
 
 # define NORTH 1
 # define SOUTH 2
@@ -34,27 +48,35 @@ typedef struct s_img
 	int		height;
 }			t_img;
 
+typedef struct s_color
+{
+	int		r;
+	int		g;
+	int		b;
+}			t_color;
+
 typedef struct s_cub
 {
 	int		i;
-	int		start_map_i;
 	int		x;
 	char	**map;
-	char	player_dir;
-	int		player_x;
-	int		player_y;
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	char	*f;
-	char	*c;
-	int		f_rgb;
-	int		c_rgb;
+	double dir_x;     // player direction
+	double dir_y;     // player direction
+	double dir_angle; // direction angle
+	double pos_x;     // player position
+	double pos_y;     // player position
+	double plane_x;   // camera plane
+	double plane_y;   // camera plane
+	t_color	*floor;
+	t_color	*celling;
 	t_img	*texture_n;
 	t_img	*texture_s;
 	t_img	*texture_w;
 	t_img	*texture_e;
+	int		text_x;
+	int		text_y;
+	char	*floor;
+	char	*ceiling;
 	int		map_height;
 	int		map_width;
 	void	*mlx;
@@ -97,10 +119,11 @@ void		init_all(t_cub *cub);
 void		init_two(t_cub *cub);
 
 // PARSING
+void		check_arg(int argc, char **argv);
 void		parsing(t_cub *cub, char *file);
 void		handle_element(t_cub *cub, char *line);
 void		handle_texture(t_cub *cub, t_img *img, char *line);
-void		handle_colors(t_cub *cub, int *rgb, char *line);
+void		handle_colors(t_cub *cub);
 void		check_elements(t_cub *cub);
 
 // MAP
@@ -123,12 +146,15 @@ int			is_space(char c);
 void		print_cub(t_cub *cub);
 int			is_in(char c, char *str);
 int			line_is_empty(t_cub *cub, char *line);
+int			max(int a, int b);
 
 // INIT MAP
 int			init_max(t_cub *cub, int fd);
 void		init_map(t_cub *cub, char *file);
 void		add_map_line(t_cub *cub, char *line);
-void		save_map(t_cub *cub, char *file, char *line);
+void		save_map(t_cub *cub, char *file, char *line, int n);
+void		get_textures(t_cub *cub);
+int			player_pixel(t_cub *cub, int i, int j, int color);
 
 // EVENTS HANDLER
 int			mouse_hook(t_cub *cub, int button, int x, int y);
@@ -137,5 +163,22 @@ int			key_hook(t_cub *cub, int key);
 // MINI CARTE
 void		draw_map(t_cub *cub);
 void		pixel_to_map(t_cub *cub, int rgb, int x, int y);
+void		miniray(t_cub *cub, int i0, int j0);
+void		pixel_to_img(t_img *img, int x, int y, int color);
+void		mini_map(t_cub *cub);
+int			is_in_img(int x, int y, int width, int height);
+int			big_pixel(t_cub *cub, int i, int j, int color);
+void		center_map(t_cub *cub);
+
+// bresenham
+void		segment(t_cub *cub, int x_a, int y_a, int x_b, int y_b);
+void		segment_vertical(t_cub *cub, t_slope *ab);
+void		segment_q1(t_cub *cub, t_slope *ab);
+void		segment_q2(t_cub *cub, t_slope *ab);
+void		segment_q3(t_cub *cub, t_slope *ab);
+void		segment_q4(t_cub *cub, t_slope *ab);
+
+// background
+void		background(t_cub *cub);
 
 #endif

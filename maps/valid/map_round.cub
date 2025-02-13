@@ -1,7 +1,7 @@
-NO ./textures/brick.xpm
-SO ./textures/brick_cracked.xpm
-WE ./textures/tiles.xpm
-EA ./textures/tiles_cracked.xpm
+NO ./textures/wall_1.xpm
+SO ./textures/wall_2.xpm
+WE ./textures/wall_3.xpm
+EA ./textures/wall_4.xpm
 
 F 120,0,0
 C 193,18,31

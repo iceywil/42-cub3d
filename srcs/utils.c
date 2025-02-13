@@ -6,12 +6,19 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:44:35 by a                 #+#    #+#             */
-/*   Updated: 2025/02/11 17:24:38 by a                ###   ########.fr       */
+/*   Updated: 2025/02/13 18:54:13 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include <stdio.h>
+
+int	max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
 
 int	is_in(char c, char *str)
 {
@@ -32,24 +39,21 @@ int	is_space(char c)
 
 void	print_cub(t_cub *cub)
 {
-	ft_printf("%s\n", cub->no);
-	ft_printf("%s\n", cub->so);
-	ft_printf("%s\n", cub->we);
-	ft_printf("%s\n", cub->ea);
-	ft_printf("%s\n", cub->f);
 	ft_printf("%d\n", (cub->f_rgb >> 16) & 0xFF);
 	ft_printf("%d\n", (cub->f_rgb >> 8) & 0xFF);
 	ft_printf("%d\n", cub->f_rgb & 0xFF);
-	ft_printf("%s\n", cub->c);
 	ft_printf("%d\n", (cub->c_rgb >> 16) & 0xFF);
 	ft_printf("%d\n", (cub->c_rgb >> 8) & 0xFF);
 	ft_printf("%d\n", cub->c_rgb & 0xFF);
 	cub->i = 0;
 	while (cub->map[cub->i])
-	{
-		ft_printf("%s\n", cub->map[cub->i]);
-		cub->i++;
-	}
+		ft_printf("%s\n", cub->map[cub->i++]);
+	ft_printf("max_y=%i; max_x=%i;\n", cub->map_height, cub->map_width);
+	ft_printf("%i pixels = 1 big pixel\n", PIXEL);
+	printf("player_direction(%f, %f); player_position(%f, %f);\n", cub->dir_x,
+		cub->dir_y, cub->pos_x, cub->pos_y);
+	ft_printf("map width = %i; map height = %i;\n", cub->map_width,
+		cub->map_height);
 }
 
 int	line_is_empty(t_cub *cub, char *line)
@@ -64,9 +68,13 @@ int	line_is_empty(t_cub *cub, char *line)
 
 void	print_rgb_components(int rgb)
 {
-	int red = (rgb >> 16) & 0xFF;  // Extract the red component
-	int green = (rgb >> 8) & 0xFF; // Extract the green component
-	int blue = rgb & 0xFF;         // Extract the blue component
+	int	red;
+	int	green;
+	int	blue;
+
+	red = (rgb >> 16) & 0xFF;
+	green = (rgb >> 8) & 0xFF;
+	blue = rgb & 0xFF;
 	printf("Red: %d\n", red);
 	printf("Green: %d\n", green);
 	printf("Blue: %d\n", blue);

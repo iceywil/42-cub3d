@@ -6,7 +6,11 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
+<<<<<<< HEAD:srcs/init.c
 /*   Updated: 2025/02/12 20:55:18 by a                ###   ########.fr       */
+=======
+/*   Updated: 2025/02/12 13:18:27 by kimnguye         ###   ########.fr       */
+>>>>>>> kim:init.c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +47,7 @@ void	init_all(t_cub *cub)
 	cub->mini_map = &mini_map;
 	cub->mini_map->data = NULL;
 	cub->i = 0;
+<<<<<<< HEAD:srcs/init.c
 	cub->start_map_i = 0;
 	cub->f = NULL;
 	cub->c = NULL;
@@ -68,4 +73,26 @@ void	init_two(t_cub *cub)
 	cub->texture_s = &texture_s;
 	cub->texture_w = &texture_w;
 	cub->texture_e = &texture_e;
+=======
+	cub->no = NULL;
+	cub->so = NULL;
+	cub->we = NULL;
+	cub->ea = NULL;
+	cub->floor = NULL;
+	cub->ceiling = NULL;
+	cub->f.r = -1;
+	cub->f.g = -1;
+	cub->f.b = -1;
+	cub->c.r = -1;
+	cub->c.g = -1;
+	cub->c.b = -1;
+	cub->map = NULL;
+	cub->map_height = 0;
+	cub->map_width = 0;
+	cub->dir_x = UNSET_DOUBLE;
+	cub->dir_y = UNSET_DOUBLE;
+	cub->dir_angle = UNSET_DOUBLE; 
+	cub->pos_x = -1; 
+	cub->pos_y = -1;
+>>>>>>> kim:init.c
 }

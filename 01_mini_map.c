@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:01:19 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/14 12:55:34 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:33:25 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_mini_map(t_cub *cub)
 {
 	ft_erase_map(cub);
 	ft_center_map(cub);
-	ft_draw_ray(cub, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win,
 		cub->mini_carte.mlx, 0, HEIGHT / 5 * 4);
 }
@@ -98,5 +97,25 @@ void	ft_center_map(t_cub *cub)
 		}
 		cub->i++;
 	}
-	//ft_miniray(cub, i0, j0);
+	ft_miniray(cub, i0, j0);
+}
+
+
+void	miniray(t_cub *cub, float start_x)
+{
+	(void)start_x;
+	double	ray_x;
+	double	ray_y;
+
+	ray_x = cub->pos_x;
+	ray_y = cub->pos_y;
+	while(!ft_touch(ray_x, ray_y, cub))
+	{
+		printf("test: (%f,%f)\n", ray_x, ray_y);
+		if (isin_img(ray_x, ray_y, MAP_WIDTH, MAP_HEIGHT))
+			pixel_to_img(&cub->img, ray_x, ray_y, GREEN);
+		ray_x += cos(cub->dir_angle);
+		ray_y += sin(cub->dir_angle);
+	}
+	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.mlx, 0, 0);
 }

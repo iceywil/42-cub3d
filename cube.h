@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:21:24 by kduroux           #+#    #+#             */
-/*   Updated: 2025/02/14 12:57:08 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:30:12 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	move_player(t_player *player);
 
 //game.c
 int		ft_game_loop(t_game *game);
-void	ft_draw_ray(t_cub *cub, float start_x);
 
 //main.c -> utils
 int		keys(int keys, t_game *game);

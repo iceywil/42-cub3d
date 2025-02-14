@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/14 12:29:33 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:31:11 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,12 @@ void		ft_mini_map(t_cub *cub);
 int			isin_img(int x, int y, int width, int height);
 int			big_pixel(t_cub *cub, int i, int j, int color);
 void		ft_center_map(t_cub *cub);
-void		ft_draw_ray(t_cub *cub, float start_x);
+
+//FOV
+void		ft_clear(t_cub *cub);
+int			ft_game_loop(t_cub *cub);
+void		ft_draw_ray(t_cub *cub, float start_x, int i);
+int			ft_touch(double px, double py, t_cub *cub);
 
 //bresenham
 void	ft_segment(t_cub *cub, int x_a, int y_a, int x_b, int y_b);

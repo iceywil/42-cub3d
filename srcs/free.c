@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 01:33:34 by a                 #+#    #+#             */
-/*   Updated: 2025/02/14 16:05:11 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:49:13 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,18 @@ void	free_mlx(t_cub *cub)
 {
 	if (cub)
 	{
-		if (cub->img && cub->img->data)
-			mlx_destroy_image(cub->mlx, cub->img->data);
-		ft_printf("%p\n", cub->mini_map->data);
-		if (cub->mini_map && cub->mini_map->data)
-			mlx_destroy_image(cub->mlx, cub->mini_map->data);
-		if (cub->texture_n && cub->texture_n->data)
-			mlx_destroy_image(cub->mlx, cub->texture_n->data);
-		if (cub->texture_n && cub->texture_s->data)
-			mlx_destroy_image(cub->mlx, cub->texture_s->data);
-		if (cub->texture_n && cub->texture_w->data)
-			mlx_destroy_image(cub->mlx, cub->texture_w->data);
-		if (cub->texture_n && cub->texture_e->data)
-			mlx_destroy_image(cub->mlx, cub->texture_e->data);
+		if (cub->img.data)
+			mlx_destroy_image(cub->mlx, cub->img.data);
+		if (cub->mini_map.data)
+			mlx_destroy_image(cub->mlx, cub->mini_map.data);
+		if (cub->texture_n.data)
+			mlx_destroy_image(cub->mlx, cub->texture_n.data);
+		if (cub->texture_s.data)
+			mlx_destroy_image(cub->mlx, cub->texture_s.data);
+		if (cub->texture_w.data)
+			mlx_destroy_image(cub->mlx, cub->texture_w.data);
+		if (cub->texture_e.data)
+			mlx_destroy_image(cub->mlx, cub->texture_e.data);
 		if (cub->win)
 			mlx_destroy_window(cub->mlx, cub->win);
 		if (cub->mlx)

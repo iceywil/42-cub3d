@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:06:32 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/13 19:54:27 by a                ###   ########.fr       */
+/*   Updated: 2025/02/14 16:51:56 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	ceiling_fill(t_cub *cub, int height)
 	{
 		j = 0;
 		while (j < WIDTH)
-			rgb_pixel(cub->img, j++, i, cub->ceiling);
+			rgb_pixel(&cub->img, j++, i, &cub->ceiling);
 		i++;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->win,
-		cub->img->data, 0, 0);
+		cub->img.data, 0, 0);
 }
 
 /*fill the whole background with the floor color*/
@@ -51,11 +51,11 @@ void	floor_fill(t_cub *cub)
 	{
 		j = 0;
 		while (j < WIDTH)
-			rgb_pixel(cub->img, j++, i, cub->floor);
+			rgb_pixel(&cub->img, j++, i, &cub->floor);
 		i++;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->win,
-		cub->img->data, 0, 0);
+		cub->img.data, 0, 0);
 }
 
 void	background(t_cub *cub)

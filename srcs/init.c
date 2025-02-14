@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/14 16:19:02 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:51:25 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ void	init_mlx(t_cub *cub)
 	cub->win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "42 - CUB3D");
 	if (!cub->win)
 		exit_error(cub, "Initialisation of window failed\n");
-	cub->img->data = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
-	if (!cub->img->data)
+	cub->img.data = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
+	if (!cub->img.data)
 		exit_error(cub, "Initialisation of image failed\n");
-	cub->img->addr = mlx_get_data_addr(cub->img->data, &cub->img->bpp,
-			&cub->img->size_line, &cub->img->endian);
-	cub->mini_map->data = mlx_new_image(cub->mlx, MAP_WIDTH, MAP_HEIGHT);
-	if (!cub->mini_map->data)
+	cub->img.addr = mlx_get_data_addr(cub->img.data, &cub->img.bpp,
+			&cub->img.size_line, &cub->img.endian);
+	cub->mini_map.data = mlx_new_image(cub->mlx, MAP_WIDTH, MAP_HEIGHT);
+	if (!cub->mini_map.data)
 		exit_error(cub, "Initialisation of image failed\n");
-	cub->mini_map->addr = mlx_get_data_addr(cub->mini_map->data,
-			&cub->mini_map->bpp, &cub->mini_map->size_line,
-			&cub->mini_map->endian);
+	cub->mini_map.addr = mlx_get_data_addr(cub->mini_map.data,
+			&cub->mini_map.bpp, &cub->mini_map.size_line,
+			&cub->mini_map.endian);
 }
 
 void	init_all(t_cub *cub)
@@ -40,12 +40,12 @@ void	init_all(t_cub *cub)
 	cub->img.data = NULL;
 	cub->mini_map.data = NULL;
 	cub->i = 0;
-	cub->floor->r = -1;
-	cub->floor->g = -1;
-	cub->floor->b = -1;
-	cub->ceiling->r = -1;
-	cub->ceiling->g = -1;
-	cub->ceiling->b = -1;
+	cub->floor.r = -1;
+	cub->floor.g = -1;
+	cub->floor.b = -1;
+	cub->ceiling.r = -1;
+	cub->ceiling.g = -1;
+	cub->ceiling.b = -1;
 	cub->map = NULL;
 	cub->map_height = 0;
 	cub->map_width = 0;

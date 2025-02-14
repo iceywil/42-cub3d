@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:25:32 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/13 20:30:04 by a                ###   ########.fr       */
+/*   Updated: 2025/02/14 16:52:07 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	player_pixel(t_cub *cub, int i, int j, int color)
 		while (++y < i + PLAYER_SIZ)
 		{
 			if (is_in_img(x, y, MAP_WIDTH, MAP_HEIGHT))
-				pixel_to_img(cub->mini_map, x, y, color);
+				pixel_to_img(&cub->mini_map, x, y, color);
 			else
 				return (0);
 		}

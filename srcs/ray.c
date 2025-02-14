@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/11 19:26:30 by a                ###   ########.fr       */
+/*   Updated: 2025/02/14 16:52:14 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	test_ray(t_cub *cub)
 	cub->ray_y_start = 0;
 	cub->ray_y_end = 100;
 	paint_line(cub, 0xFF0000);
-	//mlx_put_image_to_window(cub->mlx, cub->win, cub->img->data, 0, 0);
+	//mlx_put_image_to_window(cub->mlx, cub->win, cub->img.data, 0, 0);
 }
 
 void	paint_line(t_cub *cub, int rgb)
@@ -39,7 +39,7 @@ void	paint_line(t_cub *cub, int rgb)
 	{
 		while (y < y_max)
 		{
-			pixel_on_img(cub->img, rgb, cub->ray_x, y);
+			pixel_on_img(&cub->img, rgb, cub->ray_x, y);
 			y++;
 		}
 	}
@@ -65,15 +65,15 @@ void	pixel_on_img(t_img *img, int rgb, int x, int y)
 		+ ray->line_height * texture->line_length / 2;
 	line->tex_y = ((scale * texture->height) / ray->line_height)
 		/ texture->line_length;
-	cub->img->data[line->y * root->mlx_img->line_length + line->x
-		* root->mlx_img->bits_per_pixel / 8] = texture->data[line->tex_y
+	cub->img.data[line->y * root->mlx_img->line_length + line->x
+		* root->mlx_img->bits_per_pixel / 8] = texture.data[line->tex_y
 		* texture->line_length + line->tex_x * (texture->bits_per_pixel / 8)];
-	cub->img->data[line->y * root->mlx_img->line_length + line->x
-		* (root->mlx_img->bits_per_pixel / 8) + 1] = texture->data[line->tex_y
+	cub->img.data[line->y * root->mlx_img->line_length + line->x
+		* (root->mlx_img->bits_per_pixel / 8) + 1] = texture.data[line->tex_y
 		* texture->line_length + line->tex_x * (texture->bits_per_pixel / 8)
 		+ 1];
-	root->img->data[line->y * root->mlx_img->line_length + line->x
-		* (root->mlx_img->bits_per_pixel / 8) + 2] = texture->data[line->tex_y
+	root->img.data[line->y * root->mlx_img->line_length + line->x
+		* (root->mlx_img->bits_per_pixel / 8) + 2] = texture.data[line->tex_y
 		* texture->line_length + line->tex_x * (texture->bits_per_pixel / 8)
 		+ 2];
 } */

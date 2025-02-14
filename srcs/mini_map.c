@@ -26,11 +26,11 @@ void	erase_map(t_cub *cub)
 	{
 		j = 0;
 		while (j < MAP_WIDTH)
-			pixel_to_img(cub->mini_map, j++, i, BLACK);
+			pixel_to_img(&cub->mini_map, j++, i, BLACK);
 		i++;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->win,
-		cub->mini_map->data, 0, HEIGHT / 5 * 4);
+		cub->mini_map.data, 0, HEIGHT / 5 * 4);
 }
 
 /*dessiner la mini-carte:
@@ -42,7 +42,7 @@ void	mini_map(t_cub *cub)
 	erase_map(cub);
 	center_map(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win,
-		cub->mini_map->data, 0, HEIGHT / 5 * 4);
+		cub->mini_map.data, 0, HEIGHT / 5 * 4);
 }
 
 /*first row: determine the first row of the map to display

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/14 16:21:10 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:49:37 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	parsing(t_cub *cub, char *file)
 	int		n;
 
 	// ft_printf("parsing texture_n %p\n", cub->texture_n);
-	// ft_printf("parsing texture_n->data %p\n", cub->texture_n->data);
+	// ft_printf("parsing texture_n.data %p\n", cub->texture_n.data);
 	// ft_printf("parsing texture_n %p\n", cub->texture_n);
 	n = 0;
 	fd = open(file, O_RDONLY);
@@ -49,9 +49,9 @@ void	parsing(t_cub *cub, char *file)
 	while (line)
 	{
 		n++;
-		if (!cub->texture_n->data || !cub->texture_s->data
-			|| !cub->texture_w->data || !cub->texture_e->data
-			|| cub->floor->r == -1 || cub->ceiling->r == -1)
+		if (!cub->texture_n.data || !cub->texture_s.data || !cub->texture_w.data
+			|| !cub->texture_e.data || cub->floor.r == -1 || cub->ceiling.r ==
+			-1)
 			handle_element(cub, line);
 		else
 			save_map(cub, file, line, n);
@@ -73,20 +73,20 @@ void	handle_element(t_cub *cub, char *line)
 		&& ft_strncmp(line, "WE ", 3) && ft_strncmp(line, "EA ", 3)
 		&& ft_strncmp(line, "F ", 2) && ft_strncmp(line, "C ", 2))
 		exit_error(cub, "Invalid element");
-	if (!ft_strncmp(line, "NO ", 3) && !cub->texture_n)
-		handle_texture(cub, cub->texture_n, line);
-	else if (!ft_strncmp(line, "SO ", 3) && !cub->texture_s)
-		handle_texture(cub, cub->texture_s, line);
-	else if (!ft_strncmp(line, "WE ", 3) && !cub->texture_w)
-		handle_texture(cub, cub->texture_w, line);
-	else if (!ft_strncmp(line, "EA ", 3) && !cub->texture_e)
-		handle_texture(cub, cub->texture_e, line);
+	if (!ft_strncmp(line, "NO ", 3) && !cub->texture_n.data)
+		handle_texture(cub, &cub->texture_n, line);
+	else if (!ft_strncmp(line, "SO ", 3) && !cub->texture_s.data)
+		handle_texture(cub, &cub->texture_s, line);
+	else if (!ft_strncmp(line, "WE ", 3) && !cub->texture_w.data)
+		handle_texture(cub, &cub->texture_w, line);
+	else if (!ft_strncmp(line, "EA ", 3) && !cub->texture_e.data)
+		handle_texture(cub, &cub->texture_e, line);
 	else
 		exit_error(cub, "Duplicate texture");
-	if (!ft_strncmp(line, "F ", 2) && !cub->floor)
-		handle_colors(cub, cub->floor, line);
-	else if (!ft_strncmp(line, "C ", 2) && cub.ceiling)
-		handle_colors(cub, cub.ceiling, line);
+	if (!ft_strncmp(line, "F ", 2) && cub->floor.r == -1)
+		handle_colors(cub, &cub->floor, line);
+	else if (!ft_strncmp(line, "C ", 2) && cub->ceiling.r == -1)
+		handle_colors(cub, &cub->ceiling, line);
 	else
 		exit_error(cub, "Duplicate color");
 }
@@ -120,9 +120,9 @@ void	check_elements(t_cub *cub)
 	ft_printf("check elements: SUCCESS\n");
 }
 
-void	handle_colors(t_cub *cub, t_color rgb, char *line)
+void	handle_colors(t_cub *cub, t_color *rgb, char *line)
 {
-	char **tmp;
+	char	**tmp;
 
 	tmp = ft_split(line + 2, ',');
 	if (!tmp)

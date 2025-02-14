@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:28:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/13 19:54:42 by a                ###   ########.fr       */
+/*   Updated: 2025/02/14 16:52:01 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	big_pixel(t_cub *cub, int i, int j, int color)
 		while (++y < i + PIXEL)
 		{
 			if (is_in_img(x, y, MAP_WIDTH, MAP_HEIGHT))
-				pixel_to_img(cub->mini_map, x, y, color);
+				pixel_to_img(&cub->mini_map, x, y, color);
 			else
 				return (0);
 		}

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:01:19 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/13 15:28:43 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/14 12:55:34 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_mini_map(t_cub *cub)
 {
 	ft_erase_map(cub);
 	ft_center_map(cub);
+	ft_draw_ray(cub, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win,
 		cub->mini_carte.mlx, 0, HEIGHT / 5 * 4);
 }
@@ -71,11 +72,9 @@ void	ft_map_grid(t_cub *cub, int i0, int j0)
 	y = cub->i - i0;
 	if (cub->map[cub->i][cub->x] == '1')
 		big_pixel(cub, y * PIXEL, x * PIXEL, RED);
-	else if (cub->map[cub->i][cub->x] == '0')
-		big_pixel(cub, y * PIXEL, x * PIXEL, WHITE);
-	else if (cub->map[cub->i][cub->x] == ' ')
+	else
 		big_pixel(cub, y * PIXEL, x * PIXEL, BLACK);
-	if (cub->pos_x == cub->x && cub->pos_y == cub->i)
+	if ((int) cub->pos_x == cub->x && (int) cub->pos_y == cub->i)
 		if (!player_pixel(cub, y * PIXEL, x * PIXEL, BLUE))
 			ft_printf("le player nest pas visible sur la map\n");
 }
@@ -99,5 +98,5 @@ void	ft_center_map(t_cub *cub)
 		}
 		cub->i++;
 	}
-	ft_miniray(cub, i0, j0);
+	//ft_miniray(cub, i0, j0);
 }

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/13 14:49:24 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/14 12:42:37 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@
 # define UNSET_DOUBLE 9999
 
 //WINDOW
-# define WIDTH 800 //1920  
+# define WIDTH 800 //1920
 # define HEIGHT 600 //1080
 # define MARGIN 5
 
 //MINI MAP
 # define MAP_WIDTH WIDTH / 5
-# define MAP_HEIGHT HEIGHT / 5 
+# define MAP_HEIGHT HEIGHT / 5
 # define MAP_M 1 //margin
 # define MAX_PIXEL 14 //number of PIXEL to fill one line of minimap
+# define SPEED 1.02
 
 //PIXEL
 # define PIXEL (20 * WIDTH / 1920)
@@ -63,7 +64,7 @@
 # define LIGHT_KAKI 0xA9C994
 
 //keyboard
-# define KEY_W 119
+# define KEY_UP 119
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100

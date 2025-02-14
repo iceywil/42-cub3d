@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:25:32 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/13 17:01:48 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/14 12:35:48 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_col(t_cub *cub)
 			i++;
 		}
 		j++;
-	}	
+	}
 	return (j);
 }
 
@@ -88,7 +88,7 @@ int	player_pixel(t_cub *cub, int i, int j, int color)
 	int	y;
 	int	trans;
 
-	big_pixel(cub, i, j, WHITE);
+	big_pixel(cub, i, j, BLACK);
 	trans = (PIXEL / 2) - (PLAYER_SIZ / 2);
 	j += trans;
 	i += trans;

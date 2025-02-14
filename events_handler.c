@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:56:55 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/12 13:28:48 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/14 12:54:22 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,40 +50,50 @@ void	ft_update_dir(int key, t_cub *cub)
 	ft_mini_map(cub);
 }
 
+double	new_y(int key, t_cub *cub)
+{
+	double y;
+
+	y = cub->pos_y;
+	if (key == KEY_UP)
+		return (y + sin(cub->dir_angle) * SPEED);
+	if (key == KEY_A)
+		return (y - cos(cub->dir_angle) * SPEED);
+	if (key == KEY_S)
+		return (y - sin(cub->dir_angle) * SPEED);
+	if (key == KEY_D)
+		return (y + cos(cub->dir_angle) * SPEED);
+}
+
+double	new_x(int key, t_cub *cub)
+{
+	double x;
+
+	x = cub->pos_x;
+	if (key == KEY_UP)
+		return (x + cos(cub->dir_angle) * SPEED);
+	if (key == KEY_A)
+		return (x + sin(cub->dir_angle) * SPEED);
+	if (key == KEY_S)
+		return (x - cos(cub->dir_angle) * SPEED);
+	if (key == KEY_D)
+		return (x - sin(cub->dir_angle) * SPEED);
+}
+
 /*ne pas sortir de lecran et ne pas cogner un mur*/
 void	ft_deplacement(int key, t_cub *cub)
 {
-	if (key == KEY_W)
+	double	x;
+	double	y;
+
+	x = new_x(key, cub);
+	y = new_y(key, cub);
+
+	if ((y >= 0 && x >= 0 && cub->map[(int)y][(int)x] != '1'))
 	{
-		if (cub->pos_y > 0 && cub->map[(int)cub->pos_y - 1][(int)cub->pos_x] == '0')
-		{
-			cub->map[(int)cub->pos_y--][(int)cub->pos_x] = '0';
-			ft_printf("player is moving forward\n");
-		}
-	}
-	else if (key == KEY_A)
-	{
-		if (cub->pos_x > 0 && cub->map[(int)cub->pos_y][(int)cub->pos_x - 1] == '0')
-		{
-			cub->map[(int)cub->pos_y][(int)cub->pos_x--] = '0';
-			ft_printf("player is moving on the left\n");
-		}
-	}
-	else if (key == KEY_S)
-	{
-		if (cub->map[(int)cub->pos_y + 1][(int)cub->pos_x] == '0')
-		{
-			cub->map[(int)cub->pos_y++][(int)cub->pos_x] = '0';
-			ft_printf("player is moving backward\n");
-		}
-	}
-	else if (key == KEY_D)
-	{
-		if (cub->map[(int)cub->pos_y][(int)cub->pos_x + 1] == '0')
-		{
-			cub->map[(int)cub->pos_y][(int)cub->pos_x++] = '0';
-			ft_printf("player is moving on the right\n");
-		}
+		cub->map[(int)cub->pos_y][(int)cub->pos_x] = '0';
+		cub->pos_x = x;
+		cub->pos_y = y;
 	}
 	ft_mini_map(cub);
 }
@@ -97,7 +107,7 @@ int	key_hook(int key, t_cub *cub)
 {
 	if (key == ESC || key == KEY_Q || key == KEY_Q_MAC)
 		ft_close_all(cub);
-	else if (key == KEY_W || key == KEY_A || key == KEY_S || key == KEY_D)
+	else if (key == KEY_UP || key == KEY_A || key == KEY_S || key == KEY_D)
 		ft_deplacement(key, cub);
 	else if (key == RIGHT || key == LEFT)
 		ft_update_dir(key, cub);

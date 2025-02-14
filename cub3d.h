@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/13 16:53:40 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/14 12:29:33 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_rgb
 	int	g;
 	int	b;
 }	t_rgb;
-	
+
 typedef struct s_cub
 {
 	int		i;
@@ -127,6 +127,7 @@ void		ft_mini_map(t_cub *cub);
 int			isin_img(int x, int y, int width, int height);
 int			big_pixel(t_cub *cub, int i, int j, int color);
 void		ft_center_map(t_cub *cub);
+void		ft_draw_ray(t_cub *cub, float start_x);
 
 //bresenham
 void	ft_segment(t_cub *cub, int x_a, int y_a, int x_b, int y_b);

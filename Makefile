@@ -6,7 +6,7 @@
 #    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/13 17:09:44 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/14 12:16:19 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME        =   cub3d
 CC          =   cc
 
 FLAG        =   -g3 -Wall -Wextra -Werror -lm
- 
+
 MLX_PATH	=	minilibx-linux
 
 MLX_MAKE	=	make -C $(MLX_PATH)
@@ -33,7 +33,7 @@ H_FILES		=	cub3d.h cub3d_def.h
 C_FILES     =   main.c \
 				00_check_arg.c 00_parsing.c 00_save_map.c 00_check_map.c \
 				01_player.c 01_pixel_utils.c 01_mini_map.c 01_display.c 01_background.c \
-				02_raycasting.c\
+				02_raycasting.c 02_raycast.c\
 				fdf_segment.c fdf_bresenham.c\
 				free.c \
 				utils.c init.c\

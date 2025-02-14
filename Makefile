@@ -6,7 +6,7 @@
 #    By: a <a@student.42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/14 18:43:01 by a                ###   ########.fr        #
+#    Updated: 2025/02/14 23:57:31 by a                ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME        =   cub3d
 
 CC          =   cc
 
-FLAG        =   -fsanitize=address -g -g3 -Wall -Wextra -Werror -lm
+FLAG        =   -g3 -Wall -Wextra -Werror -lm
 
 MLX_PATH	=	minilibx-linux
 
@@ -73,6 +73,3 @@ obj:
 re:         fclean all
 
 .PHONY:     all clean fclean re
-
-
-

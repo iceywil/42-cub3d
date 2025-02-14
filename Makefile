@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
+#    By: a <a@student.42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/14 17:09:27 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/14 18:43:01 by a                ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,13 @@ NAME        =   cub3d
 
 CC          =   cc
 
-FLAG        =   -g3 -Wall -Wextra -Werror -lm
+FLAG        =   -fsanitize=address -g -g3 -Wall -Wextra -Werror -lm
 
 MLX_PATH	=	minilibx-linux
 
 MLX_MAKE	=	make -C $(MLX_PATH)
 
-FLAG_MLX	=   -L$(MLX_PATH) -lmlx -lX11 -lXext -O3
+FLAG_MLX	=   -L$(MLX_PATH) -I/opt/X11/include -Lminilibx-linux -lmlx -L/opt/X11/lib -lX11 -lXext -O3
 
 LIBFT_PATH  =   libft
 
@@ -30,29 +30,22 @@ LIBFT_LIB   =   $(LIBFT_PATH)/$(LIBFT_FILE)
 
 H_FILES		=	cub3d.h cub3d_def.h
 
-C_FILES     =   srcs/main.c \
-				srcs/parsing.c \
-				srcs/save_map.c \
-				srcs/check_map.c \
-				srcs/free.c \
-				srcs/utils.c \
-				srcs/init.c \
-				srcs/mini_map.c \
-				srcs/background.c \
-				srcs/events_handler.c \
-				srcs/pixel_utils.c \
-				srcs/player.c \
-				srcs/ray.c \
-				srcs/raycasting.c \
-				srcs/fdf_segment.c \
-				srcs/fdf_bresenham.c \
-
-OBJS    =   $(C_FILES:srcs/%.c=obj/%.o)				
+C_FILES     =   main.c \
+				00_check_arg.c 00_parsing.c 00_save_map.c 00_check_map.c \
+				01_player.c 01_pixel_utils.c 01_mini_map.c 01_display.c 01_background.c \
+				02_raycasting.c 02_raycast.c\
+				03_game.c \
+				fdf_segment.c fdf_bresenham.c\
+				free.c \
+				utils.c init.c\
+				events_handler.c \
 
 all:        $(NAME)
 
 update:
 	@git submodule update --init --recursive
+
+OBJS    =   $(C_FILES:%.c=obj/%.o) $(PARSING:%.c=obj/%.o)
 
 $(LIBFT_LIB):
 	make -C $(LIBFT_PATH)
@@ -71,8 +64,7 @@ fclean:     clean
 	rm -rf $(NAME)
 	make fclean -C $(LIBFT_PATH)
 
-obj/%.o : srcs/%.c | obj
-	@mkdir -p $(dir $@)
+obj/%.o : %.c | obj
 	@$(CC) -c $< -o $@
 
 obj:
@@ -81,3 +73,6 @@ obj:
 re:         fclean all
 
 .PHONY:     all clean fclean re
+
+
+

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/14 13:31:11 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:25:50 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void		ft_center_map(t_cub *cub);
 //FOV
 void		ft_clear(t_cub *cub);
 int			ft_game_loop(t_cub *cub);
-void		ft_draw_ray(t_cub *cub, float start_x, int i);
+void		ft_draw_ray(t_cub *cub, int start_x, int i);
 int			ft_touch(double px, double py, t_cub *cub);
 
 //bresenham

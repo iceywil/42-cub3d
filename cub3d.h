@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/13 20:30:34 by a                ###   ########.fr       */
+/*   Updated: 2025/02/14 16:19:19 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ typedef struct s_cub
 	int		map_width;
 	void	*mlx;
 	void	*win;
-	t_img	*img;
-	t_img	*mini_map;
-	t_color	*floor;
-	t_color	*ceiling;
-	t_img	*texture_n;
-	t_img	*texture_s;
-	t_img	*texture_w;
-	t_img	*texture_e;
+	t_img	img;
+	t_img	mini_map;
+	t_color	floor;
+	t_color	ceiling;
+	t_img	texture_n;
+	t_img	texture_s;
+	t_img	texture_w;
+	t_img	texture_e;
 	double dir_x;     // player direction
 	double dir_y;     // player direction
 	double dir_angle; // direction angle

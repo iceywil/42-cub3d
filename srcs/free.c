@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 01:33:34 by a                 #+#    #+#             */
-/*   Updated: 2025/02/13 20:28:32 by a                ###   ########.fr       */
+/*   Updated: 2025/02/14 16:05:11 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	exit_error(t_cub *cub, char *str)
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(str, 2);
 	free_cub(cub);
-	free_mlx(cub);
+	if (cub->mlx)
+		free_mlx(cub);
 	exit(1);
 }

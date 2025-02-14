@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:52 by a                 #+#    #+#             */
-/*   Updated: 2025/02/13 23:15:04 by a                ###   ########.fr       */
+/*   Updated: 2025/02/14 16:08:33 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	main(int argc, char **argv)
 
 	check_arg(argc, argv);
 	init_all(&cub);
-	init_mlx(&cub);
-	ft_printf("main texture_n %p\n", cub.texture_n);
-	ft_printf("main texture_n->data %p\n", cub.texture_n->data);
-	ft_printf("main texture_n %p\n", cub.texture_n);
+	// ft_printf("main texture_n %p\n", cub.texture_n);
+	// ft_printf("main texture_n->data %p\n", cub.texture_n->data);
+	// ft_printf("main texture_n %p\n", cub.texture_n);
 	parsing(&cub, argv[1]);
+	init_mlx(&cub);
 	//test_ray(&cub);
 	background(&cub);
 	mini_map(&cub);

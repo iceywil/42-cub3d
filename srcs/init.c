@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/13 22:28:02 by a                ###   ########.fr       */
+/*   Updated: 2025/02/14 16:19:02 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,10 @@ void	init_mlx(t_cub *cub)
 
 void	init_all(t_cub *cub)
 {
-	t_img	img;
-	t_img	mini_map;
-	t_color	floor;
-	t_color	ceiling;
-
 	cub->win = NULL;
 	cub->mlx = NULL;
-	cub->img = &img;
-	cub->img->data = NULL;
-	cub->mini_map = &mini_map;
-	cub->mini_map->data = NULL;
-	cub->floor = &floor;
-	cub->ceiling = &ceiling;
+	cub->img.data = NULL;
+	cub->mini_map.data = NULL;
 	cub->i = 0;
 	cub->floor->r = -1;
 	cub->floor->g = -1;
@@ -63,19 +54,10 @@ void	init_all(t_cub *cub)
 
 void	init_two(t_cub *cub)
 {
-	t_img	texture_n;
-	t_img	texture_s;
-	t_img	texture_w;
-	t_img	texture_e;
-
-	cub->texture_n = &texture_n;
-	cub->texture_s = &texture_s;
-	cub->texture_w = &texture_w;
-	cub->texture_e = &texture_e;
-	cub->texture_n->data = NULL;
-	cub->texture_s->data = NULL;
-	cub->texture_w->data = NULL;
-	cub->texture_e->data = NULL;
+	cub->texture_n.data = NULL;
+	cub->texture_s.data = NULL;
+	cub->texture_w.data = NULL;
+	cub->texture_e.data = NULL;
 	cub->dir_x = UNSET_DOUBLE;
 	cub->dir_y = UNSET_DOUBLE;
 	cub->dir_angle = UNSET_DOUBLE;

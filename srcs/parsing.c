@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/13 23:15:13 by a                ###   ########.fr       */
+/*   Updated: 2025/02/14 16:21:10 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	parsing(t_cub *cub, char *file)
 	char	*line;
 	int		n;
 
-	ft_printf("parsing texture_n %p\n", cub->texture_n);
-	ft_printf("parsing texture_n->data %p\n", cub->texture_n->data);
-	ft_printf("parsing texture_n %p\n", cub->texture_n);
+	// ft_printf("parsing texture_n %p\n", cub->texture_n);
+	// ft_printf("parsing texture_n->data %p\n", cub->texture_n->data);
+	// ft_printf("parsing texture_n %p\n", cub->texture_n);
 	n = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -51,7 +51,7 @@ void	parsing(t_cub *cub, char *file)
 		n++;
 		if (!cub->texture_n->data || !cub->texture_s->data
 			|| !cub->texture_w->data || !cub->texture_e->data
-			|| cub->floor->r == -1 || !cub->ceiling->r == -1)
+			|| cub->floor->r == -1 || cub->ceiling->r == -1)
 			handle_element(cub, line);
 		else
 			save_map(cub, file, line, n);
@@ -85,8 +85,8 @@ void	handle_element(t_cub *cub, char *line)
 		exit_error(cub, "Duplicate texture");
 	if (!ft_strncmp(line, "F ", 2) && !cub->floor)
 		handle_colors(cub, cub->floor, line);
-	else if (!ft_strncmp(line, "C ", 2) && !cub->ceiling)
-		handle_colors(cub, cub->ceiling, line);
+	else if (!ft_strncmp(line, "C ", 2) && cub.ceiling)
+		handle_colors(cub, cub.ceiling, line);
 	else
 		exit_error(cub, "Duplicate color");
 }
@@ -108,10 +108,10 @@ void	handle_texture(t_cub *cub, t_img *img, char *line)
 
 void	check_elements(t_cub *cub)
 {
-	if (!cub->texture_w || !cub->texture_s || !cub->texture_w
-		|| !cub->texture_e)
+	if (!cub->texture_w.data || !cub->texture_s.data || !cub->texture_w.data
+		|| !cub->texture_e.data)
 		exit_error(cub, "Missing texture");
-	if (!cub->floor || !cub->ceiling)
+	if (cub->floor.b == -1 || cub->ceiling.b == -1)
 		exit_error(cub, "Missing color");
 	if (!cub->map)
 		exit_error(cub, "No map in the file");
@@ -120,7 +120,7 @@ void	check_elements(t_cub *cub)
 	ft_printf("check elements: SUCCESS\n");
 }
 
-void	handle_colors(t_cub *cub, t_color *rgb, char *line)
+void	handle_colors(t_cub *cub, t_color rgb, char *line)
 {
 	char **tmp;
 

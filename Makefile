@@ -3,24 +3,24 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: a <a@student.42.fr>                        +#+  +:+       +#+         #
+#    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/02/13 19:55:54 by a                 #+#    #+#              #
-#    Updated: 2025/02/13 20:03:54 by a                ###   ########.fr        #
+#    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
+#    Updated: 2025/02/14 15:56:06 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        =   cub3d
 
-CC          =   gcc
+CC          =   cc
 
-FLAG        =   -fsanitize=address -g -g3 -Wall -Wextra -Werror -lm
+FLAG        =   -g3 -Wall -Wextra -Werror -lm
  
 MLX_PATH	=	minilibx-linux
 
 MLX_MAKE	=	make -C $(MLX_PATH)
 
-FLAG_MLX	=   -L$(MLX_PATH) -I/opt/X11/include -Lminilibx-linux -lmlx -L/opt/X11/lib -lX11 -lXext -O3
+FLAG_MLX	=   -L$(MLX_PATH) -lmlx -lX11 -lXext -O3
 
 LIBFT_PATH  =   libft
 

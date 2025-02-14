@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 09:13:04 by kduroux           #+#    #+#             */
-/*   Updated: 2025/02/14 13:53:06 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:56:32 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_game_loop(t_cub *cub)
 
 	i = 0;
 	ft_clear(cub);
+	ft_background(cub);
 	start_x = cub->dir_angle - M_PI / 6;
 	fraction = M_PI / 3 / WIDTH;
 	while(i < WIDTH)

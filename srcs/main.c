@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:52 by a                 #+#    #+#             */
-/*   Updated: 2025/02/14 16:48:01 by a                ###   ########.fr       */
+/*   Updated: 2025/02/14 17:10:32 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	main(int argc, char **argv)
 	mlx_hook((&cub)->win, BUTTONPRESS_EVENT, 1L << 2, mouse_hook, (&cub));
 	mlx_hook((&cub)->win, 17, 1L << 17, close_all, (&cub));
 	mlx_loop(cub.mlx);
-
 	return (0);
 }
 

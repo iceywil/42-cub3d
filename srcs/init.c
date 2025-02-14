@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/14 16:51:25 by a                ###   ########.fr       */
+/*   Updated: 2025/02/14 17:00:34 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	init_mlx(t_cub *cub)
 {
-	cub->mlx = mlx_init();
-	if (!cub->mlx)
-		exit_error(cub, "Initialisation of mlx failed\n");
 	cub->win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "42 - CUB3D");
 	if (!cub->win)
 		exit_error(cub, "Initialisation of window failed\n");
@@ -36,7 +33,6 @@ void	init_mlx(t_cub *cub)
 void	init_all(t_cub *cub)
 {
 	cub->win = NULL;
-	cub->mlx = NULL;
 	cub->img.data = NULL;
 	cub->mini_map.data = NULL;
 	cub->i = 0;
@@ -49,6 +45,9 @@ void	init_all(t_cub *cub)
 	cub->map = NULL;
 	cub->map_height = 0;
 	cub->map_width = 0;
+	cub->mlx = mlx_init();
+	if (!cub->mlx)
+		exit_error(cub, "Initialisation of mlx failed\n");
 	init_two(cub);
 }
 

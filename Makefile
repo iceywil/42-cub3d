@@ -6,7 +6,7 @@
 #    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/14 15:56:06 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/14 17:09:27 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME        =   cub3d
 CC          =   cc
 
 FLAG        =   -g3 -Wall -Wextra -Werror -lm
- 
+
 MLX_PATH	=	minilibx-linux
 
 MLX_MAKE	=	make -C $(MLX_PATH)

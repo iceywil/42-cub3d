@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:56:55 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/13 19:30:14 by a                ###   ########.fr       */
+/*   Updated: 2025/02/14 17:11:19 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	shoot(t_cub *cub)
 
 int	key_hook(t_cub *cub, int key)
 {
+	ft_printf("la touche %i a été utilisée\n", key);
 	if (key == ESC || key == KEY_Q || key == KEY_Q_MAC)
 		close_all(cub);
 	else if (key == KEY_W || key == KEY_A || key == KEY_S || key == KEY_D)

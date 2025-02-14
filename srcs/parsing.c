@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/14 16:49:37 by a                ###   ########.fr       */
+/*   Updated: 2025/02/14 17:05:54 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ map and are up to you to handle. You must be able to parse any kind of map,
 as long as it respects the rules of the map.
  */
 
-void	parsing(t_cub *cub, char *file)
+void parsing(t_cub *cub, char *file)
 {
-	int		fd;
-	char	*line;
-	int		n;
+	int fd;
+	char *line;
+	int n;
 
 	// ft_printf("parsing texture_n %p\n", cub->texture_n);
 	// ft_printf("parsing texture_n.data %p\n", cub->texture_n.data);
@@ -49,9 +49,7 @@ void	parsing(t_cub *cub, char *file)
 	while (line)
 	{
 		n++;
-		if (!cub->texture_n.data || !cub->texture_s.data || !cub->texture_w.data
-			|| !cub->texture_e.data || cub->floor.r == -1 || cub->ceiling.r ==
-			-1)
+		if (!cub->texture_n.data || !cub->texture_s.data || !cub->texture_w.data || !cub->texture_e.data || cub->floor.r == -1 || cub->ceiling.r == -1)
 			handle_element(cub, line);
 		else
 			save_map(cub, file, line, n);
@@ -63,53 +61,57 @@ void	parsing(t_cub *cub, char *file)
 	check_elements(cub);
 }
 
-void	handle_element(t_cub *cub, char *line)
+void handle_element(t_cub *cub, char *line)
 {
-	char	*tmp;
+	char *tmp;
 
 	if (line_is_empty(cub, line))
-		return ;
-	if (ft_strncmp(line, "NO ", 3) && ft_strncmp(line, "SO ", 3)
-		&& ft_strncmp(line, "WE ", 3) && ft_strncmp(line, "EA ", 3)
-		&& ft_strncmp(line, "F ", 2) && ft_strncmp(line, "C ", 2))
+		return;
+	if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3) || !ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "EA ", 3))
+	{
+		if (!ft_strncmp(line, "NO ", 3) && !cub->texture_n.data)
+			handle_texture(cub, &cub->texture_n, line);
+		else if (!ft_strncmp(line, "SO ", 3) && !cub->texture_s.data)
+			handle_texture(cub, &cub->texture_s, line);
+		else if (!ft_strncmp(line, "WE ", 3) && !cub->texture_w.data)
+			handle_texture(cub, &cub->texture_w, line);
+		else if (!ft_strncmp(line, "EA ", 3) && !cub->texture_e.data)
+			handle_texture(cub, &cub->texture_e, line);
+		else
+			exit_error(cub, "Duplicate texture");
+	}
+	else if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
+	{
+		if (!ft_strncmp(line, "F ", 2) && cub->floor.r == -1)
+			handle_colors(cub, &cub->floor, line);
+		else if (!ft_strncmp(line, "C ", 2) && cub->ceiling.r == -1)
+			handle_colors(cub, &cub->ceiling, line);
+		else
+			exit_error(cub, "Duplicate color");
+	}
+	else
 		exit_error(cub, "Invalid element");
-	if (!ft_strncmp(line, "NO ", 3) && !cub->texture_n.data)
-		handle_texture(cub, &cub->texture_n, line);
-	else if (!ft_strncmp(line, "SO ", 3) && !cub->texture_s.data)
-		handle_texture(cub, &cub->texture_s, line);
-	else if (!ft_strncmp(line, "WE ", 3) && !cub->texture_w.data)
-		handle_texture(cub, &cub->texture_w, line);
-	else if (!ft_strncmp(line, "EA ", 3) && !cub->texture_e.data)
-		handle_texture(cub, &cub->texture_e, line);
-	else
-		exit_error(cub, "Duplicate texture");
-	if (!ft_strncmp(line, "F ", 2) && cub->floor.r == -1)
-		handle_colors(cub, &cub->floor, line);
-	else if (!ft_strncmp(line, "C ", 2) && cub->ceiling.r == -1)
-		handle_colors(cub, &cub->ceiling, line);
-	else
-		exit_error(cub, "Duplicate color");
 }
 
-void	handle_texture(t_cub *cub, t_img *img, char *line)
+void handle_texture(t_cub *cub, t_img *img, char *line)
 {
 	if (ft_strncmp(line + ft_strlen(line) - 5, ".xpm", 4))
 		exit_error(cub, "Not .xpm extension file");
 	line[ft_strlen(line) - 1] = '\0';
+	ft_printf("'%s'\n", line + 3);
 	img->data = mlx_xpm_file_to_image(cub->mlx, line + 3, &img->width,
-			&img->height);
+									  &img->height);
 	if (!img->data)
 		exit_error(cub, "Failed XPM to image");
 	img->addr = mlx_get_data_addr(img->data, &img->bpp, &img->size_line,
-			&img->endian);
+								  &img->endian);
 	if (!img->addr)
 		exit_error(cub, "Failed get address from texture img");
 }
 
-void	check_elements(t_cub *cub)
+void check_elements(t_cub *cub)
 {
-	if (!cub->texture_w.data || !cub->texture_s.data || !cub->texture_w.data
-		|| !cub->texture_e.data)
+	if (!cub->texture_w.data || !cub->texture_s.data || !cub->texture_w.data || !cub->texture_e.data)
 		exit_error(cub, "Missing texture");
 	if (cub->floor.b == -1 || cub->ceiling.b == -1)
 		exit_error(cub, "Missing color");
@@ -120,9 +122,9 @@ void	check_elements(t_cub *cub)
 	ft_printf("check elements: SUCCESS\n");
 }
 
-void	handle_colors(t_cub *cub, t_color *rgb, char *line)
+void handle_colors(t_cub *cub, t_color *rgb, char *line)
 {
-	char	**tmp;
+	char **tmp;
 
 	tmp = ft_split(line + 2, ',');
 	if (!tmp)
@@ -133,7 +135,6 @@ void	handle_colors(t_cub *cub, t_color *rgb, char *line)
 	rgb->g = ft_atoi(tmp[1]);
 	rgb->b = ft_atoi(tmp[2]);
 	ft_free_double_tab(&tmp);
-	if (rgb->r < 0 || rgb->r > 255 || rgb->g < 0 || rgb->g > 255 || rgb->b < 0
-		|| rgb->b > 255)
+	if (rgb->r < 0 || rgb->r > 255 || rgb->g < 0 || rgb->g > 255 || rgb->b < 0 || rgb->b > 255)
 		exit_error(cub, "Wrong color");
 }

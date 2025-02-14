@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 09:13:04 by kduroux           #+#    #+#             */
-/*   Updated: 2025/02/14 14:27:15 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/14 15:39:21 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ float fixed_dist(float x1, float y1, float x2, float y2, t_cub *cub)
 	return fix_dist;
 }
 
+
 /**/
 void	ft_draw_ray(t_cub *cub, int start_x, int i)
 {
@@ -82,8 +83,8 @@ void	ft_draw_ray(t_cub *cub, int start_x, int i)
 	printf("i=%i: ray_x=%f, ray_y=%f, cos=%f, sin=%f\n", i, ray_x, ray_y, cos(cub->dir_angle), sin(cub->dir_angle));
 	while(!ft_touch(ray_x, ray_y, cub))
 	{
-		ray_x += cos(cub->dir_angle); //ici
-		ray_y += sin(cub->dir_angle); //ici
+		ray_x += cos(start_x);
+		ray_y += sin(start_x);
 	}
 	printf("i=%i: ray_x=%f, ray_y=%f, cos=%f, sin=%f\n", i, ray_x, ray_y, cos(cub->dir_angle), sin(cub->dir_angle));
 	dist = fixed_dist(cub->pos_x, cub->pos_y, ray_x, ray_y, cub);

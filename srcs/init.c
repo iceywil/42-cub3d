@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 10:31:07 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:20:55 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	init_two(t_cub *cub)
 	cub->texture_s.data = NULL;
 	cub->texture_w.data = NULL;
 	cub->texture_e.data = NULL;
-	cub->pos_x = -1;
-	cub->pos_y = -1;
+	cub->pos_j = -1;
+	cub->pos_i = -1;
 }
 
 void	init_player(t_cub *cub)

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 12:34:18 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:35:52 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define MAX_PIXEL 14 //number of PIXEL to fill one line of minimap
 
 //PLAYER
-# define SPEED 1.02
+# define SPEED 1.01
 # define ROT_SPEED (PI / 32) 
 # define PLAYER_SIZ (BLOCK / 4)
 

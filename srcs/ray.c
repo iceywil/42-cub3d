@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 14:18:19 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:45:10 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ void	move_player(t_player *player, t_cub *cub)
 	y = new_y(player);
 	printf("player old pos: (%f,%f)\n", player->x, player->y);
 	//formule a changer
-	if ((y >= 0 && x >= 0 && cub->map[(int)(y + BLOCK * cub->pos_y) / BLOCK][(int)(x + BLOCK * cub->pos_x) / BLOCK] != '1'))
+	if ((y >= 0 && x >= 0 && cub->map[(int)y / BLOCK][(int)x / BLOCK] != '1'))
 	{
-		cub->map[(int)(player->y + BLOCK * cub->pos_y) / BLOCK][(int)(player->x + BLOCK * cub->pos_x) / BLOCK] = '0';
+		cub->map[(int)player->y / BLOCK][(int)player->x / BLOCK] = '0';
 		player->x = x;
 		player->y = y;
 	}
@@ -111,8 +111,8 @@ bool	touch(t_cub *cub, float px, float py)
 	int	x;
 	int	y;
 
-	x = px;// / BLOCK;
-	y = py;// / BLOCK;
+	x = px / BLOCK;
+	y = py / BLOCK;
 	if (cub->map[y] && cub->map[y][x] && cub->map[y][x] == '1')
 		return (true);
 	return (false);
@@ -150,12 +150,13 @@ void	draw_line(t_cub *cub, float start_x, int i)
 	side = 0;
 	ray_x = cub->player.x;
 	ray_y = cub->player.y;
+	printf("player.x=%f;player.y=%f;\n", ray_x, ray_y);
 	while (1)
 	{
-		put_pixel(&cub->mini_map, ray_x + cub->pos_x * BLOCK, ray_y + cub->pos_y * BLOCK, RED);
+		put_pixel(&cub->mini_map, ray_x, ray_y, RED);
+		//printf("ray_x = %f, ray_y = %f;\n", ray_x, ray_y);
 		ray_x += cos(start_x);
 		/*E ou W*/
-		printf("ray_x = %f, ray_y = %f;\n", ray_x, ray_y);
 		if (touch(cub, ray_x, ray_y))
 		{
 			// printf("YES %f\n", ray_x /*/ BLOCK*/);
@@ -175,7 +176,7 @@ void	draw_line(t_cub *cub, float start_x, int i)
 		}
 	}
 	dist = fixed_dist(cub, cub->player.x, cub->player.y, ray_x, ray_y);
-	height = (/*BLOCK*/1 / dist) * (WIDTH / 2);
+	height = (BLOCK / dist) * (WIDTH / 2);
 	start_y = (HEIGHT - height) / 2;
 	end = start_y + height;
 	while (start_y < end)
@@ -252,8 +253,8 @@ int	draw_loop(t_cub *cub)
 	/*map*/
 	float	new_x;
 	float	new_y;
-	new_x = cub->pos_x * BLOCK + cub->player.x;
-	new_y = cub->pos_y * BLOCK + cub->player.y;
+	new_x = cub->pos_j * BLOCK + cub->player.x;
+	new_y = cub->pos_i * BLOCK + cub->player.y;
 	draw_square(cub, new_x, new_y, PLAYER_SIZ, GREEN);
 	draw_map(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.data, 0, 0);

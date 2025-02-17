@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 10:46:53 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 10:50:33 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,6 +235,12 @@ void	draw_line(t_cub *cub, float start_x, int i)
 		* texture->line_length + line->tex_x * (texture->bits_per_pixel / 8)
 		+ 2];
 } */
+
+/*on actualise la position et direction du player
+on clear les images
+on dessine le player
+on dessine la map
+*/
 int	draw_loop(t_cub *cub)
 {
 	float		fraction;
@@ -243,20 +249,21 @@ int	draw_loop(t_cub *cub)
 	move_player(&cub->player);
 	clear_image(&cub->mini_map, MAP_HEIGHT, MAP_WIDTH);
 	clear_image(&cub->img, HEIGHT, WIDTH);
-	draw_square(cub, cub->player.x, cub->player.y, 5, 0x00FF00);
-	draw_map(cub);
-	fraction = PI / 3 / WIDTH;
-	start_x = cub->player.angle - PI / 6;
-	i = 0;
-	while (i < WIDTH)
-	{
-		draw_line(cub, start_x, i);
-		exit(1);
-		start_x += fraction;
-		i++;
-	}
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.data, 0, 0);
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_map.data, 0, HEIGHT
-		- MAP_HEIGHT);
+	background(cub);
+	// draw_square(cub, cub->player.x, cub->player.y, 5, GREEN);
+	// draw_map(cub);
+	// fraction = PI / 3 / WIDTH;
+	// start_x = cub->player.angle - PI / 6;
+	// i = 0;
+	// while (i < WIDTH)
+	// {
+	// 	draw_line(cub, start_x, i);
+	// 	exit(1);
+	// 	start_x += fraction;
+	// 	i++;
+	// }
+	// mlx_put_image_to_window(cub->mlx, cub->win, cub->img.data, 0, 0);
+	// mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_map.data, 0, HEIGHT
+	// 	- MAP_HEIGHT);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 16:38:04 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:27:27 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,16 @@ float	distance(float x, float y)
 	return (sqrt(x * x + y * y));
 }
 
-float	fixed_dist(t_cub *cub, float x1, float y1, float x2, float y2)
+float	fixed_dist(t_player player, float x, float y)
 {
 	float	delta_x;
 	float	delta_y;
 	float	angle;
 	float	fix_dist;
 
-	delta_x = x2 - x1;
-	delta_y = y2 - y1;
-	angle = atan2(delta_y, delta_x) - cub->player.angle;
+	delta_x = x - player.x;
+	delta_y = y - player.y;
+	angle = atan2(delta_y, delta_x) - player.angle;
 	fix_dist = distance(delta_x, delta_y) * cos(angle);
 	return (fix_dist);
 }
@@ -111,7 +111,7 @@ void	draw_line(t_cub *cub, float start_x, int i)
 			break ;
 		}
 	}
-	dist = fixed_dist(cub, cub->player.x, cub->player.y, ray_x, ray_y);
+	dist = fixed_dist(cub->player, ray_x, ray_y);
 	height = (BLOCK / dist) * (WIDTH / 2);
 	start_y = (HEIGHT - height) / 2;
 	end = start_y + height;

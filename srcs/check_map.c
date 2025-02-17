@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 14:40:47 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:21:45 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	check_map_elem(t_cub *cub, char elem, int i, int j)
 		if (cub->player.x == -1 || cub->player.y == -1)
 		{
 			cub->player.x = j * BLOCK + BLOCK / 2 - PLAYER_SIZ / 2;
-			cub->player.y = i * BLOCK + BLOCK / 2- PLAYER_SIZ / 2;
+			cub->player.y = i * BLOCK + BLOCK / 2 - PLAYER_SIZ / 2;
 			cub->pos_j = j;
 			cub->pos_i = i;
 			set_direction(cub, elem);

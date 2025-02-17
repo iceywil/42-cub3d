@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 15:18:21 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:25:15 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	parsing(t_cub *cub, char *file)
 	{
 		n++;
 		if (!cub->texture_n.data || !cub->texture_s.data || !cub->texture_w.data
-			|| !cub->texture_e.data || cub->floor.r == -1 || cub->ceiling.r ==
-			-1)
+			|| !cub->texture_e.data || cub->floor.r == -1
+			|| cub->ceiling.r == -1)
 			handle_element(cub, line);
 		else
 			save_map(cub, file, line, n);

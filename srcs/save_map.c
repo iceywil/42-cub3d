@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:22:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/13 23:13:44 by a                ###   ########.fr       */
+/*   Updated: 2025/02/17 17:20:59 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	save_map(t_cub *cub, char *file, char *line, int n)
 {
 	int	i;
+
 	if (!cub->map)
 		init_map(cub, file, n);
 	i = 0;

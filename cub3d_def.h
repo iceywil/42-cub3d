@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_def.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/13 14:49:24 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 03:42:33 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 
 # define _USE_MATH_DEFINES
 
+// PI
+# define PI 3.14159265359
+
 //default values
 # define UNSET_DOUBLE 9999
 
 //WINDOW
-# define WIDTH 800 //1920  
-# define HEIGHT 600 //1080
+# define WIDTH 1920 //1920  
+# define HEIGHT 1080 //1080
+# define BLOCK 16
 # define MARGIN 5
 
 //MINI MAP
@@ -63,13 +67,13 @@
 # define LIGHT_KAKI 0xA9C994
 
 //keyboard
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
+# define W 119
+# define A 97
+# define S 115
+# define D 100
 # define ESC 65307
 # define SPACE 32
-# define KEY_Q 113
+# define Q 113
 # define KEY_Q_MAC 16781520
 # define ENTER 65293
 # define NUM_7 65429

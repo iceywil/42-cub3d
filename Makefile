@@ -6,7 +6,7 @@
 #    By: a <a@student.42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/14 23:57:31 by a                ###   ########.fr        #
+#    Updated: 2025/02/16 20:28:00 by a                ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME        =   cub3d
 
 CC          =   cc
 
-FLAG        =   -g3 -Wall -Wextra -Werror -lm
+FLAG        =   -fsanitize=address -g -g3 -Wall -Wextra -Werror -lm
 
 MLX_PATH	=	minilibx-linux
 
@@ -30,15 +30,17 @@ LIBFT_LIB   =   $(LIBFT_PATH)/$(LIBFT_FILE)
 
 H_FILES		=	cub3d.h cub3d_def.h
 
-C_FILES     =   main.c \
-				00_check_arg.c 00_parsing.c 00_save_map.c 00_check_map.c \
-				01_player.c 01_pixel_utils.c 01_mini_map.c 01_display.c 01_background.c \
-				02_raycasting.c 02_raycast.c\
-				03_game.c \
-				fdf_segment.c fdf_bresenham.c\
-				free.c \
-				utils.c init.c\
-				events_handler.c \
+C_FILES     =   srcs/main.c \
+				srcs/parsing.c \
+				srcs/save_map.c \
+				srcs/check_map.c \
+				srcs/free.c \
+				srcs/utils.c \
+				srcs/init.c \
+				srcs/background.c \
+				srcs/pixel_utils.c \
+				srcs/ray.c \
+				srcs/events.c \
 
 all:        $(NAME)
 
@@ -65,6 +67,7 @@ fclean:     clean
 	make fclean -C $(LIBFT_PATH)
 
 obj/%.o : %.c | obj
+	@mkdir -p $(dir $@)
 	@$(CC) -c $< -o $@
 
 obj:

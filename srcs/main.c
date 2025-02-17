@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:52 by a                 #+#    #+#             */
-/*   Updated: 2025/02/14 17:10:32 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 03:31:18 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,34 @@ int	main(int argc, char **argv)
 
 	check_arg(argc, argv);
 	init_all(&cub);
-	// ft_printf("main texture_n %p\n", cub.texture_n);
-	// ft_printf("main texture_n.data %p\n", cub.texture_n.data);
-	// ft_printf("main texture_n %p\n", cub.texture_n);
+	init_player(&cub);
 	parsing(&cub, argv[1]);
 	init_mlx(&cub);
-	//test_ray(&cub);
-	background(&cub);
-	mini_map(&cub);
-	mlx_hook((&cub)->win, KEYPRESS_EVENT, 1L << 0, key_hook, (&cub));
-	mlx_hook((&cub)->win, BUTTONPRESS_EVENT, 1L << 2, mouse_hook, (&cub));
-	mlx_hook((&cub)->win, 17, 1L << 17, close_all, (&cub));
+	// background(&cub);
+	mlx_hook(cub.win, 2, 1L << 0, key_press, &cub.player);
+	mlx_hook(cub.win, 3, 1L << 1, key_release, &cub.player);
+	mlx_hook(cub.win, 17, 1L << 17, close_all, &cub);
+	mlx_loop_hook(cub.mlx, draw_loop, &cub);
 	mlx_loop(cub.mlx);
 	return (0);
 }
 
 void	check_arg(int argc, char **argv)
 {
-	int		n;
+	int	n;
 
 	if (argc != 2)
 	{
 		ft_putstr_fd("Error: incorrect number of arguments\n", 2);
-		exit (1);
+		exit(1);
 	}
 	n = ft_strlen(argv[1]);
 	if (ft_strncmp(".cub", &argv[1][n - 4], 4))
 	{
 		ft_putstr_fd("Wrong file format: a .cub is expected!\n", 2);
-		exit (1);
+		exit(1);
 	}
 }
-
 
 /* void	test_ray(t_cub *cub)
 {

@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:44:35 by a                 #+#    #+#             */
-/*   Updated: 2025/02/14 16:50:00 by a                ###   ########.fr       */
+/*   Updated: 2025/02/17 03:30:12 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void	print_cub(t_cub *cub)
 		ft_printf("%s\n", cub->map[cub->i++]);
 	ft_printf("max_y=%i; max_x=%i;\n", cub->map_height, cub->map_width);
 	ft_printf("%i pixels = 1 big pixel\n", PIXEL);
-	printf("player_direction(%f, %f); player_position(%f, %f);\n", cub->dir_x,
-		cub->dir_y, cub->pos_x, cub->pos_y);
+	printf("player_position(%f, %f);\n", cub->player.x, cub->player.y);
 	ft_printf("map width = %i; map height = %i;\n", cub->map_width,
 		cub->map_height);
 }

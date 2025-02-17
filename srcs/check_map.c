@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/13 19:15:34 by a                ###   ########.fr       */
+/*   Updated: 2025/02/17 06:06:03 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ void	check_map_space(t_cub *cub, int i, int j)
 	{
 		if (i < cub->map_height - 1 && cub->map[i + 1][j] && cub->map[i
 			+ 1][j] != ' ' && cub->map[i + 1][j] != '1')
-			exit_error(cub, "Error: the map is not closed");
+			exit_error(cub, "The map is not closed");
 		if (i > 0 && cub->map[i - 1][j] && cub->map[i - 1][j] != ' '
 			&& cub->map[i - 1][j] != '1')
-			exit_error(cub, "Error: the map is not closed");
+			exit_error(cub, "The map is not closed");
 		if (j > 0 && cub->map[i][j - 1] && cub->map[i][j - 1] != ' '
 			&& cub->map[i][j - 1] != '1')
-			exit_error(cub, "Error: the map is not closed");
+			exit_error(cub, "The map is not closed");
 		if (cub->map[i][j + 1] && cub->map[i][j + 1] != ' ' && cub->map[i][j
 			+ 1] != '1')
-			exit_error(cub, "Error: the map is not closed");
+			exit_error(cub, "The map is not closed");
 	}
 }
 
@@ -38,18 +38,13 @@ void	set_direction(t_cub *cub, char elem)
 	double	plane_angle;
 
 	if (elem == 'N')
-		cub->dir_angle = -M_PI / 2;
+		cub->player.angle = -M_PI / 2;
 	else if (elem == 'S')
-		cub->dir_angle = M_PI / 2;
+		cub->player.angle = M_PI / 2;
 	else if (elem == 'E')
-		cub->dir_angle = 0;
+		cub->player.angle = 0;
 	else if (elem == 'W')
-		cub->dir_angle = M_PI;
-	cub->dir_x = cos(cub->dir_angle);
-	cub->dir_y = sin(cub->dir_angle);
-	plane_angle = cub->dir_angle + M_PI / 2;
-	cub->plane_x = cos(plane_angle);
-	cub->plane_y = sin(plane_angle);
+		cub->player.angle = M_PI;
 }
 
 /*the map should only contain one N, S, E or W
@@ -58,17 +53,17 @@ void	check_map_elem(t_cub *cub, char elem, int i, int j)
 {
 	if (is_in(elem, "NSEW"))
 	{
-		if (cub->dir_x == UNSET_DOUBLE || cub->dir_y == UNSET_DOUBLE)
+		if (cub->pos_x == -1 || cub->pos_y == -1)
 		{
 			cub->pos_x = j;
 			cub->pos_y = i;
 			set_direction(cub, elem);
 		}
 		else
-			exit_error(cub, "Error: there should be only one player\n");
+			exit_error(cub, "There should be only one player\n");
 	}
 	else if (elem != '0' && elem != '1' && !is_space(elem))
-		exit_error(cub, "Error: unknown element in map");
+		exit_error(cub, "Unknown element in map");
 }
 
 /*check if the first and last line only contains 1
@@ -87,17 +82,17 @@ void	handle_map(t_cub *cub)
 			if ((cub->i == 0 || cub->i == cub->map_height - 1)
 				&& cub->map[cub->i][cub->x] != '1'
 				&& cub->map[cub->i][cub->x] != ' ')
-				exit_error(cub, "Error: the map is not closed");
+				exit_error(cub, "The map is not closed");
 			if ((cub->x == 0 || !cub->map[cub->i][cub->x + 1])
 				&& cub->map[cub->i][cub->x] != '1'
 				&& cub->map[cub->i][cub->x] != ' ')
-				exit_error(cub, "Error: the map is not closed");
+				exit_error(cub, "The map is not closed");
 			if (cub->i > 0 && cub->i < cub->map_height - 1 && cub->x > 0)
 				check_map_elem(cub, cub->map[cub->i][cub->x], cub->i, cub->x);
 			cub->x++;
 		}
 		cub->i++;
 	}
-	if (cub->dir_x == UNSET_DOUBLE || cub->dir_x == UNSET_DOUBLE)
-		exit_error(cub, "Error: there is no player\n");
+	if (cub->pos_x == -1 || cub->pos_y == -1)
+		exit_error(cub, "There is no player\n");
 }

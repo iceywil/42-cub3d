@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 07:03:13 by a                ###   ########.fr       */
+/*   Updated: 2025/02/17 10:30:22 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	draw_map(t_cub *cub)
 		{
 			if (cub->map[y][x] == '1')
 			{
-				draw_square(cub, x * BLOCK, y * BLOCK, BLOCK, 0x0000FF);
+				draw_square(cub, x * BLOCK, y * BLOCK, BLOCK, BLUE);
 			}
 			x++;
 		}

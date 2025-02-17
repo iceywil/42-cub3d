@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:44:35 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 03:30:12 by a                ###   ########.fr       */
+/*   Updated: 2025/02/17 10:32:12 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,21 @@ int	is_space(char c)
 	return (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
 		|| c == '\r');
 }
+void	print_mlx(t_cub *cub)
+{
+	ft_printf("img.data = %p\n", cub->img.data);
+	ft_printf("mini_map.data = %p\n", cub->mini_map.data);
+	ft_printf("img.addr = %p\n", cub->img.addr);
+	ft_printf("mini_map.addr = %p\n", cub->mini_map.addr);
+}
 
 void	print_cub(t_cub *cub)
 {
-	ft_printf("%d\n", (cub->floor.r));
-	ft_printf("%d\n", (cub->floor.g));
+	ft_printf("%d, ", (cub->floor.r));
+	ft_printf("%d, ", (cub->floor.g));
 	ft_printf("%d\n", (cub->floor.b));
-	ft_printf("%d\n", (cub->ceiling.r));
-	ft_printf("%d\n", (cub->ceiling.g));
+	ft_printf("%d, ", (cub->ceiling.r));
+	ft_printf("%d, ", (cub->ceiling.g));
 	ft_printf("%d\n", (cub->ceiling.b));
 	cub->i = 0;
 	while (cub->map[cub->i])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 06:05:04 by a                ###   ########.fr       */
+/*   Updated: 2025/02/17 10:31:07 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,6 @@ void	init_mlx(t_cub *cub)
 			&cub->mini_map.endian);
 	if (!cub->mini_map.addr)
 		exit_error(cub, "Initialisation of image address failed\n");
-	ft_printf("%p\n", cub->img.data);
-	ft_printf("%p\n", cub->mini_map.data);
-	ft_printf("%p\n", cub->img.addr);
-	ft_printf("%p\n", cub->mini_map.addr);
 }
 
 void	init_all(t_cub *cub)
@@ -73,8 +69,8 @@ void	init_two(t_cub *cub)
 
 void	init_player(t_cub *cub)
 {
-	cub->player.x = MAP_WIDTH / 2;
-	cub->player.y = MAP_HEIGHT / 2;
+	cub->player.x = -1;
+	cub->player.y = -1;
 	cub->player.angle = PI / 2;
 	cub->player.key_up = false;
 	cub->player.key_down = false;

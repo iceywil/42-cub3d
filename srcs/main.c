@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:52 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 03:31:18 by a                ###   ########.fr       */
+/*   Updated: 2025/02/17 10:32:38 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ int	main(int argc, char **argv)
 	init_all(&cub);
 	init_player(&cub);
 	parsing(&cub, argv[1]);
+	ft_printf("parsing OK\n");
 	init_mlx(&cub);
+	print_mlx(&cub);
 	// background(&cub);
 	mlx_hook(cub.win, 2, 1L << 0, key_press, &cub.player);
 	mlx_hook(cub.win, 3, 1L << 1, key_release, &cub.player);
 	mlx_hook(cub.win, 17, 1L << 17, close_all, &cub);
-	mlx_loop_hook(cub.mlx, draw_loop, &cub);
+	//mlx_loop_hook(cub.mlx, draw_loop, &cub);
 	mlx_loop(cub.mlx);
 	return (0);
 }
@@ -84,7 +86,21 @@ void	check_arg(int argc, char **argv)
 /* void	calculate_ray(t_cub *cub)
 {
 	// calculate ray position and direction
-	cub->camera_x = 2 * cub->x / 1920 - 1; // x-coordinate in camera space
+	cub->camera_x = 2
+typedef struct s_player
+{
+	float		x;
+	float		y;
+	float		angle;
+
+	bool		key_up;
+	bool		key_down;
+	bool		key_left;
+	bool		key_right;
+
+	bool		left_rotate;
+	bool		right_rotate;
+}				t_player;* cub->x / 1920 - 1; // x-coordinate in camera space
 	cub->ray_dir_x = cub->dir_x + cub->plane_x * cub->camera_x;
 	cub->ray_dir_y = cub->dir_y + cub->plane_y * cub->camera_x;
 	cub->delta_dist_x = abs(1 / cub->ray_dir_x);

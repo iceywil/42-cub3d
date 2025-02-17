@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 06:10:22 by a                ###   ########.fr       */
+/*   Updated: 2025/02/17 10:32:30 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ void			print_cub(t_cub *cub);
 int				is_in(char c, char *str);
 int				line_is_empty(t_cub *cub, char *line);
 int				max(int a, int b);
-
+void		print_mlx(t_cub *cub);
 // INIT MAP
 int				init_max(t_cub *cub, int fd, int n);
 void			init_map(t_cub *cub, char *file, int n);

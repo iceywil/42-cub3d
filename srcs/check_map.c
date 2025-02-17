@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 06:06:03 by a                ###   ########.fr       */
+/*   Updated: 2025/02/17 10:25:06 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	check_map_space(t_cub *cub, int i, int j)
 	}
 }
 
+/*player direction*/
 void	set_direction(t_cub *cub, char elem)
 {
 	double	plane_angle;
@@ -47,16 +48,17 @@ void	set_direction(t_cub *cub, char elem)
 		cub->player.angle = M_PI;
 }
 
-/*the map should only contain one N, S, E or W
+/*init the player position and direction
+the map should only contain one N, S, E or W
 the map should only contain 0 and 1 except for the player position*/
 void	check_map_elem(t_cub *cub, char elem, int i, int j)
 {
 	if (is_in(elem, "NSEW"))
 	{
-		if (cub->pos_x == -1 || cub->pos_y == -1)
+		if (cub->player.x == -1 || cub->player.y == -1)
 		{
-			cub->pos_x = j;
-			cub->pos_y = i;
+			cub->player.x = j;
+			cub->player.y = i;
 			set_direction(cub, elem);
 		}
 		else
@@ -93,6 +95,6 @@ void	handle_map(t_cub *cub)
 		}
 		cub->i++;
 	}
-	if (cub->pos_x == -1 || cub->pos_y == -1)
+	if (cub->player.x == -1 || cub->player.y == -1)
 		exit_error(cub, "There is no player\n");
 }

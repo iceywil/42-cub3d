@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 16:11:17 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:38:04 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,9 +189,7 @@ int	draw_loop(t_cub *cub)
 	/*map*/
 	draw_player(&cub->mini_map, cub->player.x, cub->player.y, GREEN);
 	//draw_square(cub, cub->player.x, cub->player.y, PLAYER_SIZ, GREEN);
-	ft_printf("coucou\n");
 	draw_map(cub);
-	ft_printf("au revoir\n");
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.data, 0, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_map.data, 0, HEIGHT
 		- MAP_HEIGHT);

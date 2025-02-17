@@ -6,7 +6,7 @@
 #    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/17 16:11:38 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/17 18:37:36 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ C_FILES     =   srcs/main.c \
 				srcs/events.c \
 				srcs/map.c \
 				srcs/move_player.c \
+				srcs/calc_utils.c \
 
 all:        $(NAME)
 

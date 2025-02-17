@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 10:32:30 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 10:42:03 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void			check_map_elem(t_cub *cub, char elem, int i, int j);
 void			set_direction(t_cub *cub, char elem);
 
 // RAY
-int				key_press(int keycode, t_player *player);
+int				key_press(int keycode, t_cub *cub);
 int				key_release(int keycode, t_player *player);
 void			move_player(t_player *player);
 int				draw_loop(t_cub *cub);

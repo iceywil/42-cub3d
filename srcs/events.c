@@ -3,29 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 15:59:18 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 00:45:42 by a                ###   ########.fr       */
+/*   Updated: 2025/02/17 10:41:07 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	key_press(int keycode, t_player *player)
+void	player_update(int key, t_player *player)
 {
-	if (keycode == W)
+	if (key == W)
 		player->key_up = true;
-	if (keycode == S)
+	if (key == S)
 		player->key_down = true;
-	if (keycode == A)
+	if (key == A)
 		player->key_left = true;
-	if (keycode == D)
+	if (key == D)
 		player->key_right = true;
-	if (keycode == LEFT)
+	if (key == LEFT)
 		player->left_rotate = true;
-	if (keycode == RIGHT)
+	if (key == RIGHT)
 		player->right_rotate = true;
+}
+
+int	key_press(int key, t_cub *cub)
+{
+	if (key == W || key == S || key == A || key == D)
+		player_update(key, &cub->player);
+	if (key == ESC || key == Q || key == KEY_Q_MAC)
+		close_all(cub);
+	else
+		ft_printf("key %i has been pressed\n", key);
 	return (0);
 }
 

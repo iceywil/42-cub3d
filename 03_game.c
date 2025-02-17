@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 09:13:04 by kduroux           #+#    #+#             */
-/*   Updated: 2025/02/14 15:39:21 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/14 17:29:50 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,12 @@ void	ft_draw_ray(t_cub *cub, int start_x, int i)
 
 	ray_x = cub->pos_x;
 	ray_y = cub->pos_y;
-	printf("i=%i: ray_x=%f, ray_y=%f, cos=%f, sin=%f\n", i, ray_x, ray_y, cos(cub->dir_angle), sin(cub->dir_angle));
 	while(!ft_touch(ray_x, ray_y, cub))
 	{
 		ray_x += cos(start_x);
 		ray_y += sin(start_x);
 	}
-	printf("i=%i: ray_x=%f, ray_y=%f, cos=%f, sin=%f\n", i, ray_x, ray_y, cos(cub->dir_angle), sin(cub->dir_angle));
+	//printf("i=%i: ray_x=%f, ray_y=%f, cos=%f, sin=%f\n", i, ray_x, ray_y, cos(cub->dir_angle), sin(cub->dir_angle));
 	dist = fixed_dist(cub->pos_x, cub->pos_y, ray_x, ray_y, cub);
 	printf("dist = %f\n", dist);
 	height = ( 1 / dist) * (WIDTH / 2);
@@ -94,7 +93,7 @@ void	ft_draw_ray(t_cub *cub, int start_x, int i)
 	end = start_y + height;
 	while(start_y < end)
 	{
-		//if (isin_img(i, start_y, WIDTH, HEIGHT))
+		if (isin_img(i, start_y, WIDTH, HEIGHT))
 			pixel_to_img(&cub->img, i, start_y, BLUE);
 		start_y++;
 	}

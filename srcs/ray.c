@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 10:30:22 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 10:46:53 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,15 @@ void	clear_image(t_img *img, int height, int width)
 	
 void	move_player(t_player *player)
 {
-	float	speed;
-	float	angle_speed;
 	float	cos_angle;
 	float	sin_angle;
 
-	speed = 1;
-	angle_speed = 0.01;
 	cos_angle = cos(player->angle);
 	sin_angle = sin(player->angle);
 	if (player->left_rotate)
-		player->angle -= angle_speed;
+		player->angle -= ROT_SPEED;
 	if (player->right_rotate)
-		player->angle += angle_speed;
+		player->angle += ROT_SPEED;
 	if (player->angle > 2 * PI)
 		player->angle = 0;
 	// fix N Player
@@ -83,23 +79,23 @@ void	move_player(t_player *player)
 			player->angle = 2 * PI; */
 	if (player->key_up)
 	{
-		player->x += cos_angle * speed;
-		player->y += sin_angle * speed;
+		player->x += cos_angle * SPEED;
+		player->y += sin_angle * SPEED;
 	}
 	if (player->key_down)
 	{
-		player->x -= cos_angle * speed;
-		player->y -= sin_angle * speed;
+		player->x -= cos_angle * SPEED;
+		player->y -= sin_angle * SPEED;
 	}
 	if (player->key_left)
 	{
-		player->x += sin_angle * speed;
-		player->y -= cos_angle * speed;
+		player->x += sin_angle * SPEED;
+		player->y -= cos_angle * SPEED;
 	}
 	if (player->key_right)
 	{
-		player->x -= sin_angle * speed;
-		player->y += cos_angle * speed;
+		player->x -= sin_angle * SPEED;
+		player->y += cos_angle * SPEED;
 	}
 }
 

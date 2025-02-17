@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 17:44:22 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 18:42:46 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ typedef struct s_cub
 	t_img		texture_w;
 	t_img		texture_e;
 	t_player	player;
-	int pos_j;
-	int pos_i;
+	int 		pos_j;
+	int 		pos_i;
 	int			text_x;
 	int			text_y;
 	double		camera_x;

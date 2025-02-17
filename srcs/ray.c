@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 17:49:22 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:21:11 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	draw_line(t_cub *cub, float start_x, int i)
 
 	while (1)
 	{
-		put_pixel(&cub->mini_map, ray_x, ray_y, RED);
+		if (i % (WIDTH / 10) == 0)
+			put_pixel(&cub->mini_map, ray_x, ray_y, RED);
 		ray_x += cos(start_x);
 		if (touch(cub, ray_x, ray_y))
 		{

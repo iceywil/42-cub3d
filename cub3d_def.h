@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 15:11:55 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:22:11 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@
 # define UNSET_DOUBLE 9999
 
 //WINDOW
-# define WIDTH 1920 //1920  
-# define HEIGHT 1080 //1080
+# define WIDTH 1920  
+# define HEIGHT 1080
 # define BLOCK 16
 # define MARGIN 5
 
 //MINI MAP
 # define MAP_WIDTH WIDTH / 5
 # define MAP_HEIGHT HEIGHT / 5 
-# define MAX_PIXEL MAP_WIDTH / BLOCK //number of PIXEL to fill one line of minimap
+# define MAX_BLOCK MAP_WIDTH / BLOCK //number of PIXEL to fill one line of minimap
 
 //PLAYER
-# define SPEED 1.01
+# define SPEED 1.001
 # define ROT_SPEED (PI / 32) 
 # define PLAYER_SIZ (BLOCK / 4)
 

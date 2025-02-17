@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 12:19:24 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 17:37:51 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 18:54:27 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int	ft_first_row(t_cub *cub)
 {
 	int	i0;
 
-	i0 = cub->pos_i - MAX_PIXEL / 2;
-	if (cub->pos_i + MAX_PIXEL / 2 > cub->map_height)
-		i0 = cub->pos_i - MAX_PIXEL / 2 - (cub->pos_i
-				+ MAX_PIXEL / 2 - cub->map_height);
+	i0 = cub->pos_i - MAX_BLOCK / 2;
+	if (cub->pos_i + MAX_BLOCK / 2 > cub->map_height)
+		i0 = cub->pos_i - MAX_BLOCK / 2 - (cub->pos_i
+				+ MAX_BLOCK / 2 - cub->map_height);
 	i0 = max(0, i0);
 	return (i0);
 }
@@ -78,9 +78,11 @@ void	draw_map(t_cub *cub)
 	int	j0;
 	int	i0;
 
-	j0 = max(0, (int)cub->pos_j - MAX_PIXEL / 2);
+	j0 = max(0, (int) (cub->pos_j - MAX_BLOCK / 2));
+	ft_printf("j0 = %i\n", (cub->pos_j - MAX_BLOCK / 2));
 	i0 = ft_first_row(cub);
-	y = 0;
+	ft_printf("first y: i0= %i, first x: j0= %i;\n", i0, j0);
+	y = i0;
 	while (cub->map[y])
 	{
 		x = j0;

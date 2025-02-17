@@ -6,18 +6,29 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:44:35 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 15:17:54 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:42:16 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include <stdio.h>
 
-int	max(int a, int b)
+void	clear_image(t_img *img, int height, int width)
 {
-	if (a > b)
-		return (a);
-	return (b);
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < height)
+	{
+		x = 0;
+		while (x < width)
+		{
+			put_pixel(img, x, y, 0);
+			x++;
+		}
+		y++;
+	}
 }
 
 int	is_in(char c, char *str)
@@ -36,6 +47,7 @@ int	is_space(char c)
 	return (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
 		|| c == '\r');
 }
+
 void	print_mlx(t_cub *cub)
 {
 	ft_printf("img.data = %p\n", cub->img.data);
@@ -58,7 +70,8 @@ void	print_cub(t_cub *cub)
 	ft_printf("max_y=%i; max_x=%i;\n", cub->map_height, cub->map_width);
 	printf("player map position(%i, %i);\n", cub->pos_j, cub->pos_i);
 	ft_printf("%i pixels = 1 big pixel\n", BLOCK);
-	printf("player position(%f, %f) angle=%f;\n", cub->player.x, cub->player.y, cub->player.angle);
+	printf("player position(%f, %f) angle=%f;\n",
+		cub->player.x, cub->player.y, cub->player.angle);
 }
 
 int	line_is_empty(t_cub *cub, char *line)
@@ -69,18 +82,4 @@ int	line_is_empty(t_cub *cub, char *line)
 	if (!line[cub->i])
 		return (1);
 	return (0);
-}
-
-void	print_rgb_components(int rgb)
-{
-	int	red;
-	int	green;
-	int	blue;
-
-	red = (rgb >> 16) & 0xFF;
-	green = (rgb >> 8) & 0xFF;
-	blue = rgb & 0xFF;
-	printf("Red: %d\n", red);
-	printf("Green: %d\n", green);
-	printf("Blue: %d\n", blue);
 }

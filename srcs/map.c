@@ -6,11 +6,18 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 12:19:24 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 17:23:41 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:37:51 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int	max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
 
 void	draw_player(t_img *img, int x, int y, int color)
 {
@@ -60,15 +67,8 @@ int	ft_first_row(t_cub *cub)
 	if (cub->pos_i + MAX_PIXEL / 2 > cub->map_height)
 		i0 = cub->pos_i - MAX_PIXEL / 2 - (cub->pos_i
 				+ MAX_PIXEL / 2 - cub->map_height);
-	i0 = ft_max(0, i0);
+	i0 = max(0, i0);
 	return (i0);
-}
-
-int	ft_max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
 }
 
 void	draw_map(t_cub *cub)
@@ -78,7 +78,7 @@ void	draw_map(t_cub *cub)
 	int	j0;
 	int	i0;
 
-	j0 = ft_max(0, (int)cub->pos_j - MAX_PIXEL / 2);
+	j0 = max(0, (int)cub->pos_j - MAX_PIXEL / 2);
 	i0 = ft_first_row(cub);
 	y = 0;
 	while (cub->map[y])

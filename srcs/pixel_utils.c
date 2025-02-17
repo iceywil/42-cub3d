@@ -3,31 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:28:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/16 18:07:52 by a                ###   ########.fr       */
+/*   Updated: 2025/02/17 17:41:43 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-
-int	is_in_img(int x, int y, int width, int height)
+void	put_pixel(t_img *img, int x, int y, int color)
 {
-	if (x < width && y < height && x >= 0 && y >= 0)
-		return (1);
-	return (0);
-}
-
-void	pixel_to_img(t_img *img, int x, int y, int color)
-{
-	int	pixel;
+	int	index;
 
 	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
 		return ;
-	pixel = (y * img->size_line) + (x * (img->bpp / 8));
-	img->addr[pixel] = color & 0xFF;
-	img->addr[pixel + 1] = (color >> 8) & 0xFF;
-	img->addr[pixel + 2] = (color >> 16) & 0xFF;
+	index = y * img->size_line + x * img->bpp / 8;
+	img->addr[index] = color & 0xFF;
+	img->addr[index + 1] = (color >> 8) & 0xFF;
+	img->addr[index + 2] = (color >> 16) & 0xFF;
+}
+
+void	print_rgb_components(int rgb)
+{
+	int	red;
+	int	green;
+	int	blue;
+
+	red = (rgb >> 16) & 0xFF;
+	green = (rgb >> 8) & 0xFF;
+	blue = rgb & 0xFF;
+	printf("Red: %d\n", red);
+	printf("Green: %d\n", green);
+	printf("Blue: %d\n", blue);
 }

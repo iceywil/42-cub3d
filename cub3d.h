@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 17:27:41 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:44:22 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,14 +138,18 @@ int				key_press(int keycode, t_cub *cub);
 int				key_release(int keycode, t_player *player);
 void			move_player(t_player *player, t_cub *cub);
 int				draw_loop(t_cub *cub);
-void			put_pixel(t_img *img, int x, int y, int color);
 void			draw_square(t_cub *cub, int x, int y, int color);
 void			clear_image(t_img *img, int height, int width);
 void			draw_map(t_cub *cub);
 bool			touch(t_cub *cub, float px, float py);
 void			draw_line(t_cub *cub, float start_x, int i);
+
+//CALC UTILS
 float			distance(float x, float y);
 float			fixed_dist(t_player player, float x, float y);
+
+//PIXEL UTILS
+void			put_pixel(t_img *img, int x, int y, int color);
 
 // FREE
 void			free_cub(t_cub *cub);
@@ -157,14 +161,13 @@ int				is_space(char c);
 void			print_cub(t_cub *cub);
 int				is_in(char c, char *str);
 int				line_is_empty(t_cub *cub, char *line);
-int				max(int a, int b);
-void		print_mlx(t_cub *cub);
+void			print_mlx(t_cub *cub);
+
 // INIT MAP
 int				init_max(t_cub *cub, int fd, int n);
 void			init_map(t_cub *cub, char *file, int n);
 void			add_map_line(t_cub *cub, char *line);
 void			save_map(t_cub *cub, char *file, char *line, int n);
-int				player_pixel(t_cub *cub, int i, int j, int color);
 
 // background
 void			background(t_cub *cub);

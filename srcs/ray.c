@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 06:23:57 by a                ###   ########.fr       */
+/*   Updated: 2025/02/17 07:03:13 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ void	clear_image(t_img *img, int height, int width)
 	}
 }
 
+	// implement walls blocking movements ? Check if Pos == '1',
+	// if true set pos to wall pos
+	
 void	move_player(t_player *player)
 {
 	float	speed;
@@ -162,17 +165,35 @@ void	draw_line(t_cub *cub, float start_x, int i)
 	float	height;
 	int		start_y;
 	int		end;
+	int		side;
 
+	side = 0;
 	cos_angle = cos(start_x);
 	sin_angle = sin(start_x);
 	ray_x = cub->player.x;
 	ray_y = cub->player.y;
-	while (!touch(cub, ray_x, ray_y))
+	while (1)
 	{
 		put_pixel(&cub->mini_map, ray_x, ray_y, 0xFF0000);
 		ray_x += cos_angle;
+		if (touch(cub, ray_x, ray_y))
+		{
+			printf("YES %f\n", ray_x / BLOCK);
+			printf("YES %f\n", cos_angle);
+			side = 1;
+			break ;
+		}
 		ray_y += sin_angle;
+		side = 0;
+		if (touch(cub, ray_x, ray_y))
+		{
+			printf("NO %f\n", ray_y / BLOCK);
+			printf("NO %f\n", sin_angle);
+			side = 0;
+			break ;
+		}
 	}
+	//exit(1);
 	dist = fixed_dist(cub, cub->player.x, cub->player.y, ray_x, ray_y);
 	height = (BLOCK / dist) * (WIDTH / 2);
 	start_y = (HEIGHT - height) / 2;
@@ -182,15 +203,25 @@ void	draw_line(t_cub *cub, float start_x, int i)
 		put_pixel(&cub->img, i, start_y, 255);
 		start_y++;
 	}
+	/* 	while(start_y < end)
+		{
+			texture_on_img(cub, texture)
+		} */
 }
 
 // Reussir a remplacer le put_pixel ^ par le texture on img
 
 /* void	texture_on_img(t_cub *cub, t_img *texture)
 {
-	t_player *player = &cub->player;
-	int	scale;
-	
+	t_player	*player;
+	int			scale;
+	float		ray_x;
+	float		ray_y;
+	float		cos_angle;
+	float		sin_angle;
+
+
+	player = &cub->player;
 	scale = line->y * texture->size_line - (HEIGHT
 			* root->game->player->cam_height) * texture->line_length / 2
 		+ ray->line_height * texture->line_length / 2;
@@ -208,20 +239,12 @@ void	draw_line(t_cub *cub, float start_x, int i)
 		* texture->line_length + line->tex_x * (texture->bits_per_pixel / 8)
 		+ 2];
 } */
-
 int	draw_loop(t_cub *cub)
 {
-	float	ray_x;
-	float	ray_y;
-	float	cos_angle;
-	float	sin_angle;
-	float	fraction;
-	float	start_x;
-	int		i;
-
+	float		fraction;
+	float		start_x;
+	int			i;
 	move_player(&cub->player);
-	// implement walls blocking movements ? Check if Pos == '1',
-	// if true set pos to wall pos
 	clear_image(&cub->mini_map, MAP_HEIGHT, MAP_WIDTH);
 	clear_image(&cub->img, HEIGHT, WIDTH);
 	draw_square(cub, cub->player.x, cub->player.y, 5, 0x00FF00);
@@ -232,11 +255,12 @@ int	draw_loop(t_cub *cub)
 	while (i < WIDTH)
 	{
 		draw_line(cub, start_x, i);
+		exit(1);
 		start_x += fraction;
 		i++;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.data, 0, 0);
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_map.data, 0, HEIGHT - MAP_HEIGHT);
+	mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_map.data, 0, HEIGHT
+		- MAP_HEIGHT);
 	return (0);
 }
-

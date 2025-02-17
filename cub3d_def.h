@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 10:46:30 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 11:27:43 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 
 //PLAYER
 # define SPEED 1.02
-# define ROT_SPEED 0.02
+# define ROT_SPEED (PI / 32) 
 
 //PIXEL
 # define PIXEL (20 * WIDTH / 1920)

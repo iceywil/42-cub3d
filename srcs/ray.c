@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 10:50:33 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 11:38:42 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,39 +63,36 @@ void	clear_image(t_img *img, int height, int width)
 	
 void	move_player(t_player *player)
 {
-	float	cos_angle;
-	float	sin_angle;
-
-	cos_angle = cos(player->angle);
-	sin_angle = sin(player->angle);
 	if (player->left_rotate)
 		player->angle -= ROT_SPEED;
 	if (player->right_rotate)
 		player->angle += ROT_SPEED;
 	if (player->angle > 2 * PI)
-		player->angle = 0;
+		player->angle -= 2 * PI;
+	else if (player->angle < - 2 * PI)
+		player->angle += 2 * PI;
 	// fix N Player
 	/* 	if (player->angle < 0)
 			player->angle = 2 * PI; */
 	if (player->key_up)
 	{
-		player->x += cos_angle * SPEED;
-		player->y += sin_angle * SPEED;
+		player->x += cos(player->angle) * SPEED;
+		player->y += sin(player->angle) * SPEED;
 	}
 	if (player->key_down)
 	{
-		player->x -= cos_angle * SPEED;
-		player->y -= sin_angle * SPEED;
+		player->x -= cos(player->angle) * SPEED;
+		player->y -= sin(player->angle) * SPEED;
 	}
 	if (player->key_left)
 	{
-		player->x += sin_angle * SPEED;
-		player->y -= cos_angle * SPEED;
+		player->x += sin(player->angle) * SPEED;
+		player->y -= cos(player->angle) * SPEED;
 	}
 	if (player->key_right)
 	{
-		player->x -= sin_angle * SPEED;
-		player->y += cos_angle * SPEED;
+		player->x -= sin(player->angle) * SPEED;
+		player->y += cos(player->angle) * SPEED;
 	}
 }
 
@@ -120,13 +117,14 @@ void	draw_map(t_cub *cub)
 	}
 }
 
+/*return true if wall*/
 bool	touch(t_cub *cub, float px, float py)
 {
 	int	x;
 	int	y;
 
-	x = px / BLOCK;
-	y = py / BLOCK;
+	x = px;// / BLOCK;
+	y = py;// / BLOCK;
 	if (cub->map[y][x] == '1')
 		return (true);
 	return (false);
@@ -153,8 +151,6 @@ float	fixed_dist(t_cub *cub, float x1, float y1, float x2, float y2)
 
 void	draw_line(t_cub *cub, float start_x, int i)
 {
-	float	cos_angle;
-	float	sin_angle;
 	float	ray_x;
 	float	ray_y;
 	float	dist;
@@ -164,39 +160,38 @@ void	draw_line(t_cub *cub, float start_x, int i)
 	int		side;
 
 	side = 0;
-	cos_angle = cos(start_x);
-	sin_angle = sin(start_x);
 	ray_x = cub->player.x;
 	ray_y = cub->player.y;
 	while (1)
 	{
-		put_pixel(&cub->mini_map, ray_x, ray_y, 0xFF0000);
-		ray_x += cos_angle;
+		put_pixel(&cub->mini_map, ray_x, ray_y, RED);
+		ray_x += cos(start_x);
+		/*E ou W*/
 		if (touch(cub, ray_x, ray_y))
 		{
-			printf("YES %f\n", ray_x / BLOCK);
-			printf("YES %f\n", cos_angle);
+			//printf("YES %f\n", ray_x /*/ BLOCK*/);
+			//printf("YES %f\n", cos(start_x));
 			side = 1;
 			break ;
 		}
-		ray_y += sin_angle;
+		ray_y += sin(start_x);
 		side = 0;
+		/*N ou S*/
 		if (touch(cub, ray_x, ray_y))
 		{
-			printf("NO %f\n", ray_y / BLOCK);
-			printf("NO %f\n", sin_angle);
+			//printf("NO %f\n", ray_y /*/ BLOCK*/);
+			//printf("NO %f\n", sin(start_x));
 			side = 0;
 			break ;
 		}
 	}
-	//exit(1);
 	dist = fixed_dist(cub, cub->player.x, cub->player.y, ray_x, ray_y);
-	height = (BLOCK / dist) * (WIDTH / 2);
+	height = (/*BLOCK / */dist) * (WIDTH / 2);
 	start_y = (HEIGHT - height) / 2;
 	end = start_y + height;
 	while (start_y < end)
 	{
-		put_pixel(&cub->img, i, start_y, 255);
+		put_pixel(&cub->img, i, start_y, BLUE);
 		start_y++;
 	}
 	/* 	while(start_y < end)
@@ -250,20 +245,21 @@ int	draw_loop(t_cub *cub)
 	clear_image(&cub->mini_map, MAP_HEIGHT, MAP_WIDTH);
 	clear_image(&cub->img, HEIGHT, WIDTH);
 	background(cub);
+	fraction = PI / 3 / WIDTH;
+	start_x = cub->player.angle - PI / 6;
+	printf("player.angle = %f\n", cub->player.angle);
+	printf("player.pos = (%f,%f)\n", cub->player.x, cub->player.y);
+	while (i < WIDTH)
+	{
+		draw_line(cub, start_x, i);
+		start_x += fraction;
+		i++;
+	}
 	// draw_square(cub, cub->player.x, cub->player.y, 5, GREEN);
 	// draw_map(cub);
-	// fraction = PI / 3 / WIDTH;
-	// start_x = cub->player.angle - PI / 6;
 	// i = 0;
-	// while (i < WIDTH)
-	// {
-	// 	draw_line(cub, start_x, i);
-	// 	exit(1);
-	// 	start_x += fraction;
-	// 	i++;
-	// }
-	// mlx_put_image_to_window(cub->mlx, cub->win, cub->img.data, 0, 0);
-	// mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_map.data, 0, HEIGHT
-	// 	- MAP_HEIGHT);
+	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.data, 0, 0);
+	//mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_map.data, 0, HEIGHT
+	//	- MAP_HEIGHT);
 	return (0);
 }

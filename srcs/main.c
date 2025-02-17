@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:52 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 10:50:43 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 11:23:09 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ int	main(int argc, char **argv)
 	ft_printf("parsing OK\n");
 	init_mlx(&cub);
 	print_mlx(&cub);
+	draw_loop(&cub);
 	mlx_hook(cub.win, KEYPRESS_EVENT, 1L << 0, key_press, &cub);
 	mlx_hook(cub.win, 3, 1L << 1, key_release, &cub.player);
 	mlx_hook(cub.win, 17, 1L << 17, close_all, &cub);
-	mlx_loop_hook(cub.mlx, draw_loop, &cub);
+	//mlx_loop_hook(cub.mlx, draw_loop, &cub);
 	mlx_loop(cub.mlx);
 	return (0);
 }

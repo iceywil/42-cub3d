@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 15:59:18 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 10:41:07 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 11:40:27 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	player_update(int key, t_player *player)
 {
+	ft_printf("player is moving\n");
 	if (key == W)
 		player->key_up = true;
 	if (key == S)
@@ -32,10 +33,13 @@ int	key_press(int key, t_cub *cub)
 {
 	if (key == W || key == S || key == A || key == D)
 		player_update(key, &cub->player);
-	if (key == ESC || key == Q || key == KEY_Q_MAC)
+	else if (key == LEFT || key == RIGHT)
+		player_update(key, &cub->player);
+	else if (key == ESC || key == Q || key == KEY_Q_MAC)
 		close_all(cub);
 	else
 		ft_printf("key %i has been pressed\n", key);
+	draw_loop(cub);
 	return (0);
 }
 

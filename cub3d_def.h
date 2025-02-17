@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 14:35:52 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:11:55 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@
 //MINI MAP
 # define MAP_WIDTH WIDTH / 5
 # define MAP_HEIGHT HEIGHT / 5 
-# define MAP_M 1 //margin
-# define MAX_PIXEL 14 //number of PIXEL to fill one line of minimap
+# define MAX_PIXEL MAP_WIDTH / BLOCK //number of PIXEL to fill one line of minimap
 
 //PLAYER
 # define SPEED 1.01

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:52 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 14:36:45 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:20:45 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int argc, char **argv)
 	init_all(&cub);
 	init_player(&cub);
 	parsing(&cub, argv[1]);
-	ft_printf("parsing OK\n");
 	init_mlx(&cub);
 	print_mlx(&cub);
 	draw_loop(&cub);

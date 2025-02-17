@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 14:45:10 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:11:17 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,69 +40,6 @@ void	clear_image(t_img *img, int height, int width)
 		}
 		y++;
 	}
-}
-
-float	new_y(t_player *player)
-{
-	float y;
-
-	y = player->y;
-	if (player->key_up)
-		return (y + sin(player->angle) * SPEED);
-	if (player->key_left)
-		return (y - cos(player->angle) * SPEED);
-	if (player->key_down)
-		return (y - sin(player->angle) * SPEED);
-	if (player->key_right)
-		return (y + cos(player->angle) * SPEED);
-	return (player->y);
-}
-
-float	new_x(t_player *player)
-{
-	float x;
-
-	x = player->x;
-	if (player->key_up)
-		return (x + cos(player->angle) * SPEED);
-	if (player->key_left)
-		return (x + sin(player->angle) * SPEED);
-	if (player->key_down)
-		return (x - cos(player->angle) * SPEED);
-	if (player->key_right)
-		return (x - sin(player->angle) * SPEED);
-	return (player->x);
-}
-// implement walls blocking movements ? Check if Pos == '1',
-// if true set pos to wall pos
-
-void	move_player(t_player *player, t_cub *cub)
-{
-	if (player->left_rotate)
-		player->angle -= ROT_SPEED;
-	if (player->right_rotate)
-		player->angle += ROT_SPEED;
-	if (player->angle > 2 * PI)
-		player->angle -= 2 * PI;
-	else if (player->angle < - 2 * PI)
-		player->angle += 2 * PI;
-	// fix N Player
-	/* 	if (player->angle < 0)
-			player->angle = 2 * PI; */
-	float	x;
-	float	y;
-
-	x = new_x(player);
-	y = new_y(player);
-	printf("player old pos: (%f,%f)\n", player->x, player->y);
-	//formule a changer
-	if ((y >= 0 && x >= 0 && cub->map[(int)y / BLOCK][(int)x / BLOCK] != '1'))
-	{
-		cub->map[(int)player->y / BLOCK][(int)player->x / BLOCK] = '0';
-		player->x = x;
-		player->y = y;
-	}
-	printf("player new pos: (%f,%f)\n", player->x, player->y);
 }
 
 /*return true if wall*/
@@ -148,13 +85,12 @@ void	draw_line(t_cub *cub, float start_x, int i)
 	int		side;
 	
 	side = 0;
-	ray_x = cub->player.x;
-	ray_y = cub->player.y;
-	printf("player.x=%f;player.y=%f;\n", ray_x, ray_y);
+	ray_x = cub->player.x + PLAYER_SIZ / 2;
+	ray_y = cub->player.y + + PLAYER_SIZ / 2;
+
 	while (1)
 	{
 		put_pixel(&cub->mini_map, ray_x, ray_y, RED);
-		//printf("ray_x = %f, ray_y = %f;\n", ray_x, ray_y);
 		ray_x += cos(start_x);
 		/*E ou W*/
 		if (touch(cub, ray_x, ray_y))
@@ -240,8 +176,8 @@ int	draw_loop(t_cub *cub)
 	fov = PI / 3;
 	fraction =  fov / WIDTH;
 	start_x = cub->player.angle - fov / 2;
-	printf("player.angle = %f\n", cub->player.angle);
-	printf("player.pos = (%f,%f)\n", cub->player.x, cub->player.y);
+	// printf("player.angle = %f\n", cub->player.angle);
+	// printf("player.pos = (%f,%f)\n", cub->player.x, cub->player.y);
 	/*raycasting*/
 	i = 0;
 	while (i < WIDTH)
@@ -251,12 +187,11 @@ int	draw_loop(t_cub *cub)
 		i++;
 	}
 	/*map*/
-	float	new_x;
-	float	new_y;
-	new_x = cub->pos_j * BLOCK + cub->player.x;
-	new_y = cub->pos_i * BLOCK + cub->player.y;
-	draw_square(cub, new_x, new_y, PLAYER_SIZ, GREEN);
+	draw_player(&cub->mini_map, cub->player.x, cub->player.y, GREEN);
+	//draw_square(cub, cub->player.x, cub->player.y, PLAYER_SIZ, GREEN);
+	ft_printf("coucou\n");
 	draw_map(cub);
+	ft_printf("au revoir\n");
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.data, 0, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_map.data, 0, HEIGHT
 		- MAP_HEIGHT);

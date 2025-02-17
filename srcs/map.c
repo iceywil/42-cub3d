@@ -6,11 +6,30 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 12:19:24 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 12:19:53 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:15:07 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	draw_block(t_img *img, int x, int y, int color)
+{
+	int	i;
+	int	j;
+
+	j = x;
+	while (j < x + BLOCK)
+	{
+		i = y;
+		while (i < y + BLOCK)
+		{
+			if (j < MAP_WIDTH && i < MAP_HEIGHT)
+				put_pixel(img, j, i, color);
+			i++;
+		}
+		j++;
+	}
+}
 
 void	draw_square(t_cub *cub, int x, int y, int size, int color)
 {

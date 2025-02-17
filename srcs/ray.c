@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 12:55:55 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:18:19 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ bool	touch(t_cub *cub, float px, float py)
 
 	x = px;// / BLOCK;
 	y = py;// / BLOCK;
-	if (cub->map[y][x] == '1')
+	if (cub->map[y] && cub->map[y][x] && cub->map[y][x] == '1')
 		return (true);
 	return (false);
 }
@@ -146,19 +146,20 @@ void	draw_line(t_cub *cub, float start_x, int i)
 	int		start_y;
 	int		end;
 	int		side;
-
+	
 	side = 0;
 	ray_x = cub->player.x;
 	ray_y = cub->player.y;
 	while (1)
 	{
-		put_pixel(&cub->mini_map, ray_x, ray_y, RED);
+		put_pixel(&cub->mini_map, ray_x + cub->pos_x * BLOCK, ray_y + cub->pos_y * BLOCK, RED);
 		ray_x += cos(start_x);
 		/*E ou W*/
+		printf("ray_x = %f, ray_y = %f;\n", ray_x, ray_y);
 		if (touch(cub, ray_x, ray_y))
 		{
-			//printf("YES %f\n", ray_x /*/ BLOCK*/);
-			//printf("YES %f\n", cos(start_x));
+			// printf("YES %f\n", ray_x /*/ BLOCK*/);
+			// printf("YES %f\n", cos(start_x));
 			side = 1;
 			break ;
 		}
@@ -167,14 +168,14 @@ void	draw_line(t_cub *cub, float start_x, int i)
 		/*N ou S*/
 		if (touch(cub, ray_x, ray_y))
 		{
-			//printf("NO %f\n", ray_y /*/ BLOCK*/);
-			//printf("NO %f\n", sin(start_x));
+			// printf("NO %f\n", ray_y /*/ BLOCK*/);
+			// printf("NO %f\n", sin(start_x));
 			side = 0;
 			break ;
 		}
 	}
 	dist = fixed_dist(cub, cub->player.x, cub->player.y, ray_x, ray_y);
-	height = (/*BLOCK / */dist) * (WIDTH / 2);
+	height = (/*BLOCK*/1 / dist) * (WIDTH / 2);
 	start_y = (HEIGHT - height) / 2;
 	end = start_y + height;
 	while (start_y < end)
@@ -229,23 +230,25 @@ int	draw_loop(t_cub *cub)
 	float		fraction;
 	float		start_x;
 	int			i;
-
+	float		fov;
+	
 	move_player(&cub->player, cub);
 	clear_image(&cub->mini_map, MAP_HEIGHT, MAP_WIDTH);
 	clear_image(&cub->img, HEIGHT, WIDTH);
 	background(cub);
-	fraction = PI / 3 / WIDTH;
-	start_x = cub->player.angle - PI / 6;
+	fov = PI / 3;
+	fraction =  fov / WIDTH;
+	start_x = cub->player.angle - fov / 2;
 	printf("player.angle = %f\n", cub->player.angle);
 	printf("player.pos = (%f,%f)\n", cub->player.x, cub->player.y);
 	/*raycasting*/
-	// i = 0;
-	// while (i < WIDTH)
-	// {
-	// 	draw_line(cub, start_x, i);
-	// 	start_x += fraction;
-	// 	i++;
-	// }
+	i = 0;
+	while (i < WIDTH)
+	{
+		draw_line(cub, start_x, i);
+		start_x += fraction;
+		i++;
+	}
 	/*map*/
 	float	new_x;
 	float	new_y;

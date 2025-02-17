@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 12:53:46 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:10:59 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,9 +137,10 @@ int				key_press(int keycode, t_cub *cub);
 int				key_release(int keycode, t_player *player);
 void			move_player(t_player *player, t_cub *cub);
 int				draw_loop(t_cub *cub);
-void	put_pixel(t_img *img, int x, int y, int color);
+void			put_pixel(t_img *img, int x, int y, int color);
 void			draw_square(t_cub *cub, int x, int y, int size, int color);
-void	clear_image(t_img *img, int height, int width);
+void			draw_block(t_img *img, int x, int y, int color);
+void			clear_image(t_img *img, int height, int width);
 void			draw_map(t_cub *cub);
 bool			touch(t_cub *cub, float px, float py);
 void			draw_line(t_cub *cub, float start_x, int i);

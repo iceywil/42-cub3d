@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 11:38:42 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 12:17:20 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,17 +249,23 @@ int	draw_loop(t_cub *cub)
 	start_x = cub->player.angle - PI / 6;
 	printf("player.angle = %f\n", cub->player.angle);
 	printf("player.pos = (%f,%f)\n", cub->player.x, cub->player.y);
-	while (i < WIDTH)
-	{
-		draw_line(cub, start_x, i);
-		start_x += fraction;
-		i++;
-	}
-	// draw_square(cub, cub->player.x, cub->player.y, 5, GREEN);
-	// draw_map(cub);
+	/*raycasting*/
 	// i = 0;
+	// while (i < WIDTH)
+	// {
+	// 	draw_line(cub, start_x, i);
+	// 	start_x += fraction;
+	// 	i++;
+	// }
+	/*map*/
+	float	new_x;
+	float	new_y;
+	new_x = cub->pos_x * BLOCK + cub->player.x;
+	new_y = cub->pos_y * BLOCK + cub->player.y;
+	draw_square(cub, new_x, new_y, 5, GREEN);
+	draw_map(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.data, 0, 0);
-	//mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_map.data, 0, HEIGHT
-	//	- MAP_HEIGHT);
+	mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_map.data, 0, HEIGHT
+		- MAP_HEIGHT);
 	return (0);
 }

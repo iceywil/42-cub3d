@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 15:59:18 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 11:40:27 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 12:08:29 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	player_update(int key, t_player *player)
 {
-	ft_printf("player is moving\n");
 	if (key == W)
 		player->key_up = true;
 	if (key == S)

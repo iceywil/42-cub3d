@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 12:17:20 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 12:55:55 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,6 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	img->addr[index] = color & 0xFF;
 	img->addr[index + 1] = (color >> 8) & 0xFF;
 	img->addr[index + 2] = (color >> 16) & 0xFF;
-}
-
-void	draw_square(t_cub *cub, int x, int y, int size, int color)
-{
-	int	i;
-
-	i = 0;
-	while (i < size && x + i < MAP_WIDTH && x + size < MAP_WIDTH && y
-		+ i < MAP_HEIGHT && y + size < MAP_HEIGHT)
-	{
-		put_pixel(&cub->mini_map, x + i, y, color);
-		put_pixel(&cub->mini_map, x, y + i, color);
-		put_pixel(&cub->mini_map, x + size, y + i, color);
-		put_pixel(&cub->mini_map, x + i, y + size, color);
-		i++;
-	}
 }
 
 void	clear_image(t_img *img, int height, int width)
@@ -58,10 +42,41 @@ void	clear_image(t_img *img, int height, int width)
 	}
 }
 
-	// implement walls blocking movements ? Check if Pos == '1',
-	// if true set pos to wall pos
-	
-void	move_player(t_player *player)
+float	new_y(t_player *player)
+{
+	float y;
+
+	y = player->y;
+	if (player->key_up)
+		return (y + sin(player->angle) * SPEED);
+	if (player->key_left)
+		return (y - cos(player->angle) * SPEED);
+	if (player->key_down)
+		return (y - sin(player->angle) * SPEED);
+	if (player->key_right)
+		return (y + cos(player->angle) * SPEED);
+	return (player->y);
+}
+
+float	new_x(t_player *player)
+{
+	float x;
+
+	x = player->x;
+	if (player->key_up)
+		return (x + cos(player->angle) * SPEED);
+	if (player->key_left)
+		return (x + sin(player->angle) * SPEED);
+	if (player->key_down)
+		return (x - cos(player->angle) * SPEED);
+	if (player->key_right)
+		return (x - sin(player->angle) * SPEED);
+	return (player->x);
+}
+// implement walls blocking movements ? Check if Pos == '1',
+// if true set pos to wall pos
+
+void	move_player(t_player *player, t_cub *cub)
 {
 	if (player->left_rotate)
 		player->angle -= ROT_SPEED;
@@ -74,47 +89,20 @@ void	move_player(t_player *player)
 	// fix N Player
 	/* 	if (player->angle < 0)
 			player->angle = 2 * PI; */
-	if (player->key_up)
-	{
-		player->x += cos(player->angle) * SPEED;
-		player->y += sin(player->angle) * SPEED;
-	}
-	if (player->key_down)
-	{
-		player->x -= cos(player->angle) * SPEED;
-		player->y -= sin(player->angle) * SPEED;
-	}
-	if (player->key_left)
-	{
-		player->x += sin(player->angle) * SPEED;
-		player->y -= cos(player->angle) * SPEED;
-	}
-	if (player->key_right)
-	{
-		player->x -= sin(player->angle) * SPEED;
-		player->y += cos(player->angle) * SPEED;
-	}
-}
+	float	x;
+	float	y;
 
-void	draw_map(t_cub *cub)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (cub->map[y])
+	x = new_x(player);
+	y = new_y(player);
+	printf("player old pos: (%f,%f)\n", player->x, player->y);
+	//formule a changer
+	if ((y >= 0 && x >= 0 && cub->map[(int)(y + BLOCK * cub->pos_y) / BLOCK][(int)(x + BLOCK * cub->pos_x) / BLOCK] != '1'))
 	{
-		x = 0;
-		while (cub->map[y][x])
-		{
-			if (cub->map[y][x] == '1')
-			{
-				draw_square(cub, x * BLOCK, y * BLOCK, BLOCK, BLUE);
-			}
-			x++;
-		}
-		y++;
+		cub->map[(int)(player->y + BLOCK * cub->pos_y) / BLOCK][(int)(player->x + BLOCK * cub->pos_x) / BLOCK] = '0';
+		player->x = x;
+		player->y = y;
 	}
+	printf("player new pos: (%f,%f)\n", player->x, player->y);
 }
 
 /*return true if wall*/
@@ -208,7 +196,7 @@ void	draw_line(t_cub *cub, float start_x, int i)
 	int			scale;
 	float		ray_x;
 	float		ray_y;
-	float		cos_angle;
+	float		cos_angle;new_y
 	float		sin_angle;
 
 
@@ -241,7 +229,8 @@ int	draw_loop(t_cub *cub)
 	float		fraction;
 	float		start_x;
 	int			i;
-	move_player(&cub->player);
+
+	move_player(&cub->player, cub);
 	clear_image(&cub->mini_map, MAP_HEIGHT, MAP_WIDTH);
 	clear_image(&cub->img, HEIGHT, WIDTH);
 	background(cub);
@@ -262,7 +251,7 @@ int	draw_loop(t_cub *cub)
 	float	new_y;
 	new_x = cub->pos_x * BLOCK + cub->player.x;
 	new_y = cub->pos_y * BLOCK + cub->player.y;
-	draw_square(cub, new_x, new_y, 5, GREEN);
+	draw_square(cub, new_x, new_y, PLAYER_SIZ, GREEN);
 	draw_map(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.data, 0, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_map.data, 0, HEIGHT

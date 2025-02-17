@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: a <a@student.42.fr>                        +#+  +:+       +#+         #
+#    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/16 20:28:00 by a                ###   ########.fr        #
+#    Updated: 2025/02/17 12:19:22 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ C_FILES     =   srcs/main.c \
 				srcs/pixel_utils.c \
 				srcs/ray.c \
 				srcs/events.c \
+				srcs/map.c \
 
 all:        $(NAME)
 

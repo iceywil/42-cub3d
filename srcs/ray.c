@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/18 16:27:17 by a                ###   ########.fr       */
+/*   Updated: 2025/02/18 17:06:27 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	draw_line(t_cub *cub, float start_x, int x)
 	cub->ray_y = cub->player.y + PLAYER_SIZ / 2;
 	while (1)
 	{
-		put_pixel(&cub->mini_map, cub->ray_x, cub->ray_y, RED);
+		if (x % (WIDTH / 10) == 0)
+			put_pixel(&cub->mini_map, cub->ray_x - cub->player.x0, cub->ray_y - cub->player.y0, RED);
 		cub->ray_x += cos(start_x);
 		if (touch(cub, cub->ray_x, cub->ray_y))
 		{
@@ -64,6 +65,7 @@ void	draw_line(t_cub *cub, float start_x, int x)
 	}
 	raycasting(cub, cub->ray_x, cub->ray_y, x);
 }
+
 
 void	raycasting(t_cub *cub, float ray_x, float ray_y, int x)
 {
@@ -134,7 +136,7 @@ int	draw_loop(t_cub *cub)
 	clear_image(&cub->mini_map, MAP_HEIGHT, MAP_WIDTH);
 	clear_image(&cub->img, HEIGHT, WIDTH);
 	background(cub);
-	fov = PI / 3;
+	fov = M_PI / 3;
 	fraction = fov / WIDTH;
 	start_x = cub->player.angle - fov / 2;
 	x = 0;
@@ -144,7 +146,6 @@ int	draw_loop(t_cub *cub)
 		start_x += fraction;
 		x++;
 	}
-	//draw_player(&cub->mini_map, cub->player.x, cub->player.y, GREEN);
 	draw_map(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.data, 0, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_map.data, 0, HEIGHT

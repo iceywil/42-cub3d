@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/18 16:26:34 by a                ###   ########.fr       */
+/*   Updated: 2025/02/18 17:04:27 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ typedef struct s_player
 	float		x;
 	float		y;
 	float		angle;
-
+	int			x0;
+	int			y0;
 	bool		key_up;
 	bool		key_down;
 	bool		key_left;
@@ -120,14 +121,11 @@ void			handle_element(t_cub *cub, char *line);
 void			handle_texture(t_cub *cub, char *line);
 void			handle_colors(t_cub *cub, t_color *rgb, char *line);
 void			check_elements(t_cub *cub);
-
-// MAP
 void			handle_map(t_cub *cub);
 void			check_map_space(t_cub *cub, int i, int j);
 void			check_map_elem(t_cub *cub, char elem, int i, int j);
 void			set_direction(t_cub *cub, char elem);
 void			draw_player(t_img *img, int x, int y, int color);
-int				fix_y(t_cub *cub);
 
 // RAY
 int				key_press(int keycode, t_cub *cub);
@@ -173,3 +171,5 @@ void			save_map(t_cub *cub, char *file, char *line, int n);
 void			background(t_cub *cub);
 
 #endif
+			// printf("NO %f\n", ray_y /*/ BLOCK*/);
+			// printf("NO %f\n", sin(start_x));

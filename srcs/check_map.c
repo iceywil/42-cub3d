@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 20:18:22 by a                ###   ########.fr       */
+/*   Updated: 2025/02/18 16:26:40 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void	set_direction(t_cub *cub, char elem)
 	double	plane_angle;
 
 	if (elem == 'N')
-		cub->player.angle = -M_PI / 2;
+		cub->player.angle = -PI / 2;
 	else if (elem == 'S')
-		cub->player.angle = M_PI / 2;
+		cub->player.angle = PI / 2;
 	else if (elem == 'E')
 		cub->player.angle = 0;
 	else if (elem == 'W')
-		cub->player.angle = M_PI;
+		cub->player.angle = PI;
 }
 
 /*init the player position and direction

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 15:59:18 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 17:06:40 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:09:13 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	key_press(int key, t_cub *cub)
 		close_all(cub);
 	else
 		ft_printf("key %i has been pressed\n", key);
-	//draw_loop(cub);
+	// draw_loop(cub);
 	return (0);
 }
 

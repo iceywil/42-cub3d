@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/18 04:04:32 by a                ###   ########.fr       */
+/*   Updated: 2025/02/18 16:27:17 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int	draw_loop(t_cub *cub)
 		start_x += fraction;
 		x++;
 	}
-	draw_player(&cub->mini_map, cub->player.x, cub->player.y, GREEN);
+	//draw_player(&cub->mini_map, cub->player.x, cub->player.y, GREEN);
 	draw_map(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.data, 0, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_map.data, 0, HEIGHT

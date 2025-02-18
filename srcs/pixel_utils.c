@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:28:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 17:41:43 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:16:09 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	put_pixel(t_img *img, int x, int y, int color)
 {
 	int	index;
 
-	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
+	if (x >= img->width || y >= img->height || x < 0 || y < 0)
 		return ;
 	index = y * img->size_line + x * img->bpp / 8;
 	img->addr[index] = color & 0xFF;

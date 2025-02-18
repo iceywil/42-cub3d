@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:11:07 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 17:24:46 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:30:48 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,10 @@ void	move_player(t_player *player, t_cub *cub)
 	float	y;
 
 	update_angle(player);
-	printf("player old pos: (%f,%f)\n", player->x, player->y);
 	x = new_x(player);
 	y = new_y(player);
 	if (is_wall(cub->map, x, y))
 		return ;
 	player->x = x;
 	player->y = y;
-	printf("player new pos: (%f,%f)\n", player->x, player->y);
 }

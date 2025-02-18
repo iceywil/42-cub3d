@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/18 13:59:29 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:31:22 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
 # define FIX_MAP_Y (MAX_BLOCK_H * BLOCK / 2)
 
 //PLAYER
-# define SPEED 1.001
-# define ROT_SPEED (PI / 32) 
+# define SPEED 0.1
+# define ROT_SPEED (PI / 160) 
 # define PLAYER_SIZ (BLOCK / 4)
 
 //PIXEL

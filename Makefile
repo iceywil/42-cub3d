@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
+#    By: a <a@student.42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/18 15:22:04 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/18 19:05:04 by a                ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME        =   cub3d
 
 CC          =   cc
 
-FLAG        =   -g -g3 -Wall -Wextra -Werror -lm
+FLAG        =   -fsanitize=address -g -g -g3 -Wall -Wextra -Werror -lm
 
 MLX_PATH	=	minilibx-linux
 

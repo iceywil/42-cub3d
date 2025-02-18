@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 14:20:55 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/18 13:57:04 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	init_mlx(t_cub *cub)
 		exit_error(cub, "Initialisation of image failed\n");
 	cub->img.addr = mlx_get_data_addr(cub->img.data, &cub->img.bpp,
 			&cub->img.size_line, &cub->img.endian);
+	cub->img.width = WIDTH;
+	cub->img.height = HEIGHT;
 	if (!cub->img.addr)
 		exit_error(cub, "Initialisation of image address failed\n");
 	cub->mini_map.data = mlx_new_image(cub->mlx, MAP_WIDTH, MAP_HEIGHT);
@@ -30,6 +32,8 @@ void	init_mlx(t_cub *cub)
 	cub->mini_map.addr = mlx_get_data_addr(cub->mini_map.data,
 			&cub->mini_map.bpp, &cub->mini_map.size_line,
 			&cub->mini_map.endian);
+	cub->mini_map.width = MAP_WIDTH;
+	cub->mini_map.height = MAP_HEIGHT;
 	if (!cub->mini_map.addr)
 		exit_error(cub, "Initialisation of image address failed\n");
 }

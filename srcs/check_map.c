@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/17 17:21:45 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:26:40 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,14 @@ void	check_map_space(t_cub *cub, int i, int j)
 void	set_direction(t_cub *cub, char elem)
 {
 	double	plane_angle;
-
 	if (elem == 'N')
-		cub->player.angle = -M_PI / 2;
+		cub->player.angle = -PI / 2;
 	else if (elem == 'S')
-		cub->player.angle = M_PI / 2;
+		cub->player.angle = PI / 2;
 	else if (elem == 'E')
 		cub->player.angle = 0;
 	else if (elem == 'W')
-		cub->player.angle = M_PI;
+		cub->player.angle = PI;
 }
 
 /*init the player position and direction

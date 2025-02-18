@@ -6,7 +6,7 @@
 #    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/17 18:37:36 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/18 14:07:06 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ C_FILES     =   srcs/main.c \
 				srcs/check_map.c \
 				srcs/free.c \
 				srcs/utils.c \
+				srcs/print.c \
 				srcs/init.c \
 				srcs/background.c \
 				srcs/pixel_utils.c \

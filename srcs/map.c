@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 12:19:24 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/18 13:58:58 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:09:30 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,30 +68,6 @@ int	fix_y(t_cub *cub)
 	return (y0);
 }
 
-/*first row: determine the first row of the map to display
-regarding the position of the player on the map.
-if player is in the bottom of the map, we can start i0 higher.
-otherwise, i0 is max(0, cub->pos_y - MAX_PIXEL / 2)*/
-/* int	ft_fix_row_i(t_cub *cub)
-{
-	int	i0;
-
-	i0 = cub->pos_i - FIX_MAP_I;
-	if (cub->pos_i + FIX_MAP_I > cub->map_height)
-		i0 = cub->pos_i - FIX_MAP_I - (cub->pos_i
-				+ FIX_MAP_I - cub->map_height);
-	i0 = max(0, i0);
-	return (i0);
-}
-int	fix_i;
-int	fix_j;
-
-fix_j = max(0, (int) (cub->pos_j - FIX_MAP_I));
-fix_i = ft_fix_row_i(cub);
-ft_printf("fix_j = %i, fix_i = %i;\n", fix_j, fix_i);
-ft_printf("player.j = %i, player.i = %i;\n", cub->pos_j, cub->pos_i);
-*/
-
 void	draw_map(t_cub *cub)
 {
 	int	j;
@@ -99,12 +75,8 @@ void	draw_map(t_cub *cub)
 	int	x0;
 	int	y0;
 
-	x0 = max(0, (int) (cub->player.x - FIX_MAP_X));
+	x0 = max(0, (int)(cub->player.x - FIX_MAP_X));
 	y0 = fix_y(cub);
-	printf("player.x = %f, player.y = %f;\n", cub->player.x, cub->player.y);
-	ft_printf("x0 = %i, y0 = %i;\n", x0, y0);
-	printf("corr: player.x = %f / %i, player.y = %f / %i;\n",
-		cub->player.x - x0, MAP_WIDTH, cub->player.y - y0, MAP_HEIGHT);
 	draw_player(&cub->mini_map, cub->player.x - x0, cub->player.y - y0, GREEN);
 	i = y0 / BLOCK;
 	while (cub->map[i])
@@ -121,3 +93,8 @@ void	draw_map(t_cub *cub)
 		i++;
 	}
 }
+
+	// printf("player.x = %f, player.y = %f;\n", cub->player.x, cub->player.y);
+	// ft_printf("x0 = %i, y0 = %i;\n", x0, y0);
+	// printf("corr: player.x = %f / %i, player.y = %f / %i;\n",
+	// 	cub->player.x - x0, MAP_WIDTH, cub->player.y - y0, MAP_HEIGHT);

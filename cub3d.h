@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/18 13:19:07 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:18:33 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void			init_player(t_cub *cub);
 void			check_arg(int argc, char **argv);
 void			parsing(t_cub *cub, char *file);
 void			handle_element(t_cub *cub, char *line);
-void			handle_texture(t_cub *cub, t_img *img, char *line);
+void			handle_texture(t_cub *cub, char *line);
 void			handle_colors(t_cub *cub, t_color *rgb, char *line);
 void			check_elements(t_cub *cub);
 
@@ -132,6 +132,7 @@ void			check_map_space(t_cub *cub, int i, int j);
 void			check_map_elem(t_cub *cub, char elem, int i, int j);
 void			set_direction(t_cub *cub, char elem);
 void			draw_player(t_img *img, int x, int y, int color);
+int				fix_y(t_cub *cub);
 
 // RAY
 int				key_press(int keycode, t_cub *cub);
@@ -162,6 +163,7 @@ void			print_cub(t_cub *cub);
 int				is_in(char c, char *str);
 int				line_is_empty(t_cub *cub, char *line);
 void			print_mlx(t_cub *cub);
+int				max(int a, int b);
 
 // INIT MAP
 int				init_max(t_cub *cub, int fd, int n);

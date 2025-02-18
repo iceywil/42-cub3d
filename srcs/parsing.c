@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/02/17 17:25:15 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:15:56 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,7 @@ void	handle_element(t_cub *cub, char *line)
 		return ;
 	if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)
 		|| !ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "EA ", 3))
-	{
-		if (!ft_strncmp(line, "NO ", 3) && !cub->texture_n.data)
-			handle_texture(cub, &cub->texture_n, line);
-		else if (!ft_strncmp(line, "SO ", 3) && !cub->texture_s.data)
-			handle_texture(cub, &cub->texture_s, line);
-		else if (!ft_strncmp(line, "WE ", 3) && !cub->texture_w.data)
-			handle_texture(cub, &cub->texture_w, line);
-		else if (!ft_strncmp(line, "EA ", 3) && !cub->texture_e.data)
-			handle_texture(cub, &cub->texture_e, line);
-		else
-			exit_error(cub, "Duplicate texture");
-	}
+		handle_texture(cub, line);
 	else if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
 	{
 		if (!ft_strncmp(line, "F ", 2) && cub->floor.r == -1)
@@ -93,8 +82,20 @@ void	handle_element(t_cub *cub, char *line)
 		exit_error(cub, "Invalid element");
 }
 
-void	handle_texture(t_cub *cub, t_img *img, char *line)
+void	handle_texture(t_cub *cub, char *line)
 {
+	t_img	*img;
+
+	if (!ft_strncmp(line, "NO ", 3) && !cub->texture_n.data)
+		img = &cub->texture_n;
+	else if (!ft_strncmp(line, "SO ", 3) && !cub->texture_s.data)
+		img = &cub->texture_s;
+	else if (!ft_strncmp(line, "WE ", 3) && !cub->texture_w.data)
+		img = &cub->texture_w;
+	else if (!ft_strncmp(line, "EA ", 3) && !cub->texture_e.data)
+		img = &cub->texture_e;
+	else
+		exit_error(cub, "Duplicate texture");
 	if (ft_strncmp(line + ft_strlen(line) - 5, ".xpm", 4))
 		exit_error(cub, "Not .xpm extension file");
 	line[ft_strlen(line) - 1] = '\0';

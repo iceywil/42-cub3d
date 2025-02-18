@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 12:19:24 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/18 14:09:30 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:37:32 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,6 @@ void	draw_square(t_cub *cub, int x, int y, int color)
 	}
 }
 
-/*first row: determine the first row of the map to display
-regarding the position of the player on the map.
-if player is in the bottom of the map, we can start y0 higher.
-otherwise, y0 is max(0, cub->pos_y - MAX_PIXEL / 2)*/
-int	fix_y(t_cub *cub)
-{
-	int	y0;
-
-	y0 = cub->player.y - FIX_MAP_Y;
-	y0 = max(0, y0);
-	return (y0);
-}
-
 void	draw_map(t_cub *cub)
 {
 	int	j;
@@ -75,8 +62,8 @@ void	draw_map(t_cub *cub)
 	int	x0;
 	int	y0;
 
-	x0 = max(0, (int)(cub->player.x - FIX_MAP_X));
-	y0 = fix_y(cub);
+	x0 = cub->player.x0;
+	y0 = cub->player.y0;
 	draw_player(&cub->mini_map, cub->player.x - x0, cub->player.y - y0, GREEN);
 	i = y0 / BLOCK;
 	while (cub->map[i])

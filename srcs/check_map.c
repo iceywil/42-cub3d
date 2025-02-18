@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/18 14:09:00 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:37:22 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	check_map_elem(t_cub *cub, char elem, int i, int j)
 			cub->player.y = i * BLOCK + BLOCK / 2 - PLAYER_SIZ / 2;
 			cub->pos_j = j;
 			cub->pos_i = i;
+			cub->player.x0 = max(0, (int)(cub->player.x - FIX_MAP_X));
+			cub->player.y0 = max(0, (int)(cub->player.y - FIX_MAP_Y));
 			set_direction(cub, elem);
 		}
 		else

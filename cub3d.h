@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/18 15:37:36 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:03:11 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,14 @@ typedef struct s_cub
 	t_img		texture_w;
 	t_img		texture_e;
 	t_player	player;
-	int 		pos_j;
-	int 		pos_i;
+	t_img		*wall_texture;
+	int			pos_j;
+	int			pos_i;
 	int			text_x;
 	int			text_y;
+	float		ray_x;
+	float		ray_y;
+	int			side;
 	double		camera_x;
 	double		ray_dir_x;
 	double		ray_dir_y;
@@ -101,16 +105,7 @@ typedef struct s_cub
 	double		prep_wall_dist;
 	int			step_x;
 	int			step_y;
-	int			side;
 	double		wall_x;
-	int			ray_x;
-	int			ray_y;
-	int			ray_y_start;
-	int			ray_y_end;
-	int			ray_text_x;
-	int			ray_text_y;
-	int			draw_start;
-	int			draw_end;
 }				t_cub;
 
 // INIT STRUCT
@@ -125,9 +120,8 @@ void			parsing(t_cub *cub, char *file);
 void			handle_element(t_cub *cub, char *line);
 void			handle_texture(t_cub *cub, char *line);
 void			handle_colors(t_cub *cub, t_color *rgb, char *line);
-void			check_elements(t_cub *cub);
-
-// MAP
+void			check_elements(t_cub *cub			// printf("NO %f\n", ray_y /*/ BLOCK*/);
+	// printf("NO %f\n", sin(start_x));
 void			handle_map(t_cub *cub);
 void			check_map_space(t_cub *cub, int i, int j);
 void			check_map_elem(t_cub *cub, char elem, int i, int j);
@@ -143,13 +137,16 @@ void			draw_square(t_cub *cub, int x, int y, int color);
 void			clear_image(t_img *img, int height, int width);
 void			draw_map(t_cub *cub);
 bool			touch(t_cub *cub, float px, float py);
-void			draw_line(t_cub *cub, float start_x, int i);
+void			draw_line(t_cub *cub, float start_x, int x);
+void			texture_on_img(t_cub *cub, t_img *texture, int x, int y,
+					int height);
+void			raycasting(t_cub *cub, float ray_x, float ray_y, int x);
 
-//CALC UTILS
+// CALC UTILS
 float			distance(float x, float y);
 float			fixed_dist(t_player player, float x, float y);
 
-//PIXEL UTILS
+// PIXEL UTILS
 void			put_pixel(t_img *img, int x, int y, int color);
 
 // FREE
@@ -175,3 +172,5 @@ void			save_map(t_cub *cub, char *file, char *line, int n);
 void			background(t_cub *cub);
 
 #endif
+			// printf("NO %f\n", ray_y /*/ BLOCK*/);
+			// printf("NO %f\n", sin(start_x));

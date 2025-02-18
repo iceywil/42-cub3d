@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/18 17:03:11 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:04:27 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,7 @@ void			parsing(t_cub *cub, char *file);
 void			handle_element(t_cub *cub, char *line);
 void			handle_texture(t_cub *cub, char *line);
 void			handle_colors(t_cub *cub, t_color *rgb, char *line);
-void			check_elements(t_cub *cub			// printf("NO %f\n", ray_y /*/ BLOCK*/);
-	// printf("NO %f\n", sin(start_x));
+void			check_elements(t_cub *cub);
 void			handle_map(t_cub *cub);
 void			check_map_space(t_cub *cub, int i, int j);
 void			check_map_elem(t_cub *cub, char elem, int i, int j);

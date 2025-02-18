@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/18 17:02:11 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:06:27 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	draw_line(t_cub *cub, float start_x, int x)
 	cub->ray_y = cub->player.y + PLAYER_SIZ / 2;
 	while (1)
 	{
-		put_pixel(&cub->mini_map, cub->ray_x, cub->ray_y, RED);
+		if (x % (WIDTH / 10) == 0)
+			put_pixel(&cub->mini_map, cub->ray_x - cub->player.x0, cub->ray_y - cub->player.y0, RED);
 		cub->ray_x += cos(start_x);
 		if (touch(cub, cub->ray_x, cub->ray_y))
 		{
@@ -64,6 +65,7 @@ void	draw_line(t_cub *cub, float start_x, int x)
 	}
 	raycasting(cub, cub->ray_x, cub->ray_y, x);
 }
+
 
 void	raycasting(t_cub *cub, float ray_x, float ray_y, int x)
 {
@@ -118,36 +120,6 @@ void	raycasting(t_cub *cub, float ray_x, float ray_y, int x)
 			put_pixel(&cub->img, x, start_y, BLUE);
 			start_y++;
 		} */
-}
-/*E ou W: side 1; N ou S: side 0;*/
-void	draw_line(t_cub *cub, float start_x, int i)
-{
-	float	ray_x;
-	float	ray_y;
-	int		side;
-
-	side = 0;
-	ray_x = cub->player.x + PLAYER_SIZ / 2;
-	ray_y = cub->player.y + PLAYER_SIZ / 2;
-	while (1)
-	{
-		if (i % (WIDTH / 10) == 0)
-			put_pixel(&cub->mini_map, ray_x - cub->player.x0, ray_y - cub->player.y0, RED);
-		ray_x += cos(start_x);
-		if (touch(cub, ray_x, ray_y))
-		{
-			side = 1;
-			break ;
-		}
-		ray_y += sin(start_x);
-		side = 0;
-		if (touch(cub, ray_x, ray_y))
-		{
-			side = 0;
-			break ;
-		}
-	}
-	raycasting(cub, ray_x, ray_y, i);
 }
 
 /*on actualise la position et direction du player

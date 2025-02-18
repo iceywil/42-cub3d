@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/18 17:04:27 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:34:22 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ typedef struct s_cub
 	t_img		*wall_texture;
 	int			pos_j;
 	int			pos_i;
-	int			text_x;
-	int			text_y;
 	float		ray_x;
 	float		ray_y;
 	int			side;
@@ -137,9 +135,7 @@ void			clear_image(t_img *img, int height, int width);
 void			draw_map(t_cub *cub);
 bool			touch(t_cub *cub, float px, float py);
 void			draw_line(t_cub *cub, float start_x, int x);
-void			texture_on_img(t_cub *cub, t_img *texture, int x, int y,
-					int height);
-void			raycasting(t_cub *cub, float ray_x, float ray_y, int x);
+void			raycasting(t_cub *cub, t_img *texture, int x);
 
 // CALC UTILS
 float			distance(float x, float y);
@@ -167,9 +163,10 @@ void			init_map(t_cub *cub, char *file, int n);
 void			add_map_line(t_cub *cub, char *line);
 void			save_map(t_cub *cub, char *file, char *line, int n);
 
+//texture
+void			get_texture(t_cub *cub);
+
 // background
 void			background(t_cub *cub);
 
 #endif
-			// printf("NO %f\n", ray_y /*/ BLOCK*/);
-			// printf("NO %f\n", sin(start_x));

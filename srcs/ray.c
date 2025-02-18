@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/18 17:06:27 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:57:30 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,25 @@ void	draw_line(t_cub *cub, float start_x, int x)
 			break ;
 		}
 	}
-	if (cub->side == 1)
-	{
-		if (cub->player.angle >= -PI / 2 && cub->player.angle <= PI / 2)
-			cub->wall_texture = &cub->texture_e;
-		else
-			cub->wall_texture = &cub->texture_w;
-	}
-	else
-	{
-		if (cub->player.angle >= 0 && cub->player.angle <= PI)
-			cub->wall_texture = &cub->texture_n;
-		else
-			cub->wall_texture = &cub->texture_s;
-	}
-	raycasting(cub, cub->ray_x, cub->ray_y, x);
+	// if (cub->side == 1)
+	// {
+	// 	if (start_x >= -PI / 2 && start_x <= PI / 2)
+	// 		cub->wall_texture = &cub->texture_e;
+	// 	else
+	// 		cub->wall_texture = &cub->texture_w;
+	// }
+	// else
+	// {
+	// 	if (start_x >= 0 && start_x <= PI)
+	// 		cub->wall_texture = &cub->texture_n;
+	// 	else
+	// 		cub->wall_texture = &cub->texture_s;
+	// }
+	raycasting(cub, &cub->texture_e, x);
 }
 
 
-void	raycasting(t_cub *cub, float ray_x, float ray_y, int x)
+void	raycasting(t_cub *cub, t_img *texture, int x)
 {
 	float	dist;
 	float	height;
@@ -79,8 +79,8 @@ void	raycasting(t_cub *cub, float ray_x, float ray_y, int x)
 	int		texY;
 	int		color;
 
-	dist = fixed_dist(cub->player, ray_x, ray_y);
-	height = (BLOCK / dist) * (WIDTH / 2);
+	dist = fixed_dist(cub->player, cub->ray_x, cub->ray_y);
+	height = (WALL_SIZ / dist) * (WIDTH / 2);
 	start_y = (HEIGHT - height) / 2;
 	end = start_y + height;
 	// get WallX
@@ -91,35 +91,35 @@ void	raycasting(t_cub *cub, float ray_x, float ray_y, int x)
 		wallX = cub->player.x + dist * cub->ray_x;
 	wallX -= floor((wallX));
 	// x coordinate on the texture
-	texX = (int)(wallX * (double)(cub->wall_texture->width));
+	texX = (int)(wallX * (double)(texture->width));
 	if (cub->side == 0 && cub->ray_x > 0)
-		texX = cub->wall_texture->width - texX - 1;
+		texX = texture->width - texX - 1;
 	if (cub->side == 1 && cub->ray_y < 0)
-		texX = cub->wall_texture->width - texX - 1;
+		texX = texture->width - texX - 1;
 	// How much to increase the texture coordinate per screen pixel
-	step = 1.0 * cub->wall_texture->height / height;
+	step = 1.0 * texture->height / height;
 	// Starting texture coordinate
-	texPos = (start_y - HEIGHT / 2 + height / 2) * step;
+	texPos = (start_y - (HEIGHT - height) / 2) * step;
+	// while (start_y < end)
+	// {
+	// 	// Cast the texture coordinate to integer
+	// 	// and mask with (texHeight- 1) in case of overflow
+	// 	texY = (int)texPos & (texture->height - 1);
+	// 	texPos += step;
+	// 	color = texture->addr[texture->height * texY
+	// 		+ texX];
+	// 	// make color darker for y-sides: R,
+	// 	// G and B byte each divided through two with a "shift" and an "and"
+	// 	if (cub->side == 1)
+	// 		color = (color >> 1) & 8355711;
+	// 	put_pixel(&cub->img, x, start_y, color);
+	// 	start_y++;
+	// }
 	while (start_y < end)
 	{
-		// Cast the texture coordinate to integer
-		// and mask with (texHeight- 1) in case of overflow
-		texY = (int)texPos & (cub->wall_texture->height - 1);
-		texPos += step;
-		color = cub->wall_texture->addr[cub->wall_texture->height * texY
-			+ texX];
-		// make color darker for y-sides: R,
-		// G and B byte each divided through two with a "shift" and an "and"
-		if (cub->side == 1)
-			color = (color >> 1) & 8355711;
-		put_pixel(&cub->img, x, start_y, color);
+		put_pixel(&cub->img, x, start_y, BLUE);
 		start_y++;
 	}
-	/* 	while (start_y < end)
-		{
-			put_pixel(&cub->img, x, start_y, BLUE);
-			start_y++;
-		} */
 }
 
 /*on actualise la position et direction du player
@@ -150,5 +150,6 @@ int	draw_loop(t_cub *cub)
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.data, 0, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_map.data, 0, HEIGHT
 		- MAP_HEIGHT);
+	get_texture(cub);
 	return (0);
 }

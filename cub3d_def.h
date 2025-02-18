@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_def.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/18 16:25:54 by a                ###   ########.fr       */
+/*   Updated: 2025/02/18 19:04:07 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@
 //WINDOW
 # define WIDTH 800//1920  
 # define HEIGHT 600//1080
-# define BLOCK 8 //16
+# define WALL_SIZ 30
 # define MARGIN 5
 
 //MINI MAP
+# define BLOCK 10
 # define MAP_WIDTH WIDTH / 5
 # define MAP_HEIGHT HEIGHT / 5 
 # define MAX_BLOCK_W (MAP_WIDTH / BLOCK) //number of PIXEL to fill one line of minimap
@@ -36,9 +37,9 @@
 # define FIX_MAP_Y (MAX_BLOCK_H * BLOCK / 2)
 
 //PLAYER
-# define SPEED 0.1
-# define ROT_SPEED (PI / 160) 
-# define PLAYER_SIZ (BLOCK / 4)
+# define SPEED 0.03 * BLOCK
+# define ROT_SPEED (PI / 180)
+# define PLAYER_SIZ (BLOCK / 5)
 
 //PIXEL
 # define PIXEL (20 * WIDTH / 1920)

@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: wscherre <wscherre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/18 19:04:45 by a                ###   ########.fr       */
+/*   Updated: 2025/02/18 20:17:04 by wscherre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-/*E ou W: side 1; N ou S: side 0;*/
-void	draw_line(t_cub *cub, float start_x, int x)
-{
-}
-
-void	raycasting(t_cub *cub, float ray_x, float ray_y, int x)
-{
-}
 
 /*on actualise la position et direction du player
 on clear les images
@@ -59,18 +50,20 @@ int	draw_loop(t_cub *cub)
 	double	dirY;
 	double	cameraX;
 
-	posX = 22.0;
-	posY = 11.5; // x and y start position
-	dirX = -1.0;
-	dirY = 0.0; // initial direction vector
-	planeX = 0.0;
-	planeY = 0.66;
 	// the 2d raycaster version of camera plane
 	// the 2d raycaster version of camera plane
 	move_player(&cub->player, cub);
 	clear_image(&cub->mini_map, MAP_HEIGHT, MAP_WIDTH);
 	clear_image(&cub->img, HEIGHT, WIDTH);
 	background(cub);
+	posX = 5;
+	posY = 5;
+	printf("After conversion: posX = %f, posY = %f\n", posX, posY);
+
+	dirX = -1.0;
+	dirY = 0.0; // initial direction vector
+	planeX = 0.0;
+	planeY = 0.66;
 	x = 0;
 	while (x < WIDTH)
 	{
@@ -90,6 +83,7 @@ int	draw_loop(t_cub *cub)
 		int hit = 0; // was there a wall hit?
 		int side;    // was a NS or a EW wall hit?
 		// calculate step and initial sideDist
+		ft_printf("mapX = %d, mapY = %d\n", mapX, mapY);
 		if (rayDirX < 0)
 		{
 			stepX = -1;
@@ -127,7 +121,8 @@ int	draw_loop(t_cub *cub)
 				side = 1;
 			}
 			// Check if ray has hit a wall
-			if (cub->map && cub->map[mapX] && cub->map[mapX][mapY] > 0)
+			if (cub->map[mapX] && cub->map[mapX][mapY]
+				&& cub->map[mapX][mapY] > 0)
 				hit = 1;
 		}
 		// Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!)

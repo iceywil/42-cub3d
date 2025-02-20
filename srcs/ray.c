@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/20 12:57:25 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:28:36 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	draw_line(t_cub *cub, float start_x, int x)
 		else
 			cub->wall_texture = &cub->texture_s;
 	}
-	raycasting(cub, &cub->texture_e, x);
+	raycasting(cub, cub->wall_texture, x);
 }
 
 /*il nous faut la position (dans la map) du mur qui a ete touche : cub->ray_x / BLOCK et cub->ray_y / BLOCK*/
@@ -87,18 +87,11 @@ void	raycasting(t_cub *cub, t_img *texture, int x)
 	/* find the X coordinate*/
 	double wallX; // where exactly the wall was hit
 	if (cub->side == 0) /*nord ou sud*/
-	{
 		wallX = (cub->ray_y) / BLOCK;
-		printf("%i facade NORD ou SUD: wallX = %f\n", x / 80 + 1, wallX);
-	}
 		else /*east ou west*/
-	{
 		wallX = (cub->ray_x) / BLOCK;
-		printf("%i facade EST ou OUEST: wallX = %f\n", x / 80 + 1, wallX);
-	}
 	/*on fait en sort que wall X soit entre 0 et 1 exclu*/
 	wallX -= floor((wallX));
-	printf("%i wallX = %f\n", x / 80 + 1, wallX);
 	// x coordinate on the texture
 	texX = (int)(wallX * (double)(texture->width));
 	// How much to increase the texture coordinate per screen pixel
@@ -109,7 +102,7 @@ void	raycasting(t_cub *cub, t_img *texture, int x)
 		//on fait correpondre au pixel de la texture en Y (en retirant start_y0) puis en X (en multipliant par step)
 		texPos = (start_y - (HEIGHT - height) / 2) * step;
 		texY = texPos; //position dans limage
-		color = texture->addr[texture->width * texY + texX];
+		color = get_pixel(texture, texX, texY);
 		put_pixel(&cub->img, x, start_y, color);
 		texPos += step;
 		start_y++;

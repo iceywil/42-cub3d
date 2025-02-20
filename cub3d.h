@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/20 11:27:46 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:25:12 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ float			fixed_dist(t_player player, float x, float y);
 
 // PIXEL UTILS
 void			put_pixel(t_img *img, int x, int y, int color);
+int				get_pixel(t_img *img, int x, int y);
 
 // FREE
 void			free_cub(t_cub *cub);

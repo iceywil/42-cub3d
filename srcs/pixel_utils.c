@@ -6,11 +6,27 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:28:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/18 14:16:09 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:25:03 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int	get_pixel(t_img *img, int x, int y)
+{
+	unsigned char	color_b;
+	unsigned char	color_g;
+	unsigned char	color_r;
+	int				rgb;
+	
+	color_b = img->addr[y * img->size_line + 1 * (img->bpp / 8)];
+	color_g = img->addr[y * img->size_line + 1 * (img->bpp / 8) + 1];
+	color_r = img->addr[y * img->size_line + 1 * (img->bpp / 8) + 2];
+	rgb = color_r;
+	rgb = (rgb << 8) + color_g;
+	rgb = (rgb << 8) + color_b;
+	return (rgb);
+}
 
 void	put_pixel(t_img *img, int x, int y, int color)
 {

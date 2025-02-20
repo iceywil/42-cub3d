@@ -7,7 +7,7 @@ SO ./textures/wall_2.xpm
 
 WE ./textures/wall_3.xpm
 
-EA ./textures/brick.xpm
+EA ./textures/wall_4.xpm
 
 F 160,82,45
 

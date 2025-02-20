@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/20 15:28:36 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:49:20 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	draw_line(t_cub *cub, float start_x, int x)
 	else
 	{
 		if (start_x >= 0 && start_x < PI)
-			cub->wall_texture = &cub->texture_n;
-		else
 			cub->wall_texture = &cub->texture_s;
+		else
+			cub->wall_texture = &cub->texture_n;
 	}
 	raycasting(cub, cub->wall_texture, x);
 }
@@ -137,5 +137,6 @@ int	draw_loop(t_cub *cub)
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img.data, 0, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->mini_map.data, 0, HEIGHT
 		- MAP_HEIGHT);
+	get_texture(cub);
 	return (0);
 }

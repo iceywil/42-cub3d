@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/18 19:04:07 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:36:04 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 //WINDOW
 # define WIDTH 800//1920  
 # define HEIGHT 600//1080
-# define WALL_SIZ 30
+# define WALL_SIZ 32
 # define MARGIN 5
 
 //MINI MAP
-# define BLOCK 10
+# define BLOCK 16
 # define MAP_WIDTH WIDTH / 5
 # define MAP_HEIGHT HEIGHT / 5 
 # define MAX_BLOCK_W (MAP_WIDTH / BLOCK) //number of PIXEL to fill one line of minimap
@@ -37,8 +37,8 @@
 # define FIX_MAP_Y (MAX_BLOCK_H * BLOCK / 2)
 
 //PLAYER
-# define SPEED 0.03 * BLOCK
-# define ROT_SPEED (PI / 180)
+# define SPEED 0.25 * BLOCK
+# define ROT_SPEED (PI / 64)
 # define PLAYER_SIZ (BLOCK / 5)
 
 //PIXEL

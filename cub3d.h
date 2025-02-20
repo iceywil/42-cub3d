@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/18 18:34:22 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:27:46 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct s_slope
 
 typedef struct s_player
 {
-	float		x;
-	float		y;
+	double		x;
+	double		y;
 	float		angle;
 	int			x0;
 	int			y0;
@@ -88,8 +88,8 @@ typedef struct s_cub
 	t_img		*wall_texture;
 	int			pos_j;
 	int			pos_i;
-	float		ray_x;
-	float		ray_y;
+	double		ray_x;
+	double		ray_y;
 	int			side;
 	double		camera_x;
 	double		ray_dir_x;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/18 17:04:27 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:42:41 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
+# include <time.h>
 
 typedef struct s_slope
 {
@@ -44,7 +45,6 @@ typedef struct s_player
 	bool		key_down;
 	bool		key_left;
 	bool		key_right;
-
 	bool		left_rotate;
 	bool		right_rotate;
 }				t_player;
@@ -94,8 +94,6 @@ typedef struct s_cub
 	float		ray_y;
 	int			side;
 	double		camera_x;
-	double		ray_dir_x;
-	double		ray_dir_y;
 	double		delta_dist_x;
 	double		delta_dist_y;
 	int			map_x;
@@ -106,6 +104,20 @@ typedef struct s_cub
 	int			step_x;
 	int			step_y;
 	double		wall_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		pos_x;
+	double		pos_y;
+	double		move_speed;
+	double		old_dir_x;
+	double		rot_speed;
+	double		old_plane_x;
+	double oldTime;
+
 }				t_cub;
 
 // INIT STRUCT
@@ -128,24 +140,22 @@ void			set_direction(t_cub *cub, char elem);
 void			draw_player(t_img *img, int x, int y, int color);
 
 // RAY
-int				key_press(int keycode, t_cub *cub);
-int				key_release(int keycode, t_player *player);
-void			move_player(t_player *player, t_cub *cub);
-int				draw_loop(t_cub *cub);
+int				key_press(int key, t_cub *cub);
+int				key_release(int key, t_cub *cub);
+void	move_player(t_cub *cub);
 void			draw_square(t_cub *cub, int x, int y, int color);
-void			clear_image(t_img *img, int height, int width);
+void			clear_image(t_img *img);
 void			draw_map(t_cub *cub);
-bool			touch(t_cub *cub, float px, float py);
-void			draw_line(t_cub *cub, float start_x, int x);
-void			texture_on_img(t_cub *cub, t_img *texture, int x, int y,
-					int height);
-void			raycasting(t_cub *cub, float ray_x, float ray_y, int x);
+int	ray_loop(t_cub *cub);
 
 // CALC UTILS
 float			distance(float x, float y);
 float			fixed_dist(t_player player, float x, float y);
+unsigned long	get_time(void);
 
 // PIXEL UTILS
+void			draw_line(t_img *img, int x, int drawStart, int drawEnd,
+					int color);
 void			put_pixel(t_img *img, int x, int y, int color);
 
 // FREE
@@ -171,5 +181,6 @@ void			save_map(t_cub *cub, char *file, char *line, int n);
 void			background(t_cub *cub);
 
 #endif
-			// printf("NO %f\n", ray_y /*/ BLOCK*/);
-			// printf("NO %f\n", sin(start_x));
+
+// printf("NO %f\n", ray_y /*/ BLOCK*/);
+// printf("NO %f\n", sin(start_x));

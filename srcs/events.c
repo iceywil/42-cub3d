@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 15:59:18 by a                 #+#    #+#             */
-/*   Updated: 2025/02/18 14:09:13 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:43:05 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	player_update(int key, t_player *player)
+/* void	player_update(int key, t_player *player)
 {
 	if (key == W)
 		player->key_up = true;
@@ -26,9 +26,9 @@ void	player_update(int key, t_player *player)
 		player->left_rotate = true;
 	if (key == RIGHT)
 		player->right_rotate = true;
-}
+} */
 
-int	key_press(int key, t_cub *cub)
+/* int	key_press(int key, t_cub *cub)
 {
 	if (key == W || key == S || key == A || key == D)
 		player_update(key, &cub->player);
@@ -58,3 +58,4 @@ int	key_release(int keycode, t_player *player)
 		player->right_rotate = false;
 	return (0);
 }
+ */

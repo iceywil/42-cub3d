@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/18 15:27:43 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:44:43 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,15 @@ void	init_two(t_cub *cub)
 	cub->texture_e.data = NULL;
 	cub->pos_j = -1;
 	cub->pos_i = -1;
+	cub->pos_x = 7;
+	cub->pos_y = 7; // x and y start position
+	cub->dir_x = -1;
+	cub->dir_y = 0; // initial direction vector
+	cub->plane_x = 0;
+	cub->plane_y = 0.66;
+	cub->move_speed = 1;
+		cub->rot_speed = 1;
+	cub->oldTime = 0;
 }
 
 void	init_player(t_cub *cub)

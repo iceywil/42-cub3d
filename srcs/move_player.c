@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:11:07 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/18 15:38:39 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:38:24 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
-
-float	new_y(t_player *player)
+/* float	new_y(t_player *player)
 {
 	float	y;
 
@@ -93,3 +91,98 @@ void	move_player(t_player *player, t_cub *cub)
 	player->y0 = max(0, (int)(y - FIX_MAP_Y));
 }
 
+
+ */
+
+#include "../cub3d.h"
+
+int	key_press(int key, t_cub *cub)
+{
+	if (key == W)
+		cub->player.key_up = true;
+	if (key == S)
+		cub->player.key_down = true;
+	if (key == A)
+		cub->player.key_left = true;
+	if (key == D)
+		cub->player.key_right = true;
+	if (key == LEFT)
+		cub->player.left_rotate = true;
+	if (key == RIGHT)
+		cub->player.right_rotate = true;
+	else
+		ft_printf("key %i has been pressed\n", key);
+	return (0);
+}
+
+int	key_release(int key, t_cub *cub)
+{
+	if (key == W)
+		cub->player.key_up = false;
+	if (key == S)
+		cub->player.key_down = false;
+	if (key == A)
+		cub->player.key_left = false;
+	if (key == D)
+		cub->player.key_right = false;
+	if (key == LEFT)
+		cub->player.left_rotate = false;
+	if (key == RIGHT)
+		cub->player.right_rotate = false;
+	return (0);
+}
+
+void	move_player(t_cub *cub)
+{
+	// move forward if no wall in front of you
+	if (cub->player.key_up)
+	{
+		if (cub->map[(int)(cub->pos_x + cub->dir_x
+				* cub->move_speed)][(int)cub->pos_y] == 0)
+			cub->pos_x += cub->dir_x * cub->move_speed;
+		if (cub->map[(int)cub->pos_x][(int)(cub->pos_y + cub->dir_y
+				* cub->move_speed)] == 0)
+			cub->pos_y += cub->dir_y * cub->move_speed;
+		printf("pos_x %f\n", cub->pos_x);
+	}
+	// move backwards if no wall behind you
+	if (cub->player.key_down)
+	{
+		if (cub->map[(int)(cub->pos_x - cub->dir_x
+				* cub->move_speed)][(int)cub->pos_y] == 0)
+			cub->pos_x -= cub->dir_x * cub->move_speed;
+		if (cub->map[(int)cub->pos_x][(int)(cub->pos_y - cub->dir_y
+				* cub->move_speed)] == 0)
+			cub->pos_y -= cub->dir_y * cub->move_speed;
+	}
+	// rotate to the right
+	if (cub->player.key_right)
+	{
+		// both camera direction and camera plane must be rotated
+		cub->old_dir_x = cub->dir_x;
+		cub->dir_x = cub->dir_x * cos(-cub->rot_speed) - cub->dir_y
+			* sin(-cub->rot_speed);
+		cub->dir_y = cub->old_dir_x * sin(-cub->rot_speed) + cub->dir_y
+			* cos(-cub->rot_speed);
+		cub->old_plane_x = cub->plane_x;
+		cub->plane_x = cub->plane_x * cos(-cub->rot_speed) - cub->plane_y
+			* sin(-cub->rot_speed);
+		cub->plane_y = cub->old_plane_x * sin(-cub->rot_speed) + cub->plane_y
+			* cos(-cub->rot_speed);
+	}
+	// rotate to the left
+	if (cub->player.key_left)
+	{
+		// both camera direction and camera plane must be rotated
+		cub->old_dir_x = cub->dir_x;
+		cub->dir_x = cub->dir_x * cos(cub->rot_speed) - cub->dir_y
+			* sin(cub->rot_speed);
+		cub->dir_y = cub->old_dir_x * sin(cub->rot_speed) + cub->dir_y
+			* cos(cub->rot_speed);
+		cub->old_plane_x = cub->plane_x;
+		cub->plane_x = cub->plane_x * cos(cub->rot_speed) - cub->plane_y
+			* sin(cub->rot_speed);
+		cub->plane_y = cub->old_plane_x * sin(cub->rot_speed) + cub->plane_y
+			* cos(cub->rot_speed);
+	}
+}

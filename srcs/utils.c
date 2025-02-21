@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:44:35 by a                 #+#    #+#             */
-/*   Updated: 2025/02/18 14:06:48 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:41:15 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include <stdio.h>
 
-void	clear_image(t_img *img, int height, int width)
+void	clear_image(t_img *img)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while (y < height)
+	while (y < img->height)
 	{
 		x = 0;
-		while (x < width)
+		while (x < img->width)
 		{
 			put_pixel(img, x, y, 0);
 			x++;

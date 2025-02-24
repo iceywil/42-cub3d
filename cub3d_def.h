@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/24 15:22:47 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:33:19 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@
 # define BLOCK 16
 # define MAP_WIDTH WIDTH / 5
 # define MAP_HEIGHT HEIGHT / 5 
-# define MAX_BLOCK_W (MAP_WIDTH / BLOCK) //number of PIXEL to fill one line of minimap
-# define MAX_BLOCK_H (MAP_HEIGHT / BLOCK) //number of PIXEL to fill one column of minimap
+//number of PIXEL to fill one line of minimap
+# define MAX_BLOCK_W (MAP_WIDTH / BLOCK)
+//number of PIXEL to fill one column of minimap
+# define MAX_BLOCK_H (MAP_HEIGHT / BLOCK)
 # define FIX_MAP_X (MAX_BLOCK_W * BLOCK / 2)
 # define FIX_MAP_Y (MAX_BLOCK_H * BLOCK / 2)
 
@@ -49,7 +51,6 @@
 # define ANGLE_ROT (M_PI / 16)
 # define ZOOM_PLUS 1.10
 # define ZOOM_MINUS 0.95
-# define TRANS (PIXEL / 2)
 # define DEFAULT_COLOR YELLOW
 
 //CODE CALCULATION

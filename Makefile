@@ -6,7 +6,7 @@
 #    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/24 15:25:33 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/24 15:34:57 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ C_FILES     =   srcs/main.c \
 				srcs/textures.c \
 				srcs/draw_loop.c \
 
-all:        $(NAME)
+all:        update $(NAME)
 
 update:
 	@git submodule update --init --recursive
@@ -70,6 +70,7 @@ clean:
 
 fclean:     clean
 	rm -rf $(NAME)
+	rm -rf $(MLX_PATH)
 	make fclean -C $(LIBFT_PATH)
 
 obj/%.o : %.c | obj

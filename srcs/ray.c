@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/24 12:28:14 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/24 14:01:36 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,9 @@ bool	touch(t_cub *cub, float px, float py)
 		return (true);
 	return (false);
 }
-
-/*E ou W: side 1; N ou S: side 0;*/
-void	draw_line(t_cub *cub, float start_x, int x)
+/*on avance le rayon jusqua ce que le rayon touche un mur*/
+void	calc_side(t_cub *cub, float start_x, int x)
 {
-	int	side;
-
-	cub->camera_x = 2 * x / (double) WIDTH - 1;
 	cub->ray_x = cub->player.x + PLAYER_SIZ / 2;
 	cub->ray_y = cub->player.y + PLAYER_SIZ / 2;
 	while (1)
@@ -50,16 +46,26 @@ void	draw_line(t_cub *cub, float start_x, int x)
 			break ;
 		}
 	}
+}
+
+/*E ou W: side 1; N ou S: side 0;*/
+void	draw_line(t_cub *cub, float start_x, int x)
+{
+	cub->camera_x = 2 * cub->x / (double)WIDTH - 1;
+	cub->ray_dir_x = cos(cub->player.angle) + cos(cub->player.angle + M_PI / 2) * cub->camera_x;
+	cub->ray_dir_y = sin(cub->player.angle) + sin(cub->player.angle + M_PI / 2) * cub->camera_x;
 	if (cub->side == 1)
 	{
-		if (start_x >= -PI / 2 && start_x < PI / 2)
+		//if (start_x >= -PI / 2 && start_x <= PI / 2)
+		if (cos(start_x) >= 0)
 			cub->wall_texture = &cub->texture_e;
 		else
 			cub->wall_texture = &cub->texture_w;
 	}
-	else
+	else //side == 0 (N ou S)
 	{
-		if (start_x >= 0 && start_x < PI)
+		//if (start_x > 0 && start_x <= PI)
+		if (sin(start_x) >= 0)
 			cub->wall_texture = &cub->texture_s;
 		else
 			cub->wall_texture = &cub->texture_n;
@@ -71,56 +77,55 @@ void	draw_line(t_cub *cub, float start_x, int x)
 void	raycasting(t_cub *cub, t_img *texture, int x)
 {
 	float	dist;
+	double	step;
+	int		texY;
+	int		color;
 	float	height;
 	int		start_y;
 	int		end;
 	int		texX;
-	double	step;
 	double	texPos;
-	int		texY;
-	int		color;
-	double	fin_du_mur_touche;
-
+	double  frac;
+	
 	dist = fixed_dist(cub->player, cub->ray_x, cub->ray_y);
 	height = (WALL_SIZ / dist) * (WIDTH / 2);
 	start_y = (HEIGHT - height) / 2;
 	end = start_y + height;
-	double	tmp;
-	double  frac;
 	if (cub->side == 0) /*horizontal : nord ou sud*/
-	{
-		tmp = (cub->ray_x - cub->player.x0) / BLOCK;
-		frac = tmp - (int)((cub->ray_x - cub->player.x0) / BLOCK);
-	}
+	frac = (cub->ray_x - (double)cub->player.x0) / BLOCK - (int)((cub->ray_x - cub->player.x0) / BLOCK);
 	else /*vertical : est ou ouest*/
-	{
-		tmp = (cub->ray_y - cub->player.y0) / BLOCK;
-		frac = tmp - (int)((cub->ray_y - cub->player.y0) / BLOCK);
-	}
-	texX = frac * cub->wall_texture->width;
-	//x coordinate on the texture
-	printf("map[%i][%i], ", (int)(cub->ray_y - cub->player.y0) / BLOCK, (int)(cub->ray_x - cub->player.x0) / BLOCK);
-	//How much to increase the texture coordinate per screen pixel
-	printf("textX = %i / texture_width = %i;\n", texX, cub->wall_texture->width);
+	frac = (cub->ray_y - (double)cub->player.y0) / BLOCK - (int)((cub->ray_y - cub->player.y0) / BLOCK);
+	texX = (int)(frac * (double)cub->wall_texture->width);
+	texPos = (start_y - (HEIGHT - height) / 2) * step;
+	// double wallX;
 	step = texture->height / height;
-	//Starting texture coordinate
-	while (start_y < end)
-	{
-		//on fait correpondre au pixel de la texture en Y (en retirant start_y0) puis en X (en multipliant par step)
-		texPos = (start_y - (HEIGHT - height) / 2) * step;
-		texY = texPos; //position dans limage
-		color = get_pixel(texture, texX, texY);
-		put_pixel(&cub->img, x, start_y, color);
-		texPos += step;
-		start_y++;
-	}
-	// while (start_y < end)
-	// {
-	// 	put_pixel(&cub->img, x, start_y, BLUE);
-	// 	texPos += step;
-	// 	start_y++;
-	// }
+	// if (cub->side == 0)
+	// 	wallX = cub->player.x + dist * (cub->ray_x - cub->player.x0);
+	// else
+	// 	wallX = cub->player.y + dist * (cub->ray_y - cub->player.y0);
+	// wallX -= floor((wallX));
+	// texX = (int)(wallX * (double)(cub->wall_texture->width));
+	if (cub->side == 0 && cub->ray_x > 0)
+		texX = cub->wall_texture->width - texX - 1;
+	if (cub->side == 1 && cub->ray_y < 0)
+		texX = cub->wall_texture->width - texX - 1;
+//cub->ray_dir_x
+while (start_y < end)
+{
+	texY = (int)texPos & (cub->wall_texture->height - 1);
+	texPos += step;
+	color = get_pixel(texture, texX, texY);
+	put_pixel(&cub->img, x, start_y, color);
+	start_y++;
 }
+}
+
+// void	draw_tex(t_cub *cub, t_img *texture, int x)
+// {
+
+// 	//Starting texture coordinate
+
+// }
 
 /*on actualise la position et direction du player
 on clear les images
@@ -139,11 +144,13 @@ int	draw_loop(t_cub *cub)
 	background(cub);
 	draw_map(cub);
 	fov = M_PI / 3;
+	printf("player angle = %f; player (%f, %f)\n", cub->player.angle, cub->player.x, cub->player.y);
 	fraction = fov / WIDTH;
 	start_x = cub->player.angle - fov / 2;
 	x = 0;
 	while (x < WIDTH)
 	{
+		calc_side(cub, start_x, x);
 		draw_line(cub, start_x, x);
 		start_x += fraction;
 		x++;

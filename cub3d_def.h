@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/20 16:27:26 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/24 12:54:23 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # define UNSET_DOUBLE 9999
 
 //WINDOW
-# define WIDTH 1920  
-# define HEIGHT 1080
+# define WIDTH 800//1920  
+# define HEIGHT 600//1080
 # define WALL_SIZ 32
 # define MARGIN 5
 
@@ -37,8 +37,8 @@
 # define FIX_MAP_Y (MAX_BLOCK_H * BLOCK / 2)
 
 //PLAYER
-# define SPEED 10 //0.25 * BLOCK
-# define ROT_SPEED (PI / 64)
+# define SPEED 0.1 * BLOCK
+# define ROT_SPEED (PI / 120)
 # define PLAYER_SIZ (BLOCK / 5)
 
 //PIXEL

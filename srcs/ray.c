@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/20 15:49:20 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/24 12:28:14 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	draw_line(t_cub *cub, float start_x, int x)
 {
 	int	side;
 
+	cub->camera_x = 2 * x / (double) WIDTH - 1;
 	cub->ray_x = cub->player.x + PLAYER_SIZ / 2;
 	cub->ray_y = cub->player.y + PLAYER_SIZ / 2;
 	while (1)
@@ -84,19 +85,25 @@ void	raycasting(t_cub *cub, t_img *texture, int x)
 	height = (WALL_SIZ / dist) * (WIDTH / 2);
 	start_y = (HEIGHT - height) / 2;
 	end = start_y + height;
-	/* find the X coordinate*/
-	double wallX; // where exactly the wall was hit
-	if (cub->side == 0) /*nord ou sud*/
-		wallX = (cub->ray_y) / BLOCK;
-		else /*east ou west*/
-		wallX = (cub->ray_x) / BLOCK;
-	/*on fait en sort que wall X soit entre 0 et 1 exclu*/
-	wallX -= floor((wallX));
-	// x coordinate on the texture
-	texX = (int)(wallX * (double)(texture->width));
-	// How much to increase the texture coordinate per screen pixel
+	double	tmp;
+	double  frac;
+	if (cub->side == 0) /*horizontal : nord ou sud*/
+	{
+		tmp = (cub->ray_x - cub->player.x0) / BLOCK;
+		frac = tmp - (int)((cub->ray_x - cub->player.x0) / BLOCK);
+	}
+	else /*vertical : est ou ouest*/
+	{
+		tmp = (cub->ray_y - cub->player.y0) / BLOCK;
+		frac = tmp - (int)((cub->ray_y - cub->player.y0) / BLOCK);
+	}
+	texX = frac * cub->wall_texture->width;
+	//x coordinate on the texture
+	printf("map[%i][%i], ", (int)(cub->ray_y - cub->player.y0) / BLOCK, (int)(cub->ray_x - cub->player.x0) / BLOCK);
+	//How much to increase the texture coordinate per screen pixel
+	printf("textX = %i / texture_width = %i;\n", texX, cub->wall_texture->width);
 	step = texture->height / height;
-	// Starting texture coordinate
+	//Starting texture coordinate
 	while (start_y < end)
 	{
 		//on fait correpondre au pixel de la texture en Y (en retirant start_y0) puis en X (en multipliant par step)
@@ -107,6 +114,12 @@ void	raycasting(t_cub *cub, t_img *texture, int x)
 		texPos += step;
 		start_y++;
 	}
+	// while (start_y < end)
+	// {
+	// 	put_pixel(&cub->img, x, start_y, BLUE);
+	// 	texPos += step;
+	// 	start_y++;
+	// }
 }
 
 /*on actualise la position et direction du player
@@ -119,6 +132,7 @@ int	draw_loop(t_cub *cub)
 	int		i;
 	float	fov;
 	int x;
+
 	move_player(&cub->player, cub);
 	clear_image(&cub->img, HEIGHT, WIDTH);
 	clear_image(&cub->mini_map, MAP_HEIGHT, MAP_WIDTH);

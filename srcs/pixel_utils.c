@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:28:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/20 15:25:03 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/24 12:31:02 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	get_pixel(t_img *img, int x, int y)
 	unsigned char	color_r;
 	int				rgb;
 	
-	color_b = img->addr[y * img->size_line + 1 * (img->bpp / 8)];
-	color_g = img->addr[y * img->size_line + 1 * (img->bpp / 8) + 1];
-	color_r = img->addr[y * img->size_line + 1 * (img->bpp / 8) + 2];
+	color_b = img->addr[y * img->size_line + x * (img->bpp / 8)];
+	color_g = img->addr[y * img->size_line + x * (img->bpp / 8) + 1];
+	color_r = img->addr[y * img->size_line + x * (img->bpp / 8) + 2];
 	rgb = color_r;
 	rgb = (rgb << 8) + color_g;
 	rgb = (rgb << 8) + color_b;

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/20 15:25:12 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/24 14:09:34 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,8 @@ void			draw_square(t_cub *cub, int x, int y, int color);
 void			clear_image(t_img *img, int height, int width);
 void			draw_map(t_cub *cub);
 bool			touch(t_cub *cub, float px, float py);
-void			draw_line(t_cub *cub, float start_x, int x);
-void			raycasting(t_cub *cub, t_img *texture, int x);
+void			hit_texture(t_cub *cub, float start_x, int x);
+void			draw_line(t_cub *cub, t_img *texture, int x);
 
 // CALC UTILS
 float			distance(float x, float y);

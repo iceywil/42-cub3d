@@ -6,7 +6,7 @@
 #    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/24 15:34:57 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/24 15:47:48 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,7 @@ $(NAME):    $(LIBFT_LIB) $(H_FILES) $(OBJS)
 	@$(MLX_MAKE)
 	@$(CC) $(OBJS) $(FLAG) $(FLAG_MLX) $(LIBFT_LIB) -o $(NAME)
 	@echo "\033[1;32m""🎉 compilation of $(NAME): ""SUCCESS !🎉""\033[0m"
+
 clean:
 	$(MLX_MAKE) clean
 	make clean -C $(LIBFT_PATH)
@@ -70,7 +71,6 @@ clean:
 
 fclean:     clean
 	rm -rf $(NAME)
-	rm -rf $(MLX_PATH)
 	make fclean -C $(LIBFT_PATH)
 
 obj/%.o : %.c | obj

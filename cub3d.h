@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/24 15:26:02 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:28:04 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,6 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
-
-typedef struct s_slope
-{
-	double		x_a;
-	double		x_b;
-	double		y_a;
-	double		y_b;
-	double		dx;
-	double		dy;
-	double		p;
-	int			i;
-	int			j;
-}				t_slope;
 
 typedef struct s_player
 {

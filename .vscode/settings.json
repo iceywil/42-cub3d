@@ -14,6 +14,7 @@
 		"queue": "c",
 		"stack": "c",
 		"unordered_map": "c",
-		"*.tcc": "c"
+		"*.tcc": "c",
+		"mlx.h": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/02/21 23:42:41 by a                ###   ########.fr       */
+/*   Updated: 2025/02/24 05:31:49 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,19 @@ typedef struct s_cub
 	double		old_dir_x;
 	double		rot_speed;
 	double		old_plane_x;
-	double oldTime;
+	double		oldTime;
+	int			hit;
+	double		perp_wall_dist;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	int			tex_x;
+	int			key_up;
+	int			key_down;
+	int			key_left;
+	int			key_right;
+	int			left_rotate;
+	int			right_rotate;
 
 }				t_cub;
 
@@ -137,16 +149,31 @@ void			handle_map(t_cub *cub);
 void			check_map_space(t_cub *cub, int i, int j);
 void			check_map_elem(t_cub *cub, char elem, int i, int j);
 void			set_direction(t_cub *cub, char elem);
-void			draw_player(t_img *img, int x, int y, int color);
 
-// RAY
+// MOVES
 int				key_press(int key, t_cub *cub);
 int				key_release(int key, t_cub *cub);
-void	move_player(t_cub *cub);
+void			move_player(t_cub *cub);
+
+// INIT MAP
+int				init_max(t_cub *cub, int fd, int n);
+void			init_map(t_cub *cub, char *file, int n);
+void			add_map_line(t_cub *cub, char *line);
+void			save_map(t_cub *cub, char *file, char *line, int n);
+
+// MINI MAP
 void			draw_square(t_cub *cub, int x, int y, int color);
 void			clear_image(t_img *img);
 void			draw_map(t_cub *cub);
-int	ray_loop(t_cub *cub);
+void			draw_player(t_img *img, int x, int y, int color);
+
+// RAY CALCS
+void			calc_side_dist(t_cub *cub);
+void			calc_side(t_cub *cub);
+void			calc_perp_wall(t_cub *cub);
+void			draw_tex(t_cub *cub);
+int				ray_loop(t_cub *cub);
+void			background(t_cub *cub);
 
 // CALC UTILS
 float			distance(float x, float y);
@@ -154,7 +181,7 @@ float			fixed_dist(t_player player, float x, float y);
 unsigned long	get_time(void);
 
 // PIXEL UTILS
-void			draw_line(t_img *img, int x, int drawStart, int drawEnd,
+void			draw_line(t_img *img, int x, int draw_start, int draw_end,
 					int color);
 void			put_pixel(t_img *img, int x, int y, int color);
 
@@ -171,16 +198,4 @@ int				line_is_empty(t_cub *cub, char *line);
 void			print_mlx(t_cub *cub);
 int				max(int a, int b);
 
-// INIT MAP
-int				init_max(t_cub *cub, int fd, int n);
-void			init_map(t_cub *cub, char *file, int n);
-void			add_map_line(t_cub *cub, char *line);
-void			save_map(t_cub *cub, char *file, char *line, int n);
-
-// background
-void			background(t_cub *cub);
-
 #endif
-
-// printf("NO %f\n", ray_y /*/ BLOCK*/);
-// printf("NO %f\n", sin(start_x));

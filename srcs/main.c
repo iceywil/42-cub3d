@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:52 by a                 #+#    #+#             */
-/*   Updated: 2025/02/21 23:42:28 by a                ###   ########.fr       */
+/*   Updated: 2025/02/24 05:42:57 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	parsing(&cub, argv[1]);
 	init_mlx(&cub);
 	print_mlx(&cub);
-	mlx_hook(cub.win, KEYPRESS_EVENT, 1L << 0, key_press, &cub);
+	mlx_hook(cub.win, 2, 1L << 0, key_press, &cub);
 	mlx_hook(cub.win, 3, 1L << 1, key_release, &cub.player);
 	mlx_hook(cub.win, 17, 1L << 17, close_all, &cub);
 	mlx_loop_hook(cub.mlx, ray_loop, &cub);

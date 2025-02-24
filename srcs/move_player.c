@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_player.c                                      :+:      :+:    :+:   */
+/*   move_c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:11:07 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/21 23:38:24 by a                ###   ########.fr       */
+/*   Updated: 2025/02/24 05:32:19 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,93 +96,113 @@ void	move_player(t_player *player, t_cub *cub)
 
 #include "../cub3d.h"
 
+// Define key codes for your environment
+#define W_KEY 119
+#define S_KEY 115
+#define A_KEY 97
+#define D_KEY 100
+#define LEFT_KEY 65361
+#define RIGHT_KEY 65363
+
 int	key_press(int key, t_cub *cub)
 {
-	if (key == W)
-		cub->player.key_up = true;
-	if (key == S)
-		cub->player.key_down = true;
-	if (key == A)
-		cub->player.key_left = true;
-	if (key == D)
-		cub->player.key_right = true;
-	if (key == LEFT)
-		cub->player.left_rotate = true;
-	if (key == RIGHT)
-		cub->player.right_rotate = true;
-	else
-		ft_printf("key %i has been pressed\n", key);
+	ft_printf("Key pressed: %d\n", key);
+	if (key == W_KEY)
+		cub->key_up = true;
+	else if (key == S_KEY)
+		cub->key_down = true;
+	else if (key == A_KEY)
+		cub->key_left = true;
+	else if (key == D_KEY)
+		cub->key_right = true;
+	else if (key == LEFT_KEY)
+		cub->left_rotate = true;
+	else if (key == RIGHT_KEY)
+		cub->right_rotate = true;
 	return (0);
 }
 
 int	key_release(int key, t_cub *cub)
 {
-	if (key == W)
-		cub->player.key_up = false;
-	if (key == S)
-		cub->player.key_down = false;
-	if (key == A)
-		cub->player.key_left = false;
-	if (key == D)
-		cub->player.key_right = false;
-	if (key == LEFT)
-		cub->player.left_rotate = false;
-	if (key == RIGHT)
-		cub->player.right_rotate = false;
+	if (key == W_KEY)
+		cub->key_up = false;
+	else if (key == S_KEY)
+		cub->key_down = false;
+	else if (key == A_KEY)
+		cub->key_left = false;
+	else if (key == D_KEY)
+		cub->key_right = false;
+	else if (key == LEFT_KEY)
+		cub->left_rotate = false;
+	else if (key == RIGHT_KEY)
+		cub->right_rotate = false;
+	ft_printf("Key released: %d\n", cub->key_up);
+
 	return (0);
 }
 
 void	move_player(t_cub *cub)
 {
-	// move forward if no wall in front of you
-	if (cub->player.key_up)
+	// Debugging output
+	//ft_printf("Player position: (%f, %f)\n", cub->pos_x, cub->pos_y);
+	ft_printf("Key states: up=%d, down=%d, left=%d, right=%d\n",
+		cub->key_up, cub->key_down, cub->key_left, cub->key_right);
+
+	// Handle forward movement
+	if (cub->key_up)
 	{
-		if (cub->map[(int)(cub->pos_x + cub->dir_x
-				* cub->move_speed)][(int)cub->pos_y] == 0)
+		if (cub->map[(int)(cub->pos_x + cub->dir_x * cub->move_speed)][(int)cub->pos_y] == '0')
 			cub->pos_x += cub->dir_x * cub->move_speed;
-		if (cub->map[(int)cub->pos_x][(int)(cub->pos_y + cub->dir_y
-				* cub->move_speed)] == 0)
+		if (cub->map[(int)cub->pos_x][(int)(cub->pos_y + cub->dir_y * cub->move_speed)] == '0')
 			cub->pos_y += cub->dir_y * cub->move_speed;
-		printf("pos_x %f\n", cub->pos_x);
 	}
-	// move backwards if no wall behind you
-	if (cub->player.key_down)
+
+	// Handle backward movement
+	if (cub->key_down)
 	{
-		if (cub->map[(int)(cub->pos_x - cub->dir_x
-				* cub->move_speed)][(int)cub->pos_y] == 0)
+		if (cub->map[(int)(cub->pos_x - cub->dir_x * cub->move_speed)][(int)cub->pos_y] == '0')
 			cub->pos_x -= cub->dir_x * cub->move_speed;
-		if (cub->map[(int)cub->pos_x][(int)(cub->pos_y - cub->dir_y
-				* cub->move_speed)] == 0)
+		if (cub->map[(int)cub->pos_x][(int)(cub->pos_y - cub->dir_y * cub->move_speed)] == '0')
 			cub->pos_y -= cub->dir_y * cub->move_speed;
 	}
-	// rotate to the right
-	if (cub->player.key_right)
+
+	// Handle left strafe
+	if (cub->key_left)
 	{
-		// both camera direction and camera plane must be rotated
-		cub->old_dir_x = cub->dir_x;
-		cub->dir_x = cub->dir_x * cos(-cub->rot_speed) - cub->dir_y
-			* sin(-cub->rot_speed);
-		cub->dir_y = cub->old_dir_x * sin(-cub->rot_speed) + cub->dir_y
-			* cos(-cub->rot_speed);
-		cub->old_plane_x = cub->plane_x;
-		cub->plane_x = cub->plane_x * cos(-cub->rot_speed) - cub->plane_y
-			* sin(-cub->rot_speed);
-		cub->plane_y = cub->old_plane_x * sin(-cub->rot_speed) + cub->plane_y
-			* cos(-cub->rot_speed);
+		if (cub->map[(int)(cub->pos_x - cub->dir_y * cub->move_speed)][(int)cub->pos_y] == '0')
+			cub->pos_x -= cub->dir_y * cub->move_speed;
+		if (cub->map[(int)cub->pos_x][(int)(cub->pos_y + cub->dir_x * cub->move_speed)] == '0')
+			cub->pos_y += cub->dir_x * cub->move_speed;
 	}
-	// rotate to the left
-	if (cub->player.key_left)
+
+	// Handle right strafe
+	if (cub->key_right)
 	{
-		// both camera direction and camera plane must be rotated
+		if (cub->map[(int)(cub->pos_x + cub->dir_y * cub->move_speed)][(int)cub->pos_y] == '0')
+			cub->pos_x += cub->dir_y * cub->move_speed;
+		if (cub->map[(int)cub->pos_x][(int)(cub->pos_y - cub->dir_x * cub->move_speed)] == '0')
+			cub->pos_y -= cub->dir_x * cub->move_speed;
+	}
+
+	// Handle left rotation
+	if (cub->left_rotate)
+	{
 		cub->old_dir_x = cub->dir_x;
-		cub->dir_x = cub->dir_x * cos(cub->rot_speed) - cub->dir_y
-			* sin(cub->rot_speed);
-		cub->dir_y = cub->old_dir_x * sin(cub->rot_speed) + cub->dir_y
-			* cos(cub->rot_speed);
+		cub->dir_x = cub->dir_x * cos(-cub->rot_speed) - cub->dir_y * sin(-cub->rot_speed);
+		cub->dir_y = cub->old_dir_x * sin(-cub->rot_speed) + cub->dir_y * cos(-cub->rot_speed);
 		cub->old_plane_x = cub->plane_x;
-		cub->plane_x = cub->plane_x * cos(cub->rot_speed) - cub->plane_y
-			* sin(cub->rot_speed);
-		cub->plane_y = cub->old_plane_x * sin(cub->rot_speed) + cub->plane_y
-			* cos(cub->rot_speed);
+		cub->plane_x = cub->plane_x * cos(-cub->rot_speed) - cub->plane_y * sin(-cub->rot_speed);
+		cub->plane_y = cub->old_plane_x * sin(-cub->rot_speed) + cub->plane_y * cos(-cub->rot_speed);
+	}
+
+	// Handle right rotation
+	if (cub->right_rotate)
+	{
+		cub->old_dir_x = cub->dir_x;
+		cub->dir_x = cub->dir_x * cos(cub->rot_speed) - cub->dir_y * sin(cub->rot_speed);
+		cub->dir_y = cub->old_dir_x * sin(cub->rot_speed) + cub->dir_y * cos(cub->rot_speed);
+		cub->old_plane_x = cub->plane_x;
+		cub->plane_x = cub->plane_x * cos(cub->rot_speed) - cub->plane_y * sin(cub->rot_speed);
+		cub->plane_y = cub->old_plane_x * sin(cub->rot_speed) + cub->plane_y * cos(cub->rot_speed);
 	}
 }

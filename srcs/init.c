@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/21 23:44:43 by a                ###   ########.fr       */
+/*   Updated: 2025/02/24 05:33:55 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,20 @@ void	init_two(t_cub *cub)
 	cub->pos_j = -1;
 	cub->pos_i = -1;
 	cub->pos_x = 7;
-	cub->pos_y = 7; // x and y start position
+	cub->pos_y = 7;
 	cub->dir_x = -1;
-	cub->dir_y = 0; // initial direction vector
+	cub->dir_y = 0;
 	cub->plane_x = 0;
 	cub->plane_y = 0.66;
 	cub->move_speed = 1;
-		cub->rot_speed = 1;
+	cub->rot_speed = 1;
 	cub->oldTime = 0;
+	cub->key_up = false;
+	cub->key_down = false;
+	cub->key_right = false;
+	cub->key_left = false;
+	cub->left_rotate = false;
+	cub->right_rotate = false;
 }
 
 void	init_player(t_cub *cub)
@@ -87,10 +93,4 @@ void	init_player(t_cub *cub)
 	cub->player.x0 = 0;
 	cub->player.y0 = 0;
 	cub->player.angle = PI / 2;
-	cub->player.key_up = false;
-	cub->player.key_down = false;
-	cub->player.key_right = false;
-	cub->player.key_left = false;
-	cub->player.left_rotate = false;
-	cub->player.right_rotate = false;
 }

@@ -6,7 +6,7 @@
 /*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:28:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/21 23:29:08 by a                ###   ########.fr       */
+/*   Updated: 2025/02/24 03:10:24 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ unsigned long	get_time(void)
 	return (unsigned long)(ts.tv_sec * 1000 + ts.tv_nsec / 1000000);
 }
 
-void	draw_line(t_img *img, int x, int drawStart, int drawEnd, int color)
+void	draw_line(t_img *img, int x, int draw_start, int draw_end, int color)
 {
-	while (drawStart < drawEnd)
+	while (draw_start < draw_end)
 	{
-		put_pixel(img, x, drawStart, color);
-		drawStart++;
+		put_pixel(img, x, draw_start, color);
+		draw_start++;
 	}
 }
 

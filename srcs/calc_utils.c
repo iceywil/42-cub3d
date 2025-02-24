@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:43:58 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/24 15:00:00 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:28:38 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ float	fixed_dist(t_player player, float x, float y)
 	float	delta_y;
 	float	angle;
 	float	fix_dist;
-	
+
 	delta_x = x - (player.x);
 	delta_y = y - (player.y);
 	angle = atan2(delta_y, delta_x) - player.angle;

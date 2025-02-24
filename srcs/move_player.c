@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:11:07 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/18 15:38:39 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:19:19 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,3 @@ void	move_player(t_player *player, t_cub *cub)
 	player->x0 = max(0, (int)(x - FIX_MAP_X));
 	player->y0 = max(0, (int)(y - FIX_MAP_Y));
 }
-

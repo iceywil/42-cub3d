@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/24 12:54:23 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:22:47 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define FIX_MAP_Y (MAX_BLOCK_H * BLOCK / 2)
 
 //PLAYER
-# define SPEED 0.1 * BLOCK
+# define SPEED 0.05 * BLOCK
 # define ROT_SPEED (PI / 120)
 # define PLAYER_SIZ (BLOCK / 5)
 
@@ -45,7 +45,7 @@
 # define PIXEL (20 * WIDTH / 1920)
 
 //CAMERA
-# define ANGLE_VIEW (M_PI / 2)
+# define FOV (M_PI / 3)
 # define ANGLE_ROT (M_PI / 16)
 # define ZOOM_PLUS 1.10
 # define ZOOM_MINUS 0.95

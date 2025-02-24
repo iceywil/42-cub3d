@@ -6,7 +6,7 @@
 #    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/18 17:58:07 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/02/24 15:25:33 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ C_FILES     =   srcs/main.c \
 				srcs/move_player.c \
 				srcs/calc_utils.c \
 				srcs/textures.c \
+				srcs/draw_loop.c \
 
 all:        $(NAME)
 

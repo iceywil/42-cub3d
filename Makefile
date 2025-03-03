@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: a <a@student.42.fr>                        +#+  +:+       +#+         #
+#    By: wscherre <wscherre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/18 19:05:04 by a                ###   ########.fr        #
+#    Updated: 2025/02/28 23:29:25 by wscherre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME        =   cub3d
 
 CC          =   cc
 
-FLAG        =   -fsanitize=address -g -g -g3 -Wall -Wextra -Werror -lm
+FLAG        =   -g -g3 -Wall -Wextra -Werror -lm
 
 MLX_PATH	=	minilibx-linux
 
@@ -36,7 +36,6 @@ C_FILES     =   srcs/main.c \
 				srcs/check_map.c \
 				srcs/free.c \
 				srcs/utils.c \
-				srcs/print.c \
 				srcs/init.c \
 				srcs/background.c \
 				srcs/pixel_utils.c \
@@ -45,13 +44,40 @@ C_FILES     =   srcs/main.c \
 				srcs/map.c \
 				srcs/move_player.c \
 				srcs/calc_utils.c \
+				srcs/textures.c \
+				srcs/draw_loop.c \
 
-all:        $(NAME)
+C_BONUS		=	bonus/main_bonus.c \
+				bonus/parsing_bonus.c \
+				bonus/save_map_bonus.c \
+				bonus/check_map_bonus.c \
+				bonus/free_bonus.c \
+				bonus/utils_bonus.c \
+				bonus/init_bonus.c \
+				bonus/background_bonus.c \
+				bonus/pixel_utils_bonus.c \
+				bonus/ray_bonus.c \
+				bonus/events_bonus.c \
+				bonus/map_bonus.c \
+				bonus/move_player_bonus.c \
+				bonus/calc_utils_bonus.c \
+				bonus/textures_bonus.c \
+				bonus/draw_loop_bonus.c \
+				bonus/door_bonus.c \
+
+OBJS	=		$(C_FILES:%.c=obj/%.o)
+
+OBJS_BONUS	=	$(C_BONUS:%.c=obj/%.o)
+
+all:			update $(NAME)
 
 update:
 	@git submodule update --init --recursive
 
-OBJS    =   $(C_FILES:%.c=obj/%.o) $(PARSING:%.c=obj/%.o)
+bonus:	$(LIBFT_LIB) $(H_FILES) $(OBJS_BONUS)
+	@$(MLX_MAKE)
+	@$(CC) $(OBJS_BONUS) $(FLAG) $(FLAG_MLX) $(LIBFT_LIB) -o $(NAME)_bonus
+	@echo "\033[1;32m""🎉 compilation of $(NAME)_bonus: ""SUCCESS !🎉""\033[0m"
 
 $(LIBFT_LIB):
 	make -C $(LIBFT_PATH)
@@ -60,6 +86,7 @@ $(NAME):    $(LIBFT_LIB) $(H_FILES) $(OBJS)
 	@$(MLX_MAKE)
 	@$(CC) $(OBJS) $(FLAG) $(FLAG_MLX) $(LIBFT_LIB) -o $(NAME)
 	@echo "\033[1;32m""🎉 compilation of $(NAME): ""SUCCESS !🎉""\033[0m"
+
 clean:
 	$(MLX_MAKE) clean
 	make clean -C $(LIBFT_PATH)
@@ -67,7 +94,7 @@ clean:
 	@rm -rf obj
 
 fclean:     clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(NAME)_bonus
 	make fclean -C $(LIBFT_PATH)
 
 obj/%.o : %.c | obj

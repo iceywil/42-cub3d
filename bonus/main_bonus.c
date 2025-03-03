@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wscherre <wscherre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:52 by a                 #+#    #+#             */
-/*   Updated: 2025/02/28 23:23:05 by wscherre         ###   ########.fr       */
+/*   Updated: 2025/03/03 15:49:45 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 	init_all(&cub);
 	init_player(&cub);
 	parsing(&cub, argv[1]);
+	init_door(&cub);
 	init_mlx(&cub);
 	mlx_hook(cub.win, KEYPRESS_EVENT, 1L << 0, key_press, &cub);
 	mlx_hook(cub.win, 3, 1L << 1, key_release, &cub.player);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_player.c                                      :+:      :+:    :+:   */
+/*   move_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:11:07 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/24 15:19:19 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:37:21 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	update_angle(t_player *player)
 int	is_wall(char **map, float x, float y)
 {
 	if (x < 0 || y < 0)
+		return (1);
+	if (is_door_closed(map, x, y))
 		return (1);
 	if (map[(int)y / BLOCK][(int)x / BLOCK] == '1')
 		return (1);

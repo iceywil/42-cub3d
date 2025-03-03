@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_utils.c                                       :+:      :+:    :+:   */
+/*   ft_ignore_space.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 17:43:58 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/24 15:28:38 by kimnguye         ###   ########.fr       */
+/*   Created: 2025/03/03 15:19:00 by kimnguye          #+#    #+#             */
+/*   Updated: 2025/03/03 15:34:43 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "libft.h"
 
-float	distance(float x, float y)
+char	*ft_ignore_spaces(char *str)
 {
-	return (sqrt(x * x + y * y));
-}
+	int		i;
+	char	*new;
 
-float	fixed_dist(t_player player, float x, float y)
-{
-	float	delta_x;
-	float	delta_y;
-	float	angle;
-	float	fix_dist;
-
-	delta_x = x - (player.x);
-	delta_y = y - (player.y);
-	angle = atan2(delta_y, delta_x) - player.angle;
-	fix_dist = distance(delta_x, delta_y) * cos(angle);
-	return (fix_dist);
+	i = ft_strlen(str) - 2;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i--;
+	str[i + 1] = '\0';
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	new = ft_strdup(&str[i]);
+	free(str);
+	if (!new)
+		return (NULL);
+	return (new);
 }

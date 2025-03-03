@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_def.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/18 16:25:54 by a                ###   ########.fr       */
+/*   Updated: 2025/02/27 19:23:50 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,53 @@
 # define UNSET_DOUBLE 9999
 
 //WINDOW
-# define WIDTH 800//1920  
+# define WIDTH 800//1920
 # define HEIGHT 600//1080
-# define BLOCK 8 //16
+# define WALL_SIZ 40
 # define MARGIN 5
 
 //MINI MAP
+# define BLOCK 16
+# define MAP_WIDTH 160
+# define MAP_HEIGHT 120
+
+//number of BLOCK to fill one line of minimap
+# define MAX_BLOCK_W 10
+//number of BLOCK to fill one column of minimap
+# define MAX_BLOCK_H 7.5
+# define FIX_MAP_X 80
+# define FIX_MAP_Y 80
+
+//PLAYER
+# define SPEED 2
+# define ROT_SPEED 0.026179939
+# define PLAYER_SIZ 3
+
+//CAMERA
+# define FOV 1.047197551
+# define DEFAULT_COLOR YELLOW
+
+/*
+//MINI MAP
+# define BLOCK 16
 # define MAP_WIDTH WIDTH / 5
-# define MAP_HEIGHT HEIGHT / 5 
-# define MAX_BLOCK_W (MAP_WIDTH / BLOCK) //number of PIXEL to fill one line of minimap
-# define MAX_BLOCK_H (MAP_HEIGHT / BLOCK) //number of PIXEL to fill one column of minimap
+# define MAP_HEIGHT HEIGHT / 5
+//number of BLOCK to fill one line of minimap
+# define MAX_BLOCK_W (MAP_WIDTH / BLOCK)
+//number of BLOCK to fill one column of minimap
+# define MAX_BLOCK_H (MAP_HEIGHT / BLOCK)
 # define FIX_MAP_X (MAX_BLOCK_W * BLOCK / 2)
 # define FIX_MAP_Y (MAX_BLOCK_H * BLOCK / 2)
 
 //PLAYER
-# define SPEED 0.1
-# define ROT_SPEED (PI / 160) 
-# define PLAYER_SIZ (BLOCK / 4)
-
-//PIXEL
-# define PIXEL (20 * WIDTH / 1920)
+# define SPEED 0.05 * BLOCK
+# define ROT_SPEED (PI / 120)
+# define PLAYER_SIZ (BLOCK / 5)
 
 //CAMERA
-# define ANGLE_VIEW (M_PI / 2)
-# define ANGLE_ROT (M_PI / 16)
-# define ZOOM_PLUS 1.10
-# define ZOOM_MINUS 0.95
-# define TRANS (PIXEL / 2)
+# define FOV (M_PI / 3)
 # define DEFAULT_COLOR YELLOW
+*/
 
 //CODE CALCULATION
 # define ROT_CODE 3
@@ -77,9 +96,12 @@
 # define A 97
 # define S 115
 # define D 100
+# define M 109
+# define O 111
+# define Q 113
+# define T 116
 # define ESC 65307
 # define SPACE 32
-# define Q 113
 # define KEY_Q_MAC 16781520
 # define ENTER 65293
 # define NUM_7 65429

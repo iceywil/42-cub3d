@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.c                                              :+:      :+:    :+:   */
+/*   ray_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/25 09:16:16 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/27 18:44:09 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ bool	touch(t_cub *cub, float px, float py)
 	x = px / BLOCK;
 	y = py / BLOCK;
 	if (cub->map[y] && cub->map[y][x] && cub->map[y][x] == '1')
+		return (true);
+	if (cub->map[y] && cub->map[y][x] && cub->map[y][x] == 'D')
 		return (true);
 	return (false);
 }
@@ -53,7 +55,9 @@ void	calc_side(t_cub *cub, float start_x, int x)
 /*E ou W: side 1; N ou S: side 0;*/
 void	wall_texture(t_cub *cub, float start_x, int x)
 {
-	if (cub->side == 1)
+	if (cub->map[(int)cub->ray_y / BLOCK][(int)cub->ray_x / BLOCK] == 'D')
+		cub->wall_texture = &cub->door;
+	else if (cub->side == 1)
 	{
 		if (cos(start_x) >= 0)
 			cub->wall_texture = &cub->texture_e;
@@ -104,16 +108,3 @@ void	draw_wall(t_cub *cub, t_img *texture, int x)
 		start_y++;
 	}
 }
-
-/*il nous faut la position (dans la map) du mur qui a ete touche :
- cub->ray_x / BLOCK et cub->ray_y / BLOCK*/
-
-/*
-if (cub->side == 0) //horizontal : nord ou sud
-	frac = (cub->ray_x - (double)cub->player.x0) / BLOCK
-		- (int)((cub->ray_x - cub->player.x0) / BLOCK);
-else //vertical : est ou ouest
-	frac = (cub->ray_y - (double)cub->player.y0) / BLOCK
-		- (int)((cub->ray_y - cub->player.y0) / BLOCK);
-texX = (int)(frac * (double)cub->wall_texture->width);
-*/

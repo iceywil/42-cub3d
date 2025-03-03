@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/25 10:11:54 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/25 10:44:41 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	set_direction(t_cub *cub, char elem)
 }
 
 /*init the player position and direction
-the map should only contain one N, S, E or W
-the map should only contain 0 and 1 except for the player position*/
+the map should only contain one N, S, E or W (player position)
+the map should only contain 0, 1 and D (for doors)*/
 void	check_map_elem(t_cub *cub, char elem, int i, int j)
 {
 	if (is_in(elem, "NSEW"))
@@ -65,7 +65,7 @@ void	check_map_elem(t_cub *cub, char elem, int i, int j)
 		else
 			exit_error(cub, "There should be only one player\n");
 	}
-	else if (elem != '0' && elem != '1' && !is_space(elem))
+	else if (elem != '0' && elem != '1' && elem != 'D' && !is_space(elem))
 		exit_error(cub, "Unknown element in map");
 }
 

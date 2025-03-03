@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   save_map.c                                         :+:      :+:    :+:   */
+/*   save_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:22:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/27 18:46:54 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/02/27 18:44:53 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	init_map(t_cub *cub, char *file, int n)
 	cub->map = malloc(sizeof(char *) * (cub->map_height + 1));
 	if (!cub->map)
 		exit_error(cub, "Map initialization failed");
-	cub->map_height = 0;
-	cub->map[0] = NULL;
+		cub->map_height = 0;
+		cub->map[0] = NULL;
 }
 
 /*read the file and save the map line by line into cub->map*/

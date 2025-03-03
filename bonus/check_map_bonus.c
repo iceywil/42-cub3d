@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/25 10:44:41 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:43:26 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ void	check_map_space(t_cub *cub, int i, int j)
 {
 	if (cub->map[i][j] == ' ')
 	{
-		if (i < cub->map_height - 1 && cub->map[i + 1][j] && cub->map[i
-			+ 1][j] != ' ' && cub->map[i + 1][j] != '1')
+		if (i < cub->map_height - 1 && !is_null(cub->map, i + 1, j)
+			&& cub->map[i + 1][j] != ' ' && cub->map[i + 1][j] != '1')
 			exit_error(cub, "The map is not closed (1)");
-		if (i > 0 && cub->map[i - 1][j] && cub->map[i - 1][j] != ' '
+		if (i > 0 && !is_null(cub->map, i - 1, j) && cub->map[i - 1][j] != ' '
 			&& cub->map[i - 1][j] != '1')
 			exit_error(cub, "The map is not closed (2)");
-		if (j > 0 && cub->map[i][j - 1] && cub->map[i][j - 1] != ' '
+		if (j > 0 && !is_null(cub->map, i, j - 1) && cub->map[i][j - 1] != ' '
 			&& cub->map[i][j - 1] != '1')
 			exit_error(cub, "The map is not closed (3)");
-		if (cub->map[i][j + 1] && cub->map[i][j + 1] != ' ' && cub->map[i][j
-			+ 1] != '1')
+		if (!is_null(cub->map, i, j + 1) && cub->map[i][j + 1] != ' '
+			&& cub->map[i][j + 1] != '1')
 			exit_error(cub, "The map is not closed (4)");
 	}
 }

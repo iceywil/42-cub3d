@@ -6,20 +6,20 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:44:35 by a                 #+#    #+#             */
-/*   Updated: 2025/03/03 15:10:12 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:40:48 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include <stdio.h>
 
-int		coma_ctr(char *str)
+int	coma_ctr(char *str)
 {
 	int	ctr;
 
 	ctr = 0;
 	if (!str)
-		return 0;
+		return (0);
 	while (*str)
 	{
 		if (*str == ',')

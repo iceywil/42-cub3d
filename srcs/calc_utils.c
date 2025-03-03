@@ -6,11 +6,23 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:43:58 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/24 15:28:38 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:43:44 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int	is_null(char **map, int i, int j)
+{
+	int	k;
+
+	k = 0;
+	while (map[i] && map[i][k])
+		k++;
+	if (k <= j)
+		return (1);
+	return (0);
+}
 
 float	distance(float x, float y)
 {

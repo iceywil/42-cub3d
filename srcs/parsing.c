@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/03/03 15:41:30 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:41:52 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	parsing(t_cub *cub, char *file)
 	}
 	close(cub->fd);
 	check_elements(cub);
-	cub->map[cub->map_height] = NULL;
 }
 
 void	handle_element(t_cub *cub, char *line)
@@ -136,7 +135,7 @@ void	handle_colors(t_cub *cub, t_color *rgb, char *line)
 		|| !(isnumeric(tmp[0]) && isnumeric(tmp[1]) && isnumeric(tmp[2])))
 	{
 		ft_free_double_tab(&tmp);
-		exit_error(cub, "Wrong color format: expect (R,G,B) in range [0, 255] (1)");
+		exit_error(cub, "Wrong color format: expect (R,G,B) in range [0, 255]");
 	}
 	rgb->r = ft_atoi(tmp[0]);
 	rgb->g = ft_atoi(tmp[1]);
@@ -144,5 +143,5 @@ void	handle_colors(t_cub *cub, t_color *rgb, char *line)
 	ft_free_double_tab(&tmp);
 	if (rgb->r < 0 || rgb->r > 255 || rgb->g < 0 || rgb->g > 255 || rgb->b < 0
 		|| rgb->b > 255)
-		exit_error(cub, "Wrong color format: expect (R,G,B) in range [0, 255] (2)");
+		exit_error(cub, "Wrong color format: expect (R,G,B) in range [0, 255]");
 }

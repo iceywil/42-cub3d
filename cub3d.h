@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/03/03 15:09:31 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:31:56 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void			show_texture(t_cub *cub);
 // CALC UTILS
 float			distance(float x, float y);
 float			fixed_dist(t_player player, float x, float y);
+int				is_null(char **map, int i, int j);
 
 // PIXEL UTILS
 void			put_pixel(t_img *img, int x, int y, int color);

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/03/05 23:38:38 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 00:23:38 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	draw_wall(t_cub *cub, t_img *texture, int x)
 	while (start_y < end)
 	{
 		put_pixel(&cub->img, x, start_y,
-			get_pixel(texture, tex_x(cub, texture), (int)round(tex_y)));
+			get_pixel(texture, tex_x(cub, texture), (int)tex_y));
 		tex_y += step;
 		start_y++;
 	}

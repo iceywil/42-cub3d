@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:11:07 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/25 11:37:21 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 00:12:25 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	update_angle(t_player *player)
 		player->angle += 2 * PI;
 }
 
+/*BONUS : door*/
 int	is_wall(char **map, float x, float y)
 {
 	if (x < 0 || y < 0)

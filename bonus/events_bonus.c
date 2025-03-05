@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 15:59:18 by a                 #+#    #+#             */
-/*   Updated: 2025/03/05 23:05:49 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 00:12:49 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	player_update(int key, t_player *player)
 		player->right_rotate = true;
 }
 
+/*BONUS DOOR*/
 int	key_press(int key, t_cub *cub)
 {
 	if (key == W || key == S || key == A || key == D)

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 12:19:24 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/05 23:57:51 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 00:12:42 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	full_square(t_cub *cub, int x, int y, int color)
 	}
 }
 
+/*BONUS: DOOR*/
 void	draw_map(t_cub *cub)
 {
 	int	j;

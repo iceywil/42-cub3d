@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/03/05 11:43:17 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 11:48:45 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	draw_wall(t_cub *cub, t_img *texture, int x)
 		* (float)(WIDTH / 2);
 	start_y = (HEIGHT - height) / 2;
 	end = start_y + height;
-	step = texture->height / height;
+	step = (float)texture->height / height;
 	tex_y = 0;
 	while (start_y < end)
 	{

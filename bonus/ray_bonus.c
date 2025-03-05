@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/02/27 18:44:09 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 11:54:21 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	touch(t_cub *cub, float px, float py)
 }
 
 /*update ray_x and ray_y until it hits a wall*/
-void	calc_side(t_cub *cub, float start_x, int x)
+void	calc_side(t_cub *cub, double start_x, int x)
 {
 	cub->ray_x = cub->player.x + PLAYER_SIZ / 2;
 	cub->ray_y = cub->player.y + PLAYER_SIZ / 2;
@@ -53,7 +53,7 @@ void	calc_side(t_cub *cub, float start_x, int x)
 }
 
 /*E ou W: side 1; N ou S: side 0;*/
-void	wall_texture(t_cub *cub, float start_x, int x)
+void	wall_texture(t_cub *cub, double start_x, int x)
 {
 	if (cub->map[(int)cub->ray_y / BLOCK][(int)cub->ray_x / BLOCK] == 'D')
 		cub->wall_texture = &cub->door;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wscherre <wscherre@student.42.fr>          +#+  +:+       +#+         #
+#    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/02/28 23:29:25 by wscherre         ###   ########.fr        #
+#    Updated: 2025/03/05 11:54:57 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ C_BONUS		=	bonus/main_bonus.c \
 				bonus/events_bonus.c \
 				bonus/map_bonus.c \
 				bonus/move_player_bonus.c \
-				bonus/calc_utils_bonus.c \
+				srcs/calc_utils.c \
 				bonus/textures_bonus.c \
 				bonus/draw_loop_bonus.c \
 				bonus/door_bonus.c \

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/03/05 18:02:37 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:28:57 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,8 @@ typedef struct s_ray
 	double		sidedist_y;
 	double		deltadist_x;
 	double		deltadist_y;
-	float			step_x;
-	float			step_y;
-	double		perpWallDist;
-	int			lineHeight;
-	int			drawStart;
-	int			drawEnd;
+	float		step_x;
+	float		step_y;
 }				t_ray;
 
 typedef struct s_cub

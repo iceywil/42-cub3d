@@ -6,7 +6,7 @@
 #    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/03/05 11:54:57 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/03/05 18:39:21 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,22 +47,22 @@ C_FILES     =   srcs/main.c \
 				srcs/textures.c \
 				srcs/draw_loop.c \
 
-C_BONUS		=	bonus/main_bonus.c \
-				bonus/parsing_bonus.c \
+C_BONUS		=	srcs/main.c \
+				srcs/parsing.c \
+				srcs/utils.c \
+				srcs/init.c \
+				srcs/calc_utils.c \
+				srcs/draw_loop.c \
 				bonus/save_map_bonus.c \
 				bonus/check_map_bonus.c \
 				bonus/free_bonus.c \
-				bonus/utils_bonus.c \
-				bonus/init_bonus.c \
 				bonus/background_bonus.c \
 				bonus/pixel_utils_bonus.c \
 				bonus/ray_bonus.c \
 				bonus/events_bonus.c \
 				bonus/map_bonus.c \
 				bonus/move_player_bonus.c \
-				srcs/calc_utils.c \
 				bonus/textures_bonus.c \
-				bonus/draw_loop_bonus.c \
 				bonus/door_bonus.c \
 
 OBJS	=		$(C_FILES:%.c=obj/%.o)

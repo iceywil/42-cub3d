@@ -6,31 +6,11 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:15:48 by a                 #+#    #+#             */
-/*   Updated: 2025/03/03 16:41:52 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:38:29 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-/*si ligne vide et que la carte existe:
-erreur (on naccepte pas les sauts de ligne)
-si ligne vide et carte n'existe pas: ne rien faire*/
-
-/* A valid map / config file obeys the following rules:
-The map must be composed of only 6 possible characters: 0 for an empty space,
-1 for a wall, and N,S,E or W for the player's start position and spawning
-orientation.
-The map must be closed/surrounded by walls
-Except for the map content,
-	each type of element can be separated by one or more empty line(s).
-Except for the map content which always has to be the last,
-	each type of element can be set in any order in the file.
-Except for the map, each type of information from an element can be separated
-by one or more	space(s).
-The map must be parsed as it looks in the file. Spaces are a valid part of the
-map and are up to you to handle. You must be able to parse any kind of map,
-as long as it respects the rules of the map.
- */
 
 void	parsing(t_cub *cub, char *file)
 {

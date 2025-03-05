@@ -1,7 +1,10 @@
 
-          NO ./textures/bleu-marine.xpm
-SO ./textures/jungle-exotique.xpm
-EA              ./textures/rideau-rouge.xpm
+          NO                ./textures/bleu-marine.xpm
+
+               SO                   ./textures/jungle-exotique.xpm
+
+
+EA              ./textures/salon.xpm
 WE         ./textures/beautiful_blue.xpm
 
 C      18,      255,200

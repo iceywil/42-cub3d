@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:11:07 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/24 15:19:19 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:13:21 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,17 @@ int	is_wall(char **map, float x, float y)
 		return (1);
 	if (map[(int)y / BLOCK][(int)x / BLOCK] == '1')
 		return (1);
-	if (map[(int)(y - PLAYER_SIZ) / BLOCK]
-		[(int)(x - PLAYER_SIZ) / BLOCK] == '1')
+	if (map[(int)(y - MARGIN) / BLOCK]
+		[(int)(x - MARGIN) / BLOCK] == '1')
 		return (1);
-	if (map[(int)(y - PLAYER_SIZ) / BLOCK]
-		[(int)(x + PLAYER_SIZ) / BLOCK] == '1')
+	if (map[(int)(y - MARGIN) / BLOCK]
+		[(int)(x + MARGIN) / BLOCK] == '1')
 		return (1);
-	if (map[(int)(y + PLAYER_SIZ) / BLOCK]
-		[(int)(x + PLAYER_SIZ) / BLOCK] == '1')
+	if (map[(int)(y + MARGIN) / BLOCK]
+		[(int)(x + MARGIN) / BLOCK] == '1')
 		return (1);
-	if (map[(int)(y + PLAYER_SIZ) / BLOCK]
-		[(int)(x - PLAYER_SIZ) / BLOCK] == '1')
+	if (map[(int)(y + MARGIN) / BLOCK]
+		[(int)(x - MARGIN) / BLOCK] == '1')
 		return (1);
 	return (0);
 }

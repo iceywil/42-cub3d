@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/05 18:01:56 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:21:30 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define WIDTH 1000
 # define HEIGHT 750
 # define WALL_SIZ 32
-# define MARGIN 5
+# define MARGIN 2
 
 //MINI MAP
 # define BLOCK 16
@@ -37,13 +37,14 @@
 # define FIX_MAP_Y 80
 
 //PLAYER
-# define SPEED 2
-# define ROT_SPEED 0.026179939
+# define SPEED 4
+# define ROT_SPEED 0.1
 # define PLAYER_SIZ 3
 
 //CAMERA
 # define FOV 1.047197551
 # define DEFAULT_COLOR YELLOW
+# define STEP 0.02
 
 /*
 //MINI MAP

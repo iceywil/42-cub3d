@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/03/05 22:45:28 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 23:38:58 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ bool	touch(t_cub *cub, float px, float py)
 new method: with step 1*/
 void	calc_side(t_cub *cub, double angle, int x)
 {
-	init_ray(&cub->ray, cub, angle);
 	while (1)
 	{
 		if (x % (WIDTH / 10) == 0)

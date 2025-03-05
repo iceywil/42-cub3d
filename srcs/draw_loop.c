@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:25:12 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/05 11:10:01 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 23:38:47 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	draw_loop(t_cub *cub)
 	x = 0;
 	while (x < WIDTH)
 	{
+		init_ray(&cub->ray, cub, ray_angle);
 		calc_side(cub, ray_angle, x);
 		wall_texture(cub, ray_angle, x);
 		draw_wall(cub, cub->wall_texture, x);

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/03/05 11:28:14 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 11:43:17 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ void	calc_side_old(t_cub *cub, float start_x, int x)
 		if (x % (WIDTH / 10) == 0)
 			put_pixel(&cub->mini_map, cub->ray_x - cub->player.x0,
 				cub->ray_y - cub->player.y0, RED);
-		cub->ray_x += step_x;
+		cub->ray_x += cos(start_x);
 		if (touch(cub, cub->ray_x, cub->ray_y))
 		{
 			cub->side = 1;
 			break ;
 		}
-		cub->ray_y += step_y;
+		cub->ray_y += sin(start_x);
 		if (touch(cub, cub->ray_x, cub->ray_y))
 		{
 			cub->side = 0;
@@ -61,13 +61,13 @@ void	calc_side(t_cub *cub, double angle, int x)
 		{
 			cub->ray.sidedist_x += cub->ray.deltadist_x;
 			cub->ray.x += cub->ray.step_x;
-			cub->side = 0;
+			cub->side = 1;
 		}
 		else
 		{
 			cub->ray.sidedist_y += cub->ray.deltadist_y;
 			cub->ray.y += cub->ray.step_y;
-			cub->side = 1;
+			cub->side = 0;
 		}
 		if (touch(cub, cub->ray.x, cub->ray.y))
 			break;

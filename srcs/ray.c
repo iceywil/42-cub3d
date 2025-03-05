@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/03/05 11:19:33 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 11:28:14 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,8 @@ bool	touch(t_cub *cub, float px, float py)
 }
 void	calc_side_old(t_cub *cub, float start_x, int x)
 {
-	int	step_x;
-	int	step_y;
 	cub->ray_x = cub->player.x + PLAYER_SIZ / 2;
 	cub->ray_y = cub->player.y + PLAYER_SIZ / 2;
-	step_x = 1;
-	step_y = 1;
-	if (cos(start_x) < 0)
-		step_x = -1;
-	if (sin(start_x) < 0)
-		step_y = -1;
 	while (1)
 	{
 		if (x % (WIDTH / 10) == 0)

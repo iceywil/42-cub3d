@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 12:19:24 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/05 23:24:53 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 23:57:51 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	draw_square(t_cub *cub, int x, int y, int color)
 	int	i;
 
 	i = 0;
-	while (i < BLOCK && x + i < MAP_WIDTH && y
-		+ i < MAP_HEIGHT)
+	while (i < BLOCK)
 	{
 		put_pixel(&cub->mini_map, x + i, y, color);
 		put_pixel(&cub->mini_map, x, y + i, color);

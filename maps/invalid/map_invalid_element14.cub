@@ -1,5 +1,5 @@
-NO ./textures/wood.xpm
-PP ./textures/wood.xpm
+NO ./textures/bleu-marine.xpm
+PP ./textures/bleu-marine.xpm
 SO ./textures/stone.xpm
 EA ./textures/brick.xpm
 WE ./textures/cave.xpm

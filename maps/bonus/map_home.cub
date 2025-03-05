@@ -1,7 +1,7 @@
 NO ./textures/flower.xpm
 SO ./textures/motif-jungle.xpm
-WE ./textures/wallpaper1.xpm
-EA ./textures/wallpaper2.xpm
+WE ./textures/motif-blanc.xpm
+EA ./textures/motif-noir-dore.xpm
 
 F 241,228,200
 C 233,233,222

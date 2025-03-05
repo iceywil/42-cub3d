@@ -1,4 +1,4 @@
-nO ./textures/ wood.xpm
+nO ./textures/ bleu-marine.xpm
 SO ./textures/stone.xpm
 EA ./textures/brick.xpm
 WE ./textures/cave.xpm

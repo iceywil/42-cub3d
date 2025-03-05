@@ -1,7 +1,7 @@
-NO ./textures/wood.xpm
+NO ./textures/bleu-marine.xpm
 SO ./textures/stone.xpm
 EA ./textures/brick.xpm
-WE 
+WE
 
 C 55,200,160
 F 122,122,122

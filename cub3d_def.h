@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/05 23:25:13 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 23:43:23 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@
 # define MAGENTA 0xFF00FF
 # define WHITE 0xFFFFFF
 # define BLACK 0x000000
-# define LIGHT_KAKI 0xA9C994
 # define GREY 0x7F878B
 
 //keyboard

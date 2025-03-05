@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/03/03 16:31:56 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 10:59:25 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,26 @@ typedef struct s_color
 	int			b;
 }				t_color;
 
+typedef struct s_ray
+{
+	double		x;
+	double		y;
+	int			mapX;
+	int			mapY;
+	double		dir_x;
+	double		dir_y;
+	double		sidedist_x;
+	double		sidedist_y;
+	double		deltadist_x;
+	double		deltadist_y;
+	int			step_x;
+	int			step_y;
+	double		perpWallDist;
+	int			lineHeight;
+	int			drawStart;
+	int			drawEnd;
+}				t_ray;
+
 typedef struct s_cub
 {
 	char		*line;
@@ -78,6 +98,7 @@ typedef struct s_cub
 	t_img		door;
 	t_img		*wall_texture;
 	t_player	player;
+	t_ray		ray;
 	double		ray_x;
 	double		ray_y;
 	int			side;
@@ -89,6 +110,7 @@ void			init_mlx(t_cub *cub);
 void			init_all(t_cub *cub);
 void			init_two(t_cub *cub);
 void			init_player(t_cub *cub);
+void			init_ray(t_ray *ray, t_cub *cub, double angle);
 
 // PARSING
 void			check_arg(int argc, char **argv);
@@ -114,9 +136,9 @@ void			draw_square(t_cub *cub, int x, int y, int color);
 void			clear_image(t_img *img, int height, int width);
 void			draw_map(t_cub *cub);
 bool			touch(t_cub *cub, float px, float py);
-void			wall_texture(t_cub *cub, float start_x, int x);
+void			wall_texture(t_cub *cub, double angle, int x);
 void			draw_wall(t_cub *cub, t_img *texture, int x);
-void			calc_side(t_cub *cub, float start_x, int x);
+void			calc_side(t_cub *cub, double angle, int x);
 void			show_texture(t_cub *cub);
 
 // CALC UTILS

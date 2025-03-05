@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/25 10:12:37 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 10:52:33 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,38 @@ void	init_player(t_cub *cub)
 	cub->player.key_left = false;
 	cub->player.left_rotate = false;
 	cub->player.right_rotate = false;
+}
+
+void	init_ray(t_ray *ray, t_cub *cub, double angle)
+{
+	ray->x = cub->player.x + PLAYER_SIZ / 2;
+	ray->y = cub->player.y + PLAYER_SIZ / 2;
+	ray->dir_x = cos(angle);
+	ray->dir_y = sin(angle);
+	ray->deltadist_x = fabs(1 / ray->dir_x);
+	ray->deltadist_y = fabs(1 / ray->dir_y);
+	if (ray->dir_x < 0)
+	{
+		ray->step_x = -1;
+		ray->sidedist_x = (cub->player.x - floor(cub->player.x))
+			* ray->deltadist_x;
+	}
+	else
+	{
+		ray->step_x = 1;
+		ray->sidedist_x = (ceil(cub->player.x) - cub->player.x)
+		* ray->deltadist_x;
+	}
+	if (ray->dir_y < 0)
+	{
+		ray->step_y = -1;
+		ray->sidedist_y = (cub->player.y - floor(cub->player.y))
+			* ray->deltadist_y;
+	}
+	else
+	{
+		ray->step_y = 1;
+		ray->sidedist_y = (ceil(cub->player.y) - cub->player.y)
+			* ray->deltadist_y;
+	}
 }

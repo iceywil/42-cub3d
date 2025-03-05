@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/03/05 10:59:25 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:02:37 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,14 @@ typedef struct s_ray
 {
 	double		x;
 	double		y;
-	int			mapX;
-	int			mapY;
 	double		dir_x;
 	double		dir_y;
 	double		sidedist_x;
 	double		sidedist_y;
 	double		deltadist_x;
 	double		deltadist_y;
-	int			step_x;
-	int			step_y;
+	float			step_x;
+	float			step_y;
 	double		perpWallDist;
 	int			lineHeight;
 	int			drawStart;

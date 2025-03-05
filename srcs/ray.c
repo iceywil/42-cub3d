@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/03/05 11:48:45 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:03:15 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,10 @@ bool	touch(t_cub *cub, float px, float py)
 		return (true);
 	return (false);
 }
-void	calc_side_old(t_cub *cub, float start_x, int x)
-{
-	cub->ray_x = cub->player.x + PLAYER_SIZ / 2;
-	cub->ray_y = cub->player.y + PLAYER_SIZ / 2;
-	while (1)
-	{
-		if (x % (WIDTH / 10) == 0)
-			put_pixel(&cub->mini_map, cub->ray_x - cub->player.x0,
-				cub->ray_y - cub->player.y0, RED);
-		cub->ray_x += cos(start_x);
-		if (touch(cub, cub->ray_x, cub->ray_y))
-		{
-			cub->side = 1;
-			break ;
-		}
-		cub->ray_y += sin(start_x);
-		if (touch(cub, cub->ray_x, cub->ray_y))
-		{
-			cub->side = 0;
-			break ;
-		}
-	}
-}
 
-/*update ray_x and ray_y until it hits a wall*/
+
+/*update ray_x and ray_y until it hits a wall
+new method: with step 1*/
 void	calc_side(t_cub *cub, double angle, int x)
 {
 	init_ray(&cub->ray, cub, angle);
@@ -115,15 +94,15 @@ void	draw_wall(t_cub *cub, t_img *texture, int x)
 	float	height;
 
 	height = (WALL_SIZ / fixed_dist(cub->player, cub->ray.x, cub->ray.y))
-		* (float)(WIDTH / 2);
+		* (WIDTH / 2);
 	start_y = (HEIGHT - height) / 2;
 	end = start_y + height;
-	step = (float)texture->height / height;
+	step = texture->height / height;
 	tex_y = 0;
 	while (start_y < end)
 	{
 		put_pixel(&cub->img, x, start_y,
-			get_pixel(texture, tex_x(cub, texture), (int)tex_y));
+			get_pixel(texture, tex_x(cub, texture), (int)round(tex_y)));
 		tex_y += step;
 		start_y++;
 	}

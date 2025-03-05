@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/27 19:23:50 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:01:56 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,10 @@
 // PI
 # define PI 3.14159265359
 
-//default values
-# define UNSET_DOUBLE 9999
-
 //WINDOW
-# define WIDTH 800//1920
-# define HEIGHT 600//1080
-# define WALL_SIZ 40
+# define WIDTH 1000
+# define HEIGHT 750
+# define WALL_SIZ 32
 # define MARGIN 5
 
 //MINI MAP

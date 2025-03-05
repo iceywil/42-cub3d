@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/03/05 11:54:21 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 22:45:28 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,46 +27,48 @@ bool	touch(t_cub *cub, float px, float py)
 	return (false);
 }
 
-/*update ray_x and ray_y until it hits a wall*/
-void	calc_side(t_cub *cub, double start_x, int x)
+/*update ray.x and ray.y until it hits a wall
+new method: with step 1*/
+void	calc_side(t_cub *cub, double angle, int x)
 {
-	cub->ray_x = cub->player.x + PLAYER_SIZ / 2;
-	cub->ray_y = cub->player.y + PLAYER_SIZ / 2;
+	init_ray(&cub->ray, cub, angle);
 	while (1)
 	{
 		if (x % (WIDTH / 10) == 0)
-			put_pixel(&cub->mini_map, cub->ray_x - cub->player.x0,
-				cub->ray_y - cub->player.y0, RED);
-		cub->ray_x += cos(start_x);
-		if (touch(cub, cub->ray_x, cub->ray_y))
+			put_pixel(&cub->mini_map, cub->ray.x - cub->player.x0,
+				cub->ray.y - cub->player.y0, RED);
+		if (cub->ray.sidedist_x < cub->ray.sidedist_y)
 		{
+			cub->ray.sidedist_x += cub->ray.deltadist_x;
+			cub->ray.x += cub->ray.step_x;
 			cub->side = 1;
-			break ;
 		}
-		cub->ray_y += sin(start_x);
-		if (touch(cub, cub->ray_x, cub->ray_y))
+		else
 		{
+			cub->ray.sidedist_y += cub->ray.deltadist_y;
+			cub->ray.y += cub->ray.step_y;
 			cub->side = 0;
-			break ;
 		}
+		if (touch(cub, cub->ray.x, cub->ray.y))
+			break;
 	}
 }
 
 /*E ou W: side 1; N ou S: side 0;*/
-void	wall_texture(t_cub *cub, double start_x, int x)
+void	wall_texture(t_cub *cub, double ray_angle, int x)
 {
-	if (cub->map[(int)cub->ray_y / BLOCK][(int)cub->ray_x / BLOCK] == 'D')
+	if (cub->map[(int)cub->ray.y / BLOCK][(int)cub->ray.x / BLOCK] == 'D')
 		cub->wall_texture = &cub->door;
 	else if (cub->side == 1)
 	{
-		if (cos(start_x) >= 0)
+		if (cos(ray_angle) >= 0)
 			cub->wall_texture = &cub->texture_e;
 		else
 			cub->wall_texture = &cub->texture_w;
 	}
 	else
 	{
-		if (sin(start_x) >= 0)
+		if (sin(ray_angle) >= 0)
 			cub->wall_texture = &cub->texture_s;
 		else
 			cub->wall_texture = &cub->texture_n;
@@ -79,9 +81,9 @@ int	tex_x(t_cub *cub, t_img *texture)
 	double	wall_x;
 
 	if (cub->side == 0)
-		wall_x = cub->ray_x / BLOCK;
+		wall_x = cub->ray.x / BLOCK;
 	else
-		wall_x = cub->ray_y / BLOCK;
+		wall_x = cub->ray.y / BLOCK;
 	wall_x -= floor((wall_x));
 	return ((int)(wall_x * (double)(texture->width)));
 }
@@ -94,7 +96,7 @@ void	draw_wall(t_cub *cub, t_img *texture, int x)
 	double	tex_y;
 	float	height;
 
-	height = (WALL_SIZ / fixed_dist(cub->player, cub->ray_x, cub->ray_y))
+	height = (WALL_SIZ / fixed_dist(cub->player, cub->ray.x, cub->ray.y))
 		* (WIDTH / 2);
 	start_y = (HEIGHT - height) / 2;
 	end = start_y + height;
@@ -103,7 +105,7 @@ void	draw_wall(t_cub *cub, t_img *texture, int x)
 	while (start_y < end)
 	{
 		put_pixel(&cub->img, x, start_y,
-			get_pixel(texture, tex_x(cub, texture), tex_y));
+			get_pixel(texture, tex_x(cub, texture), (int)round(tex_y)));
 		tex_y += step;
 		start_y++;
 	}

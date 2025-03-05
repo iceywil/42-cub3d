@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/25 10:42:49 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 22:46:18 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	init_all(t_cub *cub)
 	cub->img.addr = NULL;
 	cub->mini_map.data = NULL;
 	cub->mini_map.addr = NULL;
-	cub->i = 0;
 	cub->floor.r = -1;
 	cub->floor.g = -1;
 	cub->floor.b = -1;
@@ -58,13 +57,13 @@ void	init_all(t_cub *cub)
 	cub->map = NULL;
 	cub->map_height = 0;
 	cub->map_width = 0;
-	cub->map_show = false;
-	cub->tex_show = false;
 	init_two(cub);
 }
 
 void	init_two(t_cub *cub)
 {
+	cub->map_show = false;
+	cub->tex_show = false;
 	cub->texture_n.data = NULL;
 	cub->texture_s.data = NULL;
 	cub->texture_w.data = NULL;

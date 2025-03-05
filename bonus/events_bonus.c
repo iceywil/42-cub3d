@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <a@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 15:59:18 by a                 #+#    #+#             */
-/*   Updated: 2025/02/25 22:22:47 by a                ###   ########.fr       */
+/*   Updated: 2025/03/05 23:05:49 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	key_press(int key, t_cub *cub)
 	else if (key == T && cub->tex_show)
 		cub->tex_show = false;
 	else if (key == O && is_door_forward(cub->map, cub->player))
-		open_door(cub->map, cub->player);
+		door_action(cub->map, cub->player);
 	return (0);
 }
 

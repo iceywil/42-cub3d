@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/03 16:43:26 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 22:59:34 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,5 @@ void	handle_map(t_cub *cub)
 	}
 	if (cub->player.x == -1 || cub->player.y == -1)
 		exit_error(cub, "There is no player\n");
+	init_door(cub);
 }

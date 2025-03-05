@@ -6,20 +6,20 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:57:53 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/27 18:42:24 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 23:05:55 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	open_door(char **map, t_player player)
+void	door_action(char **map, t_player player)
 {
 	float	x;
 	float	y;
 	int		i;
 
 	i = 0;
-	while (i < 20)
+	while (i < MARGIN_DOOR)
 	{
 		x = player.x + cos(player.angle) * SPEED * i;
 		y = player.y + sin(player.angle) * SPEED * i;
@@ -85,7 +85,7 @@ int	is_door_forward(char **map, t_player player)
 	int		i;
 
 	i = 0;
-	while (i < 20)
+	while (i < MARGIN_DOOR)
 	{
 		x = player.x + cos(player.angle) * SPEED * i;
 		y = player.y + sin(player.angle) * SPEED * i;

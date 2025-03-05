@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/03/05 18:28:57 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 23:05:49 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,6 @@ void			background(t_cub *cub);
 // bonus
 void			init_door(t_cub *cub);
 int				is_door_forward(char **map, t_player player);
-void			open_door(char **map, t_player player);
+void			door_action(char **map, t_player player);
 int				is_door_closed(char **map, float x, float y);
 #endif

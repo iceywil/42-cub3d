@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:25:12 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/27 18:43:03 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/05 10:43:02 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ on clear les images
 on raycaste, et on draw le player et la map*/
 int	draw_loop(t_cub *cub)
 {
-	float	start_x;
+	double	start_x;
 	int		x;
 
 	move_player(&cub->player, cub);

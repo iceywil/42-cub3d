@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/03/06 16:13:03 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:28:52 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ typedef struct s_ray
 typedef struct s_sprite
 {
 	int			width;
-    int			height;
+	int			height;
 	int			num_frames;
 	int			num;
+	int			add_h;
+	int			add_w;
 }				t_sprite;
 
 typedef struct s_player

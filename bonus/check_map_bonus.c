@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:02:10 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/06 11:35:31 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:28:15 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,12 @@ void	check_map_elem(t_cub *cub, char elem, int i, int j)
 		exit_error(cub, "Unknown element in map");
 }
 
+void	init_bonus(t_cub *cub)
+{
+	init_door(cub);
+	init_sprite(cub);
+}
+
 /*check if the first and last line only contains 1
 check if the first and last element of each line is a 1
 check that there is exactly one player*/
@@ -98,6 +104,5 @@ void	handle_map(t_cub *cub)
 	}
 	if (cub->player.x == -1 || cub->player.y == -1)
 		exit_error(cub, "There is no player\n");
-	init_door(cub);
-	init_sprite(cub);
+	init_bonus(cub);
 }

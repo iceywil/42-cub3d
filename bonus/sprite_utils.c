@@ -6,12 +6,20 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:57:53 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/06 16:12:59 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:26:09 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+void	sprite_param(t_sprite *sprite)
+{
+	if (sprite->num >= 4)
+		sprite->add_h = sprite->height;
+	else
+		sprite->add_h = 0;
+	sprite->add_w = sprite->num % 4 * sprite->width;
+}
 
 void	init_ray_player(t_cub *cub, t_ray *ray, t_player *player)
 {
@@ -24,7 +32,6 @@ void	init_ray_player(t_cub *cub, t_ray *ray, t_player *player)
 	calc_ray(ray, player);
 	calc_short_dist(cub, ray);
 }
-
 
 int	is_sprite_forward(char **map, double x, double y)
 {
@@ -57,4 +64,3 @@ void	init_sprite(t_cub *cub)
 	cub->sprite.width = 512;
 	cub->sprite.num_frames = 8;
 }
-

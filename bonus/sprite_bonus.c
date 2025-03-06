@@ -6,11 +6,13 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:57:53 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/06 16:12:21 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:28:22 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	sprite_param(t_sprite *sprite);
 
 bool	touch_sprite(t_cub *cub, float px, float py)
 {
@@ -71,33 +73,31 @@ void	calc_side_sprite(t_cub *cub, double angle, int x)
 			cub->side = 0;
 		}
 		if (touch_sprite(cub, cub->ray.x, cub->ray.y))
-			break;
+			break ;
 	}
 }
 
 void	draw_sprite(t_cub *cub, t_img *tex_spr, int x)
 {
 	int		start_y;
-	int		end;
 	double	step;
 	double	tex_y;
 	float	height;
 	int		color;
-	
+
 	if (cub->map[(int)cub->ray.y / BLOCK][(int)cub->ray.x / BLOCK] == 'P')
 	{
-		height = (SPRITE_SIZ / fixed_dist(cub->player, cub->player.ray.x, cub->player.ray.y))
-			* (WIDTH/ 2);
+		height = (SPRITE_SIZ / fixed_dist(cub->player, cub->player.ray.x,
+					cub->player.ray.y)) * (WIDTH / 2);
 		start_y = (HEIGHT + height) / 2;
-		end = start_y + height;
 		step = cub->sprite.height / height;
 		tex_y = 0;
-		while (start_y < end)
+		sprite_param(cub->sprite);
+		while (start_y < (HEIGHT + height) / 2 + height)
 		{
-			if (cub->sprite.num >= 4)
-				tex_y = (int)tex_y % cub->sprite.height + cub->sprite.height;
+			tex_y = (int)tex_y % cub->sprite.height + cub->sprite.add_h;
 			color = get_pixel(tex_spr, tex_x(cub, tex_spr) % cub->sprite.width
-				+ cub->sprite.num % 4 * cub->sprite.width, tex_y);
+					+ cub->sprite.add_w, tex_y);
 			if (color != WHITE && color != GREY)
 				put_pixel(&cub->img, x, start_y, color);
 			tex_y += step;
@@ -110,7 +110,7 @@ void	show_sprite(t_cub *cub)
 {
 	double	ray_angle;
 	int		x;
-	
+
 	ray_angle = cub->player.angle - FOV / 2;
 	x = 0;
 	while (x < WIDTH)

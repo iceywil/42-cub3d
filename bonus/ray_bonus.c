@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/03/06 15:34:55 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:27:24 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	calc_side(t_cub *cub, double angle, int x)
 			cub->side = 0;
 		}
 		if (touch(cub, cub->ray.x, cub->ray.y))
-			break;
+			break ;
 	}
 }
 

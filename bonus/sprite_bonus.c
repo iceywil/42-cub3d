@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:57:53 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/06 16:28:22 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 18:49:00 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	draw_sprite(t_cub *cub, t_img *tex_spr, int x)
 		start_y = (HEIGHT + height) / 2;
 		step = cub->sprite.height / height;
 		tex_y = 0;
-		sprite_param(cub->sprite);
+		sprite_param(&cub->sprite);
 		while (start_y < (HEIGHT + height) / 2 + height)
 		{
 			tex_y = (int)tex_y % cub->sprite.height + cub->sprite.add_h;

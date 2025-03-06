@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:57:53 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/06 16:05:39 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:12:21 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,54 +45,8 @@ void	calc_short_dist(t_cub *cub, t_ray *ray)
 			ray->y += ray->step_y;
 		}
 		if (touch_sprite(cub, ray->x, ray->y))
-			break;
+			break ;
 	}
-}
-
-void	init_ray_player(t_cub *cub, t_ray *ray, t_player *player)
-{
-	ray->x = player->x + PLAYER_SIZ / 2;
-	ray->y = player->y + PLAYER_SIZ / 2;
-	ray->dir_x = cos(player->angle);
-	ray->dir_y = sin(player->angle);
-	ray->deltadist_x = fabs(BLOCK / ray->dir_x);
-	ray->deltadist_y = fabs(BLOCK / ray->dir_y);
-	calc_ray(ray, player);
-	calc_short_dist(cub, ray);
-}
-
-void	sprite_action(char **map, t_player player)
-{
-	float	x;
-	float	y;
-	int		i;
-
-	i = 0;
-	while (i < MARGIN_DOOR * 2)
-	{
-		x = player.x + cos(player.angle) * SPEED * i;
-		y = player.y + sin(player.angle) * SPEED * i;
-		if (map[(int)y / BLOCK][(int)x / BLOCK] == 'P')
-		{
-			map[(int)y / BLOCK][(int)x / BLOCK] = 'O';
-			return ;
-		}
-		i++;
-	}
-}
-
-int	is_sprite_forward(char **map, double x, double y)
-{
-	int		i;
-
-	i = 0;
-	while (i < MARGIN_DOOR)
-	{
-		if (map[(int)y / BLOCK][(int)x / BLOCK] == 'P')
-			return (1);
-		i++;
-	}
-	return (0);
 }
 
 /*update ray.x and ray.y until it hits a wall
@@ -119,24 +73,6 @@ void	calc_side_sprite(t_cub *cub, double angle, int x)
 		if (touch_sprite(cub, cub->ray.x, cub->ray.y))
 			break;
 	}
-}
-
-void	init_sprite(t_cub *cub)
-{
-	t_img	*img;
-
-	img = &cub->texture_sprite;
-	img->data = mlx_xpm_file_to_image(cub->mlx,
-			"./textures/sprites-cat-running.xpm", &img->width, &img->height);
-	if (!img->data)
-		exit_error(cub, "Failed XPM to image");
-	img->addr = mlx_get_data_addr(img->data, &img->bpp, &img->size_line,
-			&img->endian);
-	if (!img->addr)
-		exit_error(cub, "Failed get address from texture img");
-	cub->sprite.height = 256;
-	cub->sprite.width = 512;
-	cub->sprite.num_frames = 8;
 }
 
 void	draw_sprite(t_cub *cub, t_img *tex_spr, int x)

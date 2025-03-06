@@ -6,7 +6,7 @@
 #    By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 20:46:06 by codespace         #+#    #+#              #
-#    Updated: 2025/03/06 15:26:49 by kimnguye         ###   ########.fr        #
+#    Updated: 2025/03/06 16:13:21 by kimnguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ C_BONUS		=	srcs/main.c \
 				bonus/move_player_bonus.c \
 				bonus/door_bonus.c \
 				bonus/sprite_bonus.c \
+				bonus/sprite_utils.c \
 
 OBJS	=		$(C_FILES:%.c=obj/%.o)
 

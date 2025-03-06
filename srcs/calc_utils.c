@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:43:58 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/05 23:42:10 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:18:06 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	calc_ray(t_ray *ray, t_player *player)
 	{
 		ray->step_x = STEP;
 		ray->sidedist_x = (ceil(player->x / BLOCK) - player->x / BLOCK)
-		* ray->deltadist_x;
+			* ray->deltadist_x;
 	}
 	if (ray->dir_y < 0)
 	{

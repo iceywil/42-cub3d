@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 12:19:24 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/05 23:57:30 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:54:17 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ void	draw_map(t_cub *cub)
 	y0 = cub->player.y0;
 	draw_player(&cub->mini_map, cub->player.x - x0, cub->player.y - y0, GREEN);
 	i = y0 / BLOCK;
-	while (cub->map[i])
+	while (i < cub->map_height)
 	{
 		j = x0 / BLOCK;
-		while (cub->map[i][j])
+		while (j < cub->map_width[i])
 		{
-			if (cub->map[i][j] == '1')
-				draw_square(cub, (j * BLOCK - x0), (i * BLOCK - y0), BLUE);
+			 if (cub->map[i][j] == '1')
+			 	draw_square(cub, (j * BLOCK - x0), (i * BLOCK - y0), BLUE);
 			j++;
 		}
 		i++;

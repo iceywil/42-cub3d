@@ -6,18 +6,17 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:22:52 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/02/27 18:46:54 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 18:12:45 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-/*retrieve the dimension of the map (cub->map_width and cub->map_height)
+/*retrieve the dimension of the map cub->map_height
 returns 0 when success, returns -1 if gnl failed*/
 void	init_max(t_cub *cub, int fd, int n)
 {
 	char	*gnl;
-	int		line_x;
 
 	cub->map_height = 0;
 	gnl = get_next_line(fd);
@@ -28,13 +27,9 @@ void	init_max(t_cub *cub, int fd, int n)
 		free(gnl);
 		gnl = get_next_line(fd);
 	}
-	cub->map_width = ft_strlen(gnl) - 1;
 	while (gnl)
 	{
 		cub->map_height++;
-		line_x = ft_strlen(gnl);
-		if (cub->map_width < line_x)
-			cub->map_width = line_x;
 		free(gnl);
 		gnl = get_next_line(fd);
 	}
@@ -42,7 +37,8 @@ void	init_max(t_cub *cub, int fd, int n)
 	close(fd);
 }
 
-/*map is a mallocated (char **)*/
+/*map is a mallocated (char **)
+fill map_width*/
 void	add_map_line(t_cub *cub, char *line)
 {
 	int	n;
@@ -53,6 +49,7 @@ void	add_map_line(t_cub *cub, char *line)
 		exit_error(cub, "Strdup failed");
 	if (cub->map[cub->map_height][n] == '\n')
 		cub->map[cub->map_height][n] = '\0';
+	cub->map_width[cub->map_height] = ft_strlen(cub->map[cub->map_height]);
 	cub->map_height++;
 	cub->map[cub->map_height] = NULL;
 }
@@ -68,6 +65,7 @@ void	init_map(t_cub *cub, char *file, int n)
 		exit_error(cub, "Can't open file");
 	init_max(cub, fd, n);
 	cub->map = malloc(sizeof(char *) * (cub->map_height + 1));
+	cub->map_width = malloc(sizeof(int) * (cub->map_height + 1));
 	if (!cub->map)
 		exit_error(cub, "Map initialization failed");
 	cub->map_height = 0;

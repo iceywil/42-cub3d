@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/03/06 01:05:01 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:24:52 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ bool	touch(t_cub *cub, float px, float py)
 	if (cub->map[y] && cub->map[y][x] && cub->map[y][x] == '1')
 		return (true);
 	if (cub->map[y] && cub->map[y][x] && cub->map[y][x] == 'D')
+		return (true);
+	if (cub->map[y] && cub->map[y][x] && cub->map[y][x] == 'P')
 		return (true);
 	return (false);
 }
@@ -59,7 +61,10 @@ void	wall_texture(t_cub *cub, double ray_angle, int x)
 	if (cub->map[(int)cub->ray.y / BLOCK][(int)cub->ray.x / BLOCK] == 'D')
 		cub->wall_texture = &cub->door;
 	else if (cub->map[(int)cub->ray.y / BLOCK][(int)cub->ray.x / BLOCK] == 'P')
+	{
 		cub->wall_texture = &cub->sprite;
+		cub->side = 2;
+	}
 	else if (cub->side == 1)
 	{
 		if (cos(ray_angle) >= 0)
@@ -81,7 +86,9 @@ int	tex_x(t_cub *cub, t_img *texture)
 {
 	double	wall_x;
 
-	if (cub->side == 0)
+	if (cub->side == 2)
+		wall_x = cub->player.ray.x / BLOCK;
+	else if (cub->side == 0)
 		wall_x = cub->ray.x / BLOCK;
 	else
 		wall_x = cub->ray.y / BLOCK;

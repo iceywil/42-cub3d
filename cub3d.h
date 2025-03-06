@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/03/06 01:04:03 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:21:22 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,20 @@
 # include <math.h>
 # include <stdbool.h>
 
+typedef struct s_ray
+{
+	double		x;
+	double		y;
+	double		dir_x;
+	double		dir_y;
+	double		sidedist_x;
+	double		sidedist_y;
+	double		deltadist_x;
+	double		deltadist_y;
+	float		step_x;
+	float		step_y;
+}				t_ray;
+
 typedef struct s_player
 {
 	double		x;
@@ -34,6 +48,7 @@ typedef struct s_player
 	bool		key_right;
 	bool		left_rotate;
 	bool		right_rotate;
+	t_ray		ray;
 }				t_player;
 
 typedef struct s_img
@@ -53,20 +68,6 @@ typedef struct s_color
 	int			g;
 	int			b;
 }				t_color;
-
-typedef struct s_ray
-{
-	double		x;
-	double		y;
-	double		dir_x;
-	double		dir_y;
-	double		sidedist_x;
-	double		sidedist_y;
-	double		deltadist_x;
-	double		deltadist_y;
-	float		step_x;
-	float		step_y;
-}				t_ray;
 
 typedef struct s_cub
 {
@@ -166,6 +167,7 @@ void			door_action(char **map, t_player player);
 int				is_door_closed(char **map, float x, float y);
 
 void			init_sprite(t_cub *cub);
-int				is_sprite_forward(char **map, t_player player);
+int				is_sprite_forward(char **map, double x, double y);
 void			sprite_action(char **map, t_player player);
+void			init_ray_player(t_cub *cub, t_ray *ray, t_player *player);
 #endif

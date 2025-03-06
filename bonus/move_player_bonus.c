@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:11:07 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/06 00:12:25 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:19:29 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	is_wall(char **map, float x, float y)
 		return (1);
 	if (is_door_closed(map, x, y))
 		return (1);
+	if (is_sprite_forward(map, x, y))
+		return (1);
 	if (map[(int)y / BLOCK][(int)x / BLOCK] == '1')
 		return (1);
 	if (map[(int)(y - PLAYER_SIZ) / BLOCK]
@@ -94,4 +96,5 @@ void	move_player(t_player *player, t_cub *cub)
 	player->y = y;
 	player->x0 = max(0, (int)(x - FIX_MAP_X));
 	player->y0 = max(0, (int)(y - FIX_MAP_Y));
+	init_ray_player(cub, &player->ray, player);
 }

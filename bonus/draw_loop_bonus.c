@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_loop.c                                        :+:      :+:    :+:   */
+/*   draw_loop_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:25:12 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/06 15:34:51 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:52:05 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ int	draw_loop(t_cub *cub)
 		ray_angle += cub->fraction;
 		x++;
 	}
+	show_sprite(cub);
 	draw_map(cub);
 	put_to_window(cub);
+	cub->sprite.num++;
+	if (cub->sprite.num == 8)
+		cub->sprite.num = 0;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/03/06 14:35:22 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:00:12 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_sprite
 	int			width;
     int			height;
 	int			num_frames;
+	int			num;
 }				t_sprite;
 
 typedef struct s_player
@@ -178,4 +179,6 @@ void			init_sprite(t_cub *cub);
 int				is_sprite_forward(char **map, double x, double y);
 void			sprite_action(char **map, t_player player);
 void			init_ray_player(t_cub *cub, t_ray *ray, t_player *player);
+void			show_sprite(t_cub *cub);
+void			draw_sprite(t_cub *cub, t_img *tex_spr, int x);
 #endif

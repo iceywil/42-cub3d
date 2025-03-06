@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:24:02 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/06 12:11:02 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:45:42 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	init_two(t_cub *cub)
 	cub->texture_e.data = NULL;
 	cub->door.data = NULL;
 	cub->fraction = FOV / WIDTH;
+	cub->sprite.num = 0;
 }
 
 void	init_player(t_cub *cub)

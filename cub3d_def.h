@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:54:51 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/05 23:43:23 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:03:06 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define WIDTH 1000
 # define HEIGHT 750
 # define WALL_SIZ 32
+# define SPRITE_SIZ 6
 # define MARGIN 2
 # define MARGIN_DOOR 7
 
@@ -89,7 +90,7 @@
 # define MAGENTA 0xFF00FF
 # define WHITE 0xFFFFFF
 # define BLACK 0x000000
-# define GREY 0x7F878B
+# define GREY 0xDDDDDD
 
 //keyboard
 # define W 119

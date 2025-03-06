@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/03/06 12:21:22 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:35:22 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ typedef struct s_ray
 	float		step_x;
 	float		step_y;
 }				t_ray;
+
+typedef struct s_sprite
+{
+	int			width;
+    int			height;
+	int			num_frames;
+}				t_sprite;
 
 typedef struct s_player
 {
@@ -91,10 +98,11 @@ typedef struct s_cub
 	t_img		texture_w;
 	t_img		texture_e;
 	t_img		door;
-	t_img		sprite;
+	t_img		texture_sprite;
 	t_img		*wall_texture;
 	t_player	player;
 	t_ray		ray;
+	t_sprite	sprite;
 	int			side;
 	float		fraction;
 }				t_cub;

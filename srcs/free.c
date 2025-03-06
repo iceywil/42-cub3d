@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 01:33:34 by a                 #+#    #+#             */
-/*   Updated: 2025/03/06 01:03:05 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:35:43 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	free_mlx(t_cub *cub)
 			mlx_destroy_image(cub->mlx, cub->texture_e.data);
 		if (cub->door.data)
 			mlx_destroy_image(cub->mlx, cub->door.data);
-		if (cub->sprite.data)
-			mlx_destroy_image(cub->mlx, cub->sprite.data);
+		if (cub->texture_sprite.data)
+			mlx_destroy_image(cub->mlx, cub->texture_sprite.data);
 		if (cub->win)
 			mlx_destroy_window(cub->mlx, cub->win);
 		if (cub->mlx)

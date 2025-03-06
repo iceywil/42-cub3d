@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:57:53 by kimnguye          #+#    #+#             */
-/*   Updated: 2025/03/06 12:24:00 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:39:22 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,39 @@ void	init_sprite(t_cub *cub)
 {
 	t_img	*img;
 
-	img = &cub->sprite;
+	img = &cub->texture_sprite;
 	img->data = mlx_xpm_file_to_image(cub->mlx,
-			"./textures/sprite.xpm", &img->width, &img->height);
+			"./textures/sprites-cat-running.xpm", &img->width, &img->height);
 	if (!img->data)
 		exit_error(cub, "Failed XPM to image");
 	img->addr = mlx_get_data_addr(img->data, &img->bpp, &img->size_line,
 			&img->endian);
 	if (!img->addr)
 		exit_error(cub, "Failed get address from texture img");
+	cub->sprite.height = 256;
+	cub->sprite.width = 512;
+	cub->sprite.num_frames = 8;
+}
+
+void	draw_wall(t_cub *cub, t_img *texture, int x)
+{
+	int		start_y;
+	int		end;
+	double	step;
+	double	tex_y;
+	float	height;
+
+	height = (WALL_SIZ / fixed_dist(cub->player, cub->ray.x, cub->ray.y))
+		* (WIDTH / 2);
+	start_y = (HEIGHT - height) / 2;
+	end = start_y + height;
+	step = texture->height / height;
+	tex_y = 0;
+	while (start_y < end)
+	{
+		put_pixel(&cub->img, x, start_y,
+			get_pixel(texture, tex_x(cub, texture) % cub->sprite.width, (int)tex_y % cub->sprite.height));
+		tex_y += step;
+		start_y++;
+	}
 }

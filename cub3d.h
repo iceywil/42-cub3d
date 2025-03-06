@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/03/06 16:28:52 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 18:57:35 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct s_cub
 	bool		tex_show;
 	char		**map;
 	int			map_height;
-	int			map_width;
+	int			*map_width;
 	void		*mlx;
 	void		*win;
 	t_img		img;

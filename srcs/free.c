@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 01:33:34 by a                 #+#    #+#             */
-/*   Updated: 2025/03/06 14:35:43 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 18:57:52 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	free_cub(t_cub *cub)
 		ft_free_double_tab(&cub->map);
 	if (cub->line)
 		free(cub->line);
+		if (cub->map_width)
+		free(cub->map_width);
 	close(cub->fd);
 }
 

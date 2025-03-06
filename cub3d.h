@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/03/06 16:44:52 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 18:11:56 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void			save_map(t_cub *cub, char *file, char *line, int n);
 void			init_map(t_cub *cub, char *file, int n);
 void			add_map_line(t_cub *cub, char *line);
 void			init_max(t_cub *cub, int fd, int n);
-void			init_map_width(t_cub *cub, int fd, int n);
 
 // EVENTS
 int				key_press(int keycode, t_cub *cub);

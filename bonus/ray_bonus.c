@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:30:33 by a                 #+#    #+#             */
-/*   Updated: 2025/03/06 00:23:31 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 01:05:01 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	wall_texture(t_cub *cub, double ray_angle, int x)
 {
 	if (cub->map[(int)cub->ray.y / BLOCK][(int)cub->ray.x / BLOCK] == 'D')
 		cub->wall_texture = &cub->door;
+	else if (cub->map[(int)cub->ray.y / BLOCK][(int)cub->ray.x / BLOCK] == 'P')
+		cub->wall_texture = &cub->sprite;
 	else if (cub->side == 1)
 	{
 		if (cos(ray_angle) >= 0)

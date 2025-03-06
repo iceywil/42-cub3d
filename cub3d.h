@@ -6,7 +6,7 @@
 /*   By: kimnguye <kimnguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:49:25 by a                 #+#    #+#             */
-/*   Updated: 2025/03/05 23:59:19 by kimnguye         ###   ########.fr       */
+/*   Updated: 2025/03/06 01:04:03 by kimnguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_cub
 	t_img		texture_w;
 	t_img		texture_e;
 	t_img		door;
+	t_img		sprite;
 	t_img		*wall_texture;
 	t_player	player;
 	t_ray		ray;
@@ -163,4 +164,8 @@ void			init_door(t_cub *cub);
 int				is_door_forward(char **map, t_player player);
 void			door_action(char **map, t_player player);
 int				is_door_closed(char **map, float x, float y);
+
+void			init_sprite(t_cub *cub);
+int				is_sprite_forward(char **map, t_player player);
+void			sprite_action(char **map, t_player player);
 #endif
